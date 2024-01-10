@@ -10,7 +10,7 @@ public class Container {
     private Sender sender;
 
     public Container(int weight, Sender sender) {
-        this.id = createId();
+        this.id = ++lastId;
         this.weight = weight;
         this.sender = sender;
     }
@@ -21,10 +21,6 @@ public class Container {
 
     public static void setLastId(int lastId) {
         Container.lastId = lastId;
-    }
-
-    protected static int createId() {
-        return ++lastId;
     }
 
     public int getId() {

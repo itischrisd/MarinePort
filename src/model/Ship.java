@@ -2,6 +2,7 @@ package model;
 
 
 import model.container.*;
+import model.exception.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,34 +32,25 @@ public class Ship {
         this.originPort = originPort;
         this.cargoOrigin = cargoOrigin;
         this.cargoDestination = cargoDestination;
-        this.id = createId();
+        this.id = ++lastId;
         this.containerList = new ArrayList<>();
-    }
-
-    private int createId() {
-        return ++lastId;
     }
 
     public Container unloadContainer(int id) {
         return containerList.remove(id);
     }
 
-    public void loadContainer(Container container) {
+    public void loadContainer(Container container) throws ContainerLoadingException {
         if (containerList.stream().map(Container::getWeight).reduce(0, Integer::sum) + container.getWeight() > maxCargoWeight) {
-            ///TODO print error
-            return;
+            throw new TooHeavyCargoException();
         } else if (containerList.size() >= maxTotalContainers) {
-            ///TODO print error
-            return;
+            throw new TooManyContainersException();
         } else if (containerList.stream().filter(e -> e instanceof HeavyContainer).count() >= maxHeavyContainers) {
-            ///TODO print error
-            return;
+            throw new TooManyHeavyContainersException();
         } else if (containerList.stream().filter(e -> e instanceof RefrigeratedContainer).count() >= maxContainersRequiringElectricity) {
-            ///TODO print error
-            return;
+            throw new TooManyContainersRequiringElectricityException();
         } else if (containerList.stream().filter(e -> e instanceof ToxicContainer || e instanceof ExplosiveContainer).count() >= maxToxicOrExplosiveContainers) {
-            ///TODO print error
-            return;
+            throw new TooManyToxicOrExplosiveContainersException();
         }
 
         containerList.add(container);

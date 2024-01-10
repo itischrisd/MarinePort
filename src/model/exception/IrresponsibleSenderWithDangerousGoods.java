@@ -8,5 +8,7 @@ public class IrresponsibleSenderWithDangerousGoods extends Exception {
     private String utilizationDate;
 
     public IrresponsibleSenderWithDangerousGoods() {
+        super();
+        id = ++lastId;
     }
 }
