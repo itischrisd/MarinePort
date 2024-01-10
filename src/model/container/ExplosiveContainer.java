@@ -6,12 +6,20 @@ public class ExplosiveContainer extends HeavyContainer {
 
     private AdditionalProtection additionalProtection;
 
-    public ExplosiveContainer(int weight, Sender sender, int tareWeight) {
+    public ExplosiveContainer(int weight, Sender sender, int tareWeight, AdditionalProtection additionalProtection) {
         super(weight, sender, tareWeight);
+        this.additionalProtection = additionalProtection;
     }
 
+    public AdditionalProtection getAdditionalProtection() {
+        return additionalProtection;
+    }
 
-    enum AdditionalProtection {
+    public void setAdditionalProtection(AdditionalProtection additionalProtection) {
+        this.additionalProtection = additionalProtection;
+    }
+
+    public enum AdditionalProtection {
         NONE("None"),
         REINFORCED_WALLS("Reinforced Walls"),
         EXPLOSION_SUPPRESSORS("Explosion Suppressors"),
@@ -24,7 +32,8 @@ public class ExplosiveContainer extends HeavyContainer {
             this.displayName = displayName;
         }
 
-        public String getDisplayName() {
+        @Override
+        public String toString() {
             return displayName;
         }
     }

@@ -12,7 +12,7 @@ public class LooseToxicContainer extends ToxicContainer {
         super(weight, sender, tareWeight, toxicityLevel);
     }
 
-    enum ToxicBulkContainerFeatures {
+    public enum ToxicBulkContainerFeatures {
         NONE("None"),
         VENTILATION_SYSTEM("Ventillation System"),
         LEAK_DETECTION_SYSTEM("Leak Detection System"),
@@ -23,9 +23,10 @@ public class LooseToxicContainer extends ToxicContainer {
         ToxicBulkContainerFeatures(String displayName) {
             this.displayName = displayName;
         }
-        public String getDisplayName() {
+
+        @Override
+        public String toString() {
             return displayName;
         }
-
     }
 }
