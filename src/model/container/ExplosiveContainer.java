@@ -1,20 +1,15 @@
 package model.container;
 
+import model.Sender;
+
 public class ExplosiveContainer extends HeavyContainer {
 
-    private final AdditionalProtection additionalProtection;
+    private AdditionalProtection additionalProtection;
 
-    public ExplosiveContainer(int id, int tareWeight, int netWeight, int grossWeight, String sender, int additionalHandles, AdditionalProtection additionalProtection) {
-        super(id, tareWeight, netWeight, grossWeight, sender, additionalHandles);
-        this.additionalProtection = additionalProtection;
+    public ExplosiveContainer(int weight, Sender sender, int tareWeight) {
+        super(weight, sender, tareWeight);
     }
 
-    @Override
-    public String toString() {
-        return "ExplosiveContainer{" +
-                "additionalProtection=" + additionalProtection +
-                '}';
-    }
 
     enum AdditionalProtection {
         NONE("None"),

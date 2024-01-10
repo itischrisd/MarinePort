@@ -2,5 +2,7 @@ package model.container;
 
 public interface Liquid {
 
-    void pump();
+    double getLiquidVolume();
+
+    void setLiquidVolume(double liquidVolume);
 }

@@ -1,23 +1,24 @@
 package model.container;
 
-public class LiquidContainer extends BasicContainer implements Liquid {
+import model.Sender;
 
-    private final double liquidVolume;
+public class LiquidContainer extends Container implements Liquid {
 
-    public LiquidContainer(int id, int tareWeight, int netWeight, int grossWeight, String sender, double liquidVolume) {
-        super(id, tareWeight, netWeight, grossWeight, sender);
+    private double liquidVolume;
+
+    public LiquidContainer(int weight, Sender sender, double liquidVolume) {
+        super(weight, sender);
         this.liquidVolume = liquidVolume;
     }
 
+
     @Override
-    public void pump() {
-        System.out.println("Ciecz jest przepompowywana przez przewód hydrualiczny...");
+    public double getLiquidVolume() {
+        return liquidVolume;
     }
 
     @Override
-    public String toString() {
-        return "LiquidContainer{" +
-                "liquidVolume=" + liquidVolume +
-                '}';
+    public void setLiquidVolume(double liquidVolume) {
+        this.liquidVolume = liquidVolume;
     }
 }

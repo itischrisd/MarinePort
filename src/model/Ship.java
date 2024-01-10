@@ -44,7 +44,7 @@ public class Ship {
     }
 
     public void loadContainer(Container container) {
-        if (containerList.stream().map(Container::getWieght).reduce(0, Integer::sum) + container.getWieght() > maxCargoWeight) {
+        if (containerList.stream().map(Container::getWeight).reduce(0, Integer::sum) + container.getWeight() > maxCargoWeight) {
             ///TODO print error
             return;
         } else if (containerList.size() >= maxTotalContainers) {

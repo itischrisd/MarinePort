@@ -1,18 +1,21 @@
 package model.container;
 
+import model.Sender;
+
 public abstract class ToxicContainer extends HeavyContainer {
 
-    private final int toxicityLevel;
+    private int toxicityLevel;
 
-    public ToxicContainer(int id, int tareWeight, int netWeight, int grossWeight, String sender, int additionalHandles, int toxicityLevel) {
-        super(id, tareWeight, netWeight, grossWeight, sender, additionalHandles);
+    public ToxicContainer(int weight, Sender sender, int tareWeight, int toxicityLevel) {
+        super(weight, sender, tareWeight);
         this.toxicityLevel = toxicityLevel;
     }
 
-    @Override
-    public String toString() {
-        return "ToxicContainer{" +
-                "toxicityLevel=" + toxicityLevel +
-                '}';
+    public int getToxicityLevel() {
+        return toxicityLevel;
+    }
+
+    public void setToxicityLevel(int toxicityLevel) {
+        this.toxicityLevel = toxicityLevel;
     }
 }

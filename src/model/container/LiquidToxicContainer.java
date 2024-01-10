@@ -1,23 +1,22 @@
 package model.container;
 
+import model.Sender;
+
 public class LiquidToxicContainer  extends ToxicContainer implements Liquid {
 
-    private final int corrosivenessLevel;
+    private double liquidVolume;
 
-    public LiquidToxicContainer(int id, int tareWeight, int netWeight, int grossWeight, String sender, int additionalHandles, int toxicityLevel, int corrosivenessLevel) {
-        super(id, tareWeight, netWeight, grossWeight, sender, additionalHandles, toxicityLevel);
-        this.corrosivenessLevel = corrosivenessLevel;
+    public LiquidToxicContainer(int weight, Sender sender, int tareWeight, int toxicityLevel) {
+        super(weight, sender, tareWeight, toxicityLevel);
     }
 
     @Override
-    public void pump() {
-        System.out.println("Ciecz toksyczna jest przepompowywana przez niekorozyjny przewód hydrualiczny...");
+    public double getLiquidVolume() {
+        return liquidVolume;
     }
 
     @Override
-    public String toString() {
-        return "LiquidToxicContainer{" +
-                "corrosivenessLevel=" + corrosivenessLevel +
-                '}';
+    public void setLiquidVolume(double liquidVolume) {
+        this.liquidVolume = liquidVolume;
     }
 }
