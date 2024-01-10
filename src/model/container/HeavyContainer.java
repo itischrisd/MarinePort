@@ -1,18 +1,13 @@
 package model.container;
 
+import model.Sender;
+
 public class HeavyContainer extends BasicContainer {
 
-    private final int additionalHandles;
+    private int tareWeight;
 
-    public HeavyContainer(int id, int tareWeight, int netWeight, int grossWeight, String sender, int additionalHandles) {
-        super(id, tareWeight, netWeight, grossWeight, sender);
-        this.additionalHandles = additionalHandles;
-    }
-
-    @Override
-    public String toString() {
-        return "HeavyContainer{" +
-                "additionalHandles=" + additionalHandles +
-                '}';
+    public HeavyContainer(int grossWeight, Sender sender) {
+        super(grossWeight, sender);
+        this.tareWeight = tareWeight;
     }
 }
