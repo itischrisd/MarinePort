@@ -1,6 +1,6 @@
-package model.containers;
+package model.container;
 
-public class LiquidToxicContainer  extends ToxicContainer implements Pumpable {
+public class LiquidToxicContainer  extends ToxicContainer implements Liquid {
 
     private final int corrosivenessLevel;
 

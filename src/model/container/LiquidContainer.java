@@ -1,6 +1,6 @@
-package model.containers;
+package model.container;
 
-public class LiquidContainer extends BasicContainer implements Pumpable {
+public class LiquidContainer extends BasicContainer implements Liquid {
 
     private final double liquidVolume;
 

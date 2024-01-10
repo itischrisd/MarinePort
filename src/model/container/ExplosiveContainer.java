@@ -1,4 +1,4 @@
-package model.containers;
+package model.container;
 
 public class ExplosiveContainer extends HeavyContainer {
 

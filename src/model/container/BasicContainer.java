@@ -1,6 +1,6 @@
-package model.containers;
+package model.container;
 
-public class BasicContainer {
+public class BasicContainer extends Container {
 
     private final int id;
     private final int tareWeight;
@@ -17,13 +17,7 @@ public class BasicContainer {
     }
 
     @Override
-    public String toString() {
-        return "BasicContainer{" +
-                "id=" + id +
-                ", tareWeight=" + tareWeight +
-                ", netWeight=" + netWeight +
-                ", grossWeight=" + grossWeight +
-                ", sender='" + sender + '\'' +
-                '}';
+    public int getWieght() {
+        return grossWeight;
     }
 }
