@@ -1,18 +1,29 @@
 package model.container;
 
-import model.Sender;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class LooseToxicContainer extends ToxicContainer {
 
-    private List<ToxicBulkContainerFeatures> toxicBulkContainerFeatures;
+    private List<LooseToxicContainerFeatures> looseToxicContainerFeatures;
 
-    public LooseToxicContainer(int weight, Sender sender, int tareWeight, int toxicityLevel) {
-        super(weight, sender, tareWeight, toxicityLevel);
+    protected LooseToxicContainer() {
+        looseToxicContainerFeatures = new ArrayList<>();
     }
 
-    public enum ToxicBulkContainerFeatures {
+    public List<LooseToxicContainerFeatures> getLooseToxicContainerFeatures() {
+        return looseToxicContainerFeatures;
+    }
+
+    public void setLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> looseToxicContainerFeatures) {
+        this.looseToxicContainerFeatures = looseToxicContainerFeatures;
+    }
+
+    public void addLooseToxicContainerFeature(LooseToxicContainerFeatures looseToxicContainerFeature) {
+        looseToxicContainerFeatures.add(looseToxicContainerFeature);
+    }
+
+    public enum LooseToxicContainerFeatures {
         NONE("None"),
         VENTILATION_SYSTEM("Ventillation System"),
         LEAK_DETECTION_SYSTEM("Leak Detection System"),
@@ -20,7 +31,7 @@ public class LooseToxicContainer extends ToxicContainer {
 
         private final String displayName;
 
-        ToxicBulkContainerFeatures(String displayName) {
+        LooseToxicContainerFeatures(String displayName) {
             this.displayName = displayName;
         }
 

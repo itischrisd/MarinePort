@@ -1,6 +1,6 @@
 package model.container;
 
-import model.Sender;
+import model.sender.Sender;
 
 public class Container {
 
@@ -9,18 +9,8 @@ public class Container {
     private int weight;
     private Sender sender;
 
-    public Container(int weight, Sender sender) {
-        this.id = ++lastId;
-        this.weight = weight;
-        this.sender = sender;
-    }
+    protected Container() {
 
-    public static int getLastId() {
-        return lastId;
-    }
-
-    public static void setLastId(int lastId) {
-        Container.lastId = lastId;
     }
 
     public int getId() {
@@ -29,6 +19,11 @@ public class Container {
 
     public void setId(int id) {
         this.id = id;
+        lastId = Math.max(lastId, id);
+    }
+
+    public void setId() {
+        this.id = ++lastId;
     }
 
     public int getWeight() {

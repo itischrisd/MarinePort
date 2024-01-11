@@ -1,4 +1,4 @@
-package model;
+package model.sender;
 
 import model.exception.IrresponsibleSenderWithDangerousGoods;
 
@@ -12,11 +12,8 @@ public class Sender {
     private String address;
     private List<IrresponsibleSenderWithDangerousGoods> warnings;
 
-    public Sender(String name, String surname, String pesel, String address) {
-        this.name = name;
-        this.surname = surname;
-        this.pesel = pesel;
-        this.address = address;
+    public Sender() {
+
     }
 
     public String getName() {

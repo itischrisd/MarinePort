@@ -11,4 +11,29 @@ public class IrresponsibleSenderWithDangerousGoods extends Exception {
         super();
         id = ++lastId;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+        lastId = Math.max(lastId, id);
+    }
+
+    public String getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(String arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public String getUtilizationDate() {
+        return utilizationDate;
+    }
+
+    public void setUtilizationDate(String utilizationDate) {
+        this.utilizationDate = utilizationDate;
+    }
 }

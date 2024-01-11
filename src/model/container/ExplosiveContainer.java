@@ -1,14 +1,11 @@
 package model.container;
 
-import model.Sender;
-
 public class ExplosiveContainer extends HeavyContainer {
 
     private AdditionalProtection additionalProtection;
 
-    public ExplosiveContainer(int weight, Sender sender, int tareWeight, AdditionalProtection additionalProtection) {
-        super(weight, sender, tareWeight);
-        this.additionalProtection = additionalProtection;
+    protected ExplosiveContainer() {
+
     }
 
     public AdditionalProtection getAdditionalProtection() {

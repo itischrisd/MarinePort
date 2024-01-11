@@ -1,16 +1,12 @@
 package model.container;
 
-import model.Sender;
-
 public class LiquidContainer extends Container implements Liquid {
 
     private double liquidVolume;
 
-    public LiquidContainer(int weight, Sender sender, double liquidVolume) {
-        super(weight, sender);
-        this.liquidVolume = liquidVolume;
-    }
+    protected LiquidContainer() {
 
+    }
 
     @Override
     public double getLiquidVolume() {

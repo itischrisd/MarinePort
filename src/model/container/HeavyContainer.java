@@ -1,15 +1,11 @@
 package model.container;
 
-import model.Sender;
-
 public class HeavyContainer extends Container {
 
     private int tareWeight;
 
+    protected HeavyContainer() {
 
-    public HeavyContainer(int weight, Sender sender, int tareWeight) {
-        super(weight, sender);
-        this.tareWeight = tareWeight;
     }
 
     public int getTareWeight() {
