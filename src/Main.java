@@ -1,7 +1,9 @@
 import model.container.*;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import model.container.LooseToxicContainer.LooseToxicContainerFeatures;
+import model.exception.IrresponsibleSenderWithDangerousGoods;
 
 import static model.container.LooseToxicContainer.LooseToxicContainerFeatures.LEAK_DETECTION_SYSTEM;
 
@@ -39,5 +41,16 @@ public class Main {
         System.out.println(ContainerSerializer.serialize(container5));
         System.out.println(ContainerSerializer.serialize(container6));
 
+        try {
+            throw new IrresponsibleSenderWithDangerousGoods();
+        } catch (IrresponsibleSenderWithDangerousGoods e) {
+            System.out.println(e);
+        }
+
+        try {
+            throw new IrresponsibleSenderWithDangerousGoods(LocalDate.now(), LocalDate.now().plusDays(1));
+        } catch (IrresponsibleSenderWithDangerousGoods e) {
+            System.out.println(e);
+        }
     }
 }

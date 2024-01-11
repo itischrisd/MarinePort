@@ -1,15 +1,23 @@
 package model.exception;
 
+import java.time.LocalDate;
+
 public class IrresponsibleSenderWithDangerousGoods extends Exception {
 
     private static int lastId = 0;
     private int id;
-    private String arrivalDate;
-    private String utilizationDate;
+    private LocalDate arrivalDate;
+    private LocalDate utilizationDate;
 
-    public IrresponsibleSenderWithDangerousGoods() {
+    public IrresponsibleSenderWithDangerousGoods(LocalDate arrivalDate, LocalDate utilizationDate) {
         super();
         id = ++lastId;
+        this.arrivalDate = arrivalDate;
+        this.utilizationDate = utilizationDate;
+    }
+
+    public IrresponsibleSenderWithDangerousGoods() {
+
     }
 
     public int getId() {
@@ -21,19 +29,25 @@ public class IrresponsibleSenderWithDangerousGoods extends Exception {
         lastId = Math.max(lastId, id);
     }
 
-    public String getArrivalDate() {
+    public LocalDate getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(String arrivalDate) {
+    public void setArrivalDate(LocalDate arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public String getUtilizationDate() {
+    public LocalDate getUtilizationDate() {
         return utilizationDate;
     }
 
-    public void setUtilizationDate(String utilizationDate) {
+    public void setUtilizationDate(LocalDate utilizationDate) {
         this.utilizationDate = utilizationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "IrresponsibleSenderWithDangerousGoods [id=" + id + ", arrivalDate=" + arrivalDate + ", utilizationDate="
+                + utilizationDate + "]";
     }
 }
