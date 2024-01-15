@@ -17,12 +17,12 @@ public class Container {
         return id;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
         lastId = Math.max(lastId, id);
     }
 
-    public void setId() {
+    protected void setId() {
         this.id = ++lastId;
     }
 
@@ -30,7 +30,7 @@ public class Container {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    protected void setWeight(int weight) {
         this.weight = weight;
     }
 
@@ -38,7 +38,7 @@ public class Container {
         return sender;
     }
 
-    public void setSender(Sender sender) {
+    protected void setSender(Sender sender) {
         this.sender = sender;
     }
 }

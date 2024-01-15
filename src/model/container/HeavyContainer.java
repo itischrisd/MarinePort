@@ -8,11 +8,11 @@ public class HeavyContainer extends Container {
 
     }
 
-    public int getTareWeight() {
+    protected int getTareWeight() {
         return tareWeight;
     }
 
-    public void setTareWeight(int tareWeight) {
+    protected void setTareWeight(int tareWeight) {
         this.tareWeight = tareWeight;
     }
 }

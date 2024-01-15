@@ -8,11 +8,11 @@ public class RefrigeratedContainer extends HeavyContainer {
 
     }
 
-    public boolean isConnectedToPower() {
+    protected boolean isConnectedToPower() {
         return connectedToPower;
     }
 
-    public void setConnectedToPower(boolean connectedToPower) {
+    protected void setConnectedToPower(boolean connectedToPower) {
         this.connectedToPower = connectedToPower;
     }
 }

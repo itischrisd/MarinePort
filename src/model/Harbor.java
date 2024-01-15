@@ -2,6 +2,7 @@ package model;
 
 import model.sender.Sender;
 import model.ship.Ship;
+import model.warehouse.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;

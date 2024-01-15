@@ -10,7 +10,7 @@ public class ContainerSerializer {
 
         serializedContainer.add(String.valueOf(container.getId()));
         serializedContainer.add(String.valueOf(container.getWeight()));
-        serializedContainer.add(String.valueOf(container.getSender()));
+        serializedContainer.add(String.valueOf(container.getSender().getPesel()));
 
         if (container instanceof HeavyContainer) {
             serializedContainer.add(String.valueOf(((HeavyContainer) container).getTareWeight()));

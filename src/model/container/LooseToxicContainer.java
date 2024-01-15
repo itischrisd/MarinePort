@@ -11,15 +11,15 @@ public class LooseToxicContainer extends ToxicContainer {
         looseToxicContainerFeatures = new ArrayList<>();
     }
 
-    public List<LooseToxicContainerFeatures> getLooseToxicContainerFeatures() {
+    protected List<LooseToxicContainerFeatures> getLooseToxicContainerFeatures() {
         return looseToxicContainerFeatures;
     }
 
-    public void setLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> looseToxicContainerFeatures) {
+    protected void setLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> looseToxicContainerFeatures) {
         this.looseToxicContainerFeatures = looseToxicContainerFeatures;
     }
 
-    public void addLooseToxicContainerFeature(LooseToxicContainerFeatures looseToxicContainerFeature) {
+    protected void addLooseToxicContainerFeature(LooseToxicContainerFeatures looseToxicContainerFeature) {
         looseToxicContainerFeatures.add(looseToxicContainerFeature);
     }
 

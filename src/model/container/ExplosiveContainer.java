@@ -8,11 +8,11 @@ public class ExplosiveContainer extends HeavyContainer {
 
     }
 
-    public AdditionalProtection getAdditionalProtection() {
+    protected AdditionalProtection getAdditionalProtection() {
         return additionalProtection;
     }
 
-    public void setAdditionalProtection(AdditionalProtection additionalProtection) {
+    protected void setAdditionalProtection(AdditionalProtection additionalProtection) {
         this.additionalProtection = additionalProtection;
     }
 

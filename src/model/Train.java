@@ -2,6 +2,7 @@ package model;
 
 import model.container.Container;
 import model.exception.TooManyContainersException;
+import model.time.Departurer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,11 @@ public class Train {
             containers.add(container);
         } else {
             throw new TooManyContainersException();
+        }
+
+        if (containers.size() == MAX_CONTAINERS) {
+            Departurer departurer = new Departurer();
+            departurer.start();
         }
     }
 

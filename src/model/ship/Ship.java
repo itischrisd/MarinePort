@@ -20,30 +20,30 @@ public class Ship {
     private int maxHeavyContainers;
     private int maxTotalContainers;
     private int maxCargoWeight;
-    private List<Container> containerList;
+    private List<Container> containers;
 
     public Ship() {
 
     }
 
     public Container unloadContainer(int id) {
-        return containerList.remove(id);
+        return containers.remove(id);
     }
 
     public void loadContainer(Container container) throws ContainerLoadingException {
-        if (containerList.stream().map(Container::getWeight).reduce(0, Integer::sum) + container.getWeight() > maxCargoWeight) {
+        if (containers.stream().map(Container::getWeight).reduce(0, Integer::sum) + container.getWeight() > maxCargoWeight) {
             throw new TooHeavyCargoException();
-        } else if (containerList.size() >= maxTotalContainers) {
+        } else if (containers.size() >= maxTotalContainers) {
             throw new TooManyContainersException();
-        } else if (containerList.stream().filter(e -> e instanceof HeavyContainer).count() >= maxHeavyContainers) {
+        } else if (containers.stream().filter(e -> e instanceof HeavyContainer).count() >= maxHeavyContainers) {
             throw new TooManyHeavyContainersException();
-        } else if (containerList.stream().filter(e -> e instanceof RefrigeratedContainer).count() >= maxContainersRequiringElectricity) {
+        } else if (containers.stream().filter(e -> e instanceof RefrigeratedContainer).count() >= maxContainersRequiringElectricity) {
             throw new TooManyContainersRequiringElectricityException();
-        } else if (containerList.stream().filter(e -> e instanceof ToxicContainer || e instanceof ExplosiveContainer).count() >= maxToxicOrExplosiveContainers) {
+        } else if (containers.stream().filter(e -> e instanceof ToxicContainer || e instanceof ExplosiveContainer).count() >= maxToxicOrExplosiveContainers) {
             throw new TooManyToxicOrExplosiveContainersException();
         }
 
-        containerList.add(container);
+        containers.add(container);
     }
 
     protected int getMaxToxicOrExplosiveContainers() {
@@ -131,11 +131,11 @@ public class Ship {
         this.id = ++lastId;
     }
 
-    protected List<Container> getContainerList() {
-        return containerList;
+    protected List<Container> getContainers() {
+        return containers;
     }
 
-    protected void setContainerList(List<Container> containerList) {
-        this.containerList = containerList;
+    protected void setContainers(List<Container> containers) {
+        this.containers = containers;
     }
 }

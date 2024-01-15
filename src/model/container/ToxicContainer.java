@@ -8,11 +8,11 @@ public abstract class ToxicContainer extends HeavyContainer {
 
     }
 
-    public int getToxicityLevel() {
+    protected int getToxicityLevel() {
         return toxicityLevel;
     }
 
-    public void setToxicityLevel(int toxicityLevel) {
+    protected void setToxicityLevel(int toxicityLevel) {
         this.toxicityLevel = toxicityLevel;
     }
 }

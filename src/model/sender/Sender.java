@@ -12,23 +12,23 @@ public class Sender {
     private String address;
     private List<IrresponsibleSenderWithDangerousGoods> warnings;
 
-    public Sender() {
+    protected Sender() {
 
     }
 
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public String getSurname() {
+    protected String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
+    protected void setSurname(String surname) {
         this.surname = surname;
     }
 
@@ -36,19 +36,19 @@ public class Sender {
         return pesel;
     }
 
-    public void setPesel(String pesel) {
+    protected void setPesel(String pesel) {
         this.pesel = pesel;
     }
 
-    public String getAddress() {
+    protected String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    protected void setAddress(String address) {
         this.address = address;
     }
 
-    public LocalDate getBirthDate() {
+    protected LocalDate getBirthDate() {
         int year = Integer.parseInt(pesel.substring(0, 2));
         int month = Integer.parseInt(pesel.substring(2, 4));
         int day = Integer.parseInt(pesel.substring(4, 6));

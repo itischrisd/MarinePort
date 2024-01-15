@@ -69,7 +69,7 @@ public class ShipBuilder {
     }
 
     public ShipBuilder withContainers(List<Container> containers) {
-        ship.setContainerList(containers);
+        ship.setContainers(containers);
         return this;
     }
 
