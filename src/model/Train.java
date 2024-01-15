@@ -9,7 +9,7 @@ import java.util.List;
 public class Train {
 
     private static final int MAX_CONTAINERS = 10;
-    private final List<Container> containers;
+    private List<Container> containers;
 
     public Train() {
         containers = new ArrayList<>();
@@ -25,5 +25,9 @@ public class Train {
 
     public List<Container> getContainers() {
         return containers;
+    }
+
+    public void setContainers(List<Container> containers) {
+        this.containers = containers;
     }
 }

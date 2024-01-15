@@ -4,11 +4,11 @@ package model.ship;
 import model.container.*;
 import model.exception.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class Ship {
+
     private static int lastId = 0;
     private int id;
     private String name;
@@ -46,96 +46,96 @@ public class Ship {
         containerList.add(container);
     }
 
-    public int getMaxToxicOrExplosiveContainers() {
+    protected int getMaxToxicOrExplosiveContainers() {
         return maxToxicOrExplosiveContainers;
     }
 
-    public void setMaxToxicOrExplosiveContainers(int maxToxicOrExplosiveContainers) {
+    protected void setMaxToxicOrExplosiveContainers(int maxToxicOrExplosiveContainers) {
         this.maxToxicOrExplosiveContainers = maxToxicOrExplosiveContainers;
     }
 
-    public int getMaxContainersRequiringElectricity() {
+    protected int getMaxContainersRequiringElectricity() {
         return maxContainersRequiringElectricity;
     }
 
-    public void setMaxContainersRequiringElectricity(int maxContainersRequiringElectricity) {
+    protected void setMaxContainersRequiringElectricity(int maxContainersRequiringElectricity) {
         this.maxContainersRequiringElectricity = maxContainersRequiringElectricity;
     }
 
-    public int getMaxHeavyContainers() {
+    protected int getMaxHeavyContainers() {
         return maxHeavyContainers;
     }
 
-    public void setMaxHeavyContainers(int maxHeavyContainers) {
+    protected void setMaxHeavyContainers(int maxHeavyContainers) {
         this.maxHeavyContainers = maxHeavyContainers;
     }
 
-    public int getMaxTotalContainers() {
+    protected int getMaxTotalContainers() {
         return maxTotalContainers;
     }
 
-    public void setMaxTotalContainers(int maxTotalContainers) {
+    protected void setMaxTotalContainers(int maxTotalContainers) {
         this.maxTotalContainers = maxTotalContainers;
     }
 
-    public int getMaxCargoWeight() {
+    protected int getMaxCargoWeight() {
         return maxCargoWeight;
     }
 
-    public void setMaxCargoWeight(int maxCargoWeight) {
+    protected void setMaxCargoWeight(int maxCargoWeight) {
         this.maxCargoWeight = maxCargoWeight;
     }
 
-    public String getName() {
+    protected String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
-    public String getOriginPort() {
+    protected String getOriginPort() {
         return originPort;
     }
 
-    public void setOriginPort(String originPort) {
+    protected void setOriginPort(String originPort) {
         this.originPort = originPort;
     }
 
-    public String getCargoOrigin() {
+    protected String getCargoOrigin() {
         return cargoOrigin;
     }
 
-    public void setCargoOrigin(String cargoOrigin) {
+    protected void setCargoOrigin(String cargoOrigin) {
         this.cargoOrigin = cargoOrigin;
     }
 
-    public String getCargoDestination() {
+    protected String getCargoDestination() {
         return cargoDestination;
     }
 
-    public void setCargoDestination(String cargoDestination) {
+    protected void setCargoDestination(String cargoDestination) {
         this.cargoDestination = cargoDestination;
     }
 
-    public int getId() {
+    protected int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
         lastId = Math.max(lastId, id);
     }
 
-    public void setId() {
+    protected void setId() {
         this.id = ++lastId;
     }
 
-    public List<Container> getContainerList() {
+    protected List<Container> getContainerList() {
         return containerList;
     }
 
-    public void setContainerList(List<Container> containerList) {
+    protected void setContainerList(List<Container> containerList) {
         this.containerList = containerList;
     }
 }
