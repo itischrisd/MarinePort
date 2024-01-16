@@ -1,7 +1,9 @@
 package model.time;
 
 import model.Harbor;
-import model.Train;
+import model.train.TrainBuilder;
+
+import java.util.ArrayList;
 
 public class Departurer extends Thread {
 
@@ -9,9 +11,14 @@ public class Departurer extends Thread {
     public void run() {
         try {
             Thread.sleep(30000);
-            Harbor.getInstance().setTrain(new Train());
+            depart();
         } catch (InterruptedException e) {
-            Harbor.getInstance().setTrain(new Train());
+            depart();
         }
+    }
+
+    private void depart() {
+        TrainBuilder trainBuilder = new TrainBuilder();
+        Harbor.getInstance().setTrain(trainBuilder.train().withContainers(new ArrayList<>()).build());
     }
 }

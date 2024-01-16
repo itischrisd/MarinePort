@@ -5,7 +5,6 @@ import model.exception.TooManyContainersException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,28 +13,23 @@ public class Warehouse {
     private Map<Container, LocalDate> containers;
     private int MAX_CONTAINERS;
 
-    public Warehouse() {
-        containers = new LinkedHashMap<>();
-    }
+    protected Warehouse() {
 
-    public Warehouse(int maxContainers) {
-        MAX_CONTAINERS = maxContainers;
-        containers = new LinkedHashMap<>();
     }
 
     public Map<Container, LocalDate> getContainers() {
         return containers;
     }
 
-    public void setContainers(Map<Container, LocalDate> containers) {
+    protected void setContainers(Map<Container, LocalDate> containers) {
         this.containers = containers;
     }
 
-    public int getMaxContainers() {
+    protected int getMaxContainers() {
         return MAX_CONTAINERS;
     }
 
-    public void setMaxContainers(int maxContainers) {
+    protected void setMaxContainers(int maxContainers) {
         MAX_CONTAINERS = maxContainers;
     }
 

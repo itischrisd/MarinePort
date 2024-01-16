@@ -5,13 +5,16 @@ import model.container.Container;
 import model.container.ContainerBuilder;
 import model.container.ExplosiveContainer.AdditionalProtection;
 import model.container.LooseToxicContainer.LooseToxicContainerFeatures;
-import model.exception.TooManyContainersException;
 import model.sender.Sender;
 import model.sender.SenderBuilder;
 import model.ship.Ship;
 import model.ship.ShipBuilder;
+import model.warehouse.WarehouseBuilder;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class DataCreator {
 
@@ -23,16 +26,85 @@ public class DataCreator {
 
     private static void populateSenders() {
         SenderBuilder senderBuilder = new SenderBuilder();
-        Sender sender1 = senderBuilder.sender().withName("Anna").withSurname("Kowalska").withPesel("78050812345").withAddress("ul. Długa 15, 00-238 Warsaw").build();
-        Sender sender2 = senderBuilder.sender().withName("Jan").withSurname("Nowak").withPesel("80050812345").withAddress("ul. Szeroka 30, 31-156 Kraków").build();
-        Sender sender3 = senderBuilder.sender().withName("Ewa").withSurname("Zielińska").withPesel("92040598765").withAddress("ul. Krótka 4, 80-864 Gdańsk").build();
-        Sender sender4 = senderBuilder.sender().withName("Piotr").withSurname("Wiśniewski").withPesel("71021376543").withAddress("ul. Kwiatowa 12, 61-623 Poznań").build();
-        Sender sender5 = senderBuilder.sender().withName("Katarzyna").withSurname("Lewandowska").withPesel("66090154321").withAddress("al. Niepodległości 100, 02-554 Warsaw").build();
-        Sender sender6 = senderBuilder.sender().withName("Michał").withSurname("Dąbrowski").withPesel("93071165432").withAddress("ul. Piękna 22, 50-506 Wrocław").build();
-        Sender sender7 = senderBuilder.sender().withName("Agnieszka").withSurname("Kamińska").withPesel("88020412389").withAddress("ul. Ogrodowa 56, 44-100 Gliwice").build();
-        Sender sender8 = senderBuilder.sender().withName("Łukasz").withSurname("Wojciechowski").withPesel("84030876598").withAddress("ul. Morska 11, 81-222 Gdynia").build();
-        Sender sender9 = senderBuilder.sender().withName("Magdalena").withSurname("Jankowska").withPesel("74051298760").withAddress("ul. Parkowa 33, 70-410 Szczecin").build();
-        Sender sender10 = senderBuilder.sender().withName("Tomasz").withSurname("Mazur").withPesel("83090587612").withAddress("ul. Leśna 77, 15-157 Białystok").build();
+        Sender sender1 = senderBuilder
+                .sender()
+                .withName("Anna")
+                .withSurname("Kowalska")
+                .withPesel("78050812345")
+                .withAddress("ul. Długa 15, 00-238 Warsaw")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender2 = senderBuilder
+                .sender()
+                .withName("Jan")
+                .withSurname("Nowak")
+                .withPesel("80050812345")
+                .withAddress("ul. Szeroka 30, 31-156 Kraków")
+                .build();
+        Sender sender3 = senderBuilder
+                .sender()
+                .withName("Ewa")
+                .withSurname("Zielińska")
+                .withPesel("92040598765")
+                .withAddress("ul. Krótka 4, 80-864 Gdańsk")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender4 = senderBuilder
+                .sender()
+                .withName("Piotr")
+                .withSurname("Wiśniewski")
+                .withPesel("71021376543")
+                .withAddress("ul. Kwiatowa 12, 61-623 Poznań")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender5 = senderBuilder
+                .sender()
+                .withName("Katarzyna")
+                .withSurname("Lewandowska")
+                .withPesel("66090154321")
+                .withAddress("al. Niepodległości 100, 02-554 Warsaw")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender6 = senderBuilder
+                .sender()
+                .withName("Michał")
+                .withSurname("Dąbrowski")
+                .withPesel("93071165432")
+                .withAddress("ul. Piękna 22, 50-506 Wrocław")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender7 = senderBuilder
+                .sender()
+                .withName("Agnieszka")
+                .withSurname("Kamińska")
+                .withPesel("88020412389")
+                .withAddress("ul. Ogrodowa 56, 44-100 Gliwice")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender8 = senderBuilder
+                .sender()
+                .withName("Łukasz")
+                .withSurname("Wojciechowski")
+                .withPesel("84030876598")
+                .withAddress("ul. Morska 11, 81-222 Gdynia")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender9 = senderBuilder
+                .sender()
+                .withName("Magdalena")
+                .withSurname("Jankowska")
+                .withPesel("74051298760")
+                .withAddress("ul. Parkowa 33, 70-410 Szczecin")
+                .withWarnings(new ArrayList<>())
+                .build();
+        Sender sender10 = senderBuilder
+                .sender()
+                .withName("Tomasz")
+                .withSurname("Mazur")
+                .withPesel("83090587612")
+                .withAddress("ul. Leśna 77, 15-157 Białystok")
+                .withWarnings(new ArrayList<>())
+                .build();
         List<Sender> senders = List.of(sender1, sender2, sender3, sender4, sender5, sender6, sender7, sender8, sender9, sender10);
         Harbor.getInstance().setSenders(senders);
     }
@@ -73,14 +145,18 @@ public class DataCreator {
                 .withConnectedToPower(false)
                 .withSender(Harbor.getInstance().getSenders().get(4))
                 .build();
-        try {
-            Harbor.getInstance().getWarehouse().addContainer(container1);
-            Harbor.getInstance().getWarehouse().addContainer(container2);
-            Harbor.getInstance().getWarehouse().addContainer(container3);
-            Harbor.getInstance().getWarehouse().addContainer(container4);
-            Harbor.getInstance().getWarehouse().addContainer(container5);
-        } catch (TooManyContainersException ignored) {
-        }
+        Map<Container, LocalDate> containers = Map.of(
+                container1, LocalDate.now(),
+                container2, LocalDate.now(),
+                container3, LocalDate.now(),
+                container4, LocalDate.now(),
+                container5, LocalDate.now());
+        WarehouseBuilder warehouseBuilder = new WarehouseBuilder();
+        Harbor.getInstance().setWarehouse(warehouseBuilder
+                .warehouse()
+                .withMaxContainers(15)
+                .withContainers(containers)
+                .build());
     }
 
     private static void populateShips() {

@@ -16,38 +16,32 @@ public class IrresponsibleSenderWithDangerousGoods extends Exception {
         this.utilizationDate = utilizationDate;
     }
 
-    public IrresponsibleSenderWithDangerousGoods() {
+    protected IrresponsibleSenderWithDangerousGoods() {
 
     }
 
-    public int getId() {
+    protected int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
         lastId = Math.max(lastId, id);
     }
 
-    public LocalDate getArrivalDate() {
+    protected LocalDate getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(LocalDate arrivalDate) {
+    protected void setArrivalDate(LocalDate arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 
-    public LocalDate getUtilizationDate() {
+    protected LocalDate getUtilizationDate() {
         return utilizationDate;
     }
 
-    public void setUtilizationDate(LocalDate utilizationDate) {
+    protected void setUtilizationDate(LocalDate utilizationDate) {
         this.utilizationDate = utilizationDate;
-    }
-
-    @Override
-    public String toString() {
-        return "IrresponsibleSenderWithDangerousGoods [id=" + id + ", arrivalDate=" + arrivalDate + ", utilizationDate="
-                + utilizationDate + "]";
     }
 }

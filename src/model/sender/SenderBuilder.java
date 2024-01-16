@@ -1,5 +1,9 @@
 package model.sender;
 
+import model.exception.IrresponsibleSenderWithDangerousGoods;
+
+import java.util.List;
+
 public class SenderBuilder {
 
     private Sender sender;
@@ -26,6 +30,11 @@ public class SenderBuilder {
 
     public SenderBuilder withAddress(String address) {
         sender.setAddress(address);
+        return this;
+    }
+
+    public SenderBuilder withWarnings(List<IrresponsibleSenderWithDangerousGoods> warnings) {
+        sender.setWarnings(warnings);
         return this;
     }
 

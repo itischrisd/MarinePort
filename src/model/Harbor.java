@@ -2,6 +2,7 @@ package model;
 
 import model.sender.Sender;
 import model.ship.Ship;
+import model.train.Train;
 import model.warehouse.Warehouse;
 
 import java.util.ArrayList;
@@ -16,8 +17,6 @@ public class Harbor {
     private List<Sender> senders;
 
     private Harbor() {
-        warehouse = new Warehouse(25);
-        train = new Train();
         ships = new ArrayList<>();
     }
 

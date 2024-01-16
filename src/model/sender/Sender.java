@@ -12,10 +12,6 @@ public class Sender {
     private String address;
     private List<IrresponsibleSenderWithDangerousGoods> warnings;
 
-    protected Sender() {
-
-    }
-
     protected String getName() {
         return name;
     }
@@ -70,6 +66,14 @@ public class Sender {
         }
 
         return LocalDate.of(year, month, day);
+    }
+
+    protected List<IrresponsibleSenderWithDangerousGoods> getWarnings() {
+        return warnings;
+    }
+
+    protected void setWarnings(List<IrresponsibleSenderWithDangerousGoods> warnings) {
+        this.warnings = warnings;
     }
 
     public void addWarning(IrresponsibleSenderWithDangerousGoods warning) {
