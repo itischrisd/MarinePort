@@ -8,10 +8,6 @@ public class TrainBuilder {
 
     private Train train;
 
-    public TrainBuilder() {
-
-    }
-
     public TrainBuilder train() {
         train = new Train();
         return this;

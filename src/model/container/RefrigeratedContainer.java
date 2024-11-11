@@ -5,10 +5,9 @@ public class RefrigeratedContainer extends HeavyContainer {
     private boolean connectedToPower;
 
     protected RefrigeratedContainer() {
-
     }
 
-    protected boolean isConnectedToPower() {
+    public boolean isConnectedToPower() {
         return connectedToPower;
     }
 

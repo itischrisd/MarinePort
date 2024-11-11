@@ -4,6 +4,7 @@ import model.container.Container;
 import model.exception.TooManyContainersException;
 import model.time.Departurer;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Train {
@@ -15,7 +16,7 @@ public class Train {
     }
 
     public List<Container> getContainers() {
-        return containers;
+        return Collections.unmodifiableList(containers);
     }
 
     protected void setContainers(List<Container> containers) {

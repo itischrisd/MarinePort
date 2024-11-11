@@ -5,10 +5,9 @@ public abstract class ToxicContainer extends HeavyContainer {
     private int toxicityLevel;
 
     protected ToxicContainer() {
-
     }
 
-    protected int getToxicityLevel() {
+    public int getToxicityLevel() {
         return toxicityLevel;
     }
 

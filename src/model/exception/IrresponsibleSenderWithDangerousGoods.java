@@ -17,10 +17,9 @@ public class IrresponsibleSenderWithDangerousGoods extends Exception {
     }
 
     protected IrresponsibleSenderWithDangerousGoods() {
-
     }
 
-    protected int getId() {
+    public int getId() {
         return id;
     }
 
@@ -29,7 +28,7 @@ public class IrresponsibleSenderWithDangerousGoods extends Exception {
         lastId = Math.max(lastId, id);
     }
 
-    protected LocalDate getArrivalDate() {
+    public LocalDate getArrivalDate() {
         return arrivalDate;
     }
 
@@ -37,7 +36,7 @@ public class IrresponsibleSenderWithDangerousGoods extends Exception {
         this.arrivalDate = arrivalDate;
     }
 
-    protected LocalDate getUtilizationDate() {
+    public LocalDate getUtilizationDate() {
         return utilizationDate;
     }
 

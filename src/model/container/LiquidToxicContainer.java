@@ -5,7 +5,6 @@ public class LiquidToxicContainer  extends ToxicContainer implements Liquid {
     private double liquidVolume;
 
     protected LiquidToxicContainer() {
-
     }
 
     @Override

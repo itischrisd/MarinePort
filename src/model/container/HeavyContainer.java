@@ -5,10 +5,9 @@ public class HeavyContainer extends Container {
     private int tareWeight;
 
     protected HeavyContainer() {
-
     }
 
-    protected int getTareWeight() {
+    public int getTareWeight() {
         return tareWeight;
     }
 

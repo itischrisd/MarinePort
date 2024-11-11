@@ -1,6 +1,7 @@
 package model.container;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LooseToxicContainer extends ToxicContainer {
@@ -11,8 +12,8 @@ public class LooseToxicContainer extends ToxicContainer {
         looseToxicContainerFeatures = new ArrayList<>();
     }
 
-    protected List<LooseToxicContainerFeatures> getLooseToxicContainerFeatures() {
-        return looseToxicContainerFeatures;
+    public List<LooseToxicContainerFeatures> getLooseToxicContainerFeatures() {
+        return Collections.unmodifiableList(looseToxicContainerFeatures);
     }
 
     protected void setLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> looseToxicContainerFeatures) {
@@ -24,10 +25,10 @@ public class LooseToxicContainer extends ToxicContainer {
     }
 
     public enum LooseToxicContainerFeatures {
-        NONE("None"),
-        VENTILATION_SYSTEM("Ventillation System"),
-        LEAK_DETECTION_SYSTEM("Leak Detection System"),
-        DUST_CONTROL_SYSTEM("Dust Control System");
+        NONE("Brak"),
+        VENTILATION_SYSTEM("System wentylacji"),
+        LEAK_DETECTION_SYSTEM("System wykrywania wycieków"),
+        DUST_CONTROL_SYSTEM("System kontroli pyłów"),;
 
         private final String displayName;
 

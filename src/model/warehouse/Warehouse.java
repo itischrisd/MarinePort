@@ -8,10 +8,7 @@ import model.exception.TooManyContainersException;
 import model.time.Clock;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Warehouse {
 
@@ -25,14 +22,14 @@ public class Warehouse {
     }
 
     public Map<Container, LocalDate> getContainers() {
-        return containers;
+        return Collections.unmodifiableMap(containers);
     }
 
     protected void setContainers(Map<Container, LocalDate> containers) {
         this.containers = containers;
     }
 
-    protected int getMaxContainers() {
+    public int getMaxContainers() {
         return MAX_CONTAINERS;
     }
 

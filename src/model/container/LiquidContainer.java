@@ -5,7 +5,6 @@ public class LiquidContainer extends Container implements Liquid {
     private double liquidVolume;
 
     protected LiquidContainer() {
-
     }
 
     @Override

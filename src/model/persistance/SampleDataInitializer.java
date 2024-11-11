@@ -1,4 +1,4 @@
-package model.data;
+package model.persistance;
 
 import model.Harbor;
 import model.container.Container;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class DataCreator {
+public class SampleDataInitializer {
 
     public static void createExampleData() {
         populateSenders();

@@ -3,6 +3,7 @@ package model.sender;
 import model.exception.IrresponsibleSenderWithDangerousGoods;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 public class Sender {
@@ -23,7 +24,7 @@ public class Sender {
         this.name = name;
     }
 
-    protected String getSurname() {
+    public String getSurname() {
         return surname;
     }
 
@@ -39,7 +40,7 @@ public class Sender {
         this.pesel = pesel;
     }
 
-    protected String getAddress() {
+    public String getAddress() {
         return address;
     }
 
@@ -47,7 +48,7 @@ public class Sender {
         this.address = address;
     }
 
-    protected LocalDate getBirthDate() {
+    public LocalDate getBirthDate() {
         int year = Integer.parseInt(pesel.substring(0, 2));
         int month = Integer.parseInt(pesel.substring(2, 4));
         int day = Integer.parseInt(pesel.substring(4, 6));
@@ -71,8 +72,8 @@ public class Sender {
         return LocalDate.of(year, month, day);
     }
 
-    protected List<IrresponsibleSenderWithDangerousGoods> getWarnings() {
-        return warnings;
+    public List<IrresponsibleSenderWithDangerousGoods> getWarnings() {
+        return Collections.unmodifiableList(warnings);
     }
 
     protected void setWarnings(List<IrresponsibleSenderWithDangerousGoods> warnings) {

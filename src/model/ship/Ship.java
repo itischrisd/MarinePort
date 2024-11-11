@@ -4,6 +4,7 @@ package model.ship;
 import model.container.*;
 import model.exception.*;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class Ship {
         containers.add(container);
     }
 
-    protected int getMaxToxicOrExplosiveContainers() {
+    public int getMaxToxicOrExplosiveContainers() {
         return maxToxicOrExplosiveContainers;
     }
 
@@ -54,7 +55,7 @@ public class Ship {
         this.maxToxicOrExplosiveContainers = maxToxicOrExplosiveContainers;
     }
 
-    protected int getMaxContainersRequiringElectricity() {
+    public int getMaxContainersRequiringElectricity() {
         return maxContainersRequiringElectricity;
     }
 
@@ -62,7 +63,7 @@ public class Ship {
         this.maxContainersRequiringElectricity = maxContainersRequiringElectricity;
     }
 
-    protected int getMaxHeavyContainers() {
+    public int getMaxHeavyContainers() {
         return maxHeavyContainers;
     }
 
@@ -70,7 +71,7 @@ public class Ship {
         this.maxHeavyContainers = maxHeavyContainers;
     }
 
-    protected int getMaxTotalContainers() {
+    public int getMaxTotalContainers() {
         return maxTotalContainers;
     }
 
@@ -78,7 +79,7 @@ public class Ship {
         this.maxTotalContainers = maxTotalContainers;
     }
 
-    protected int getMaxCargoWeight() {
+    public int getMaxCargoWeight() {
         return maxCargoWeight;
     }
 
@@ -94,7 +95,7 @@ public class Ship {
         this.name = name;
     }
 
-    protected String getOriginPort() {
+    public String getOriginPort() {
         return originPort;
     }
 
@@ -102,7 +103,7 @@ public class Ship {
         this.originPort = originPort;
     }
 
-    protected String getCargoOrigin() {
+    public String getCargoOrigin() {
         return cargoOrigin;
     }
 
@@ -110,7 +111,7 @@ public class Ship {
         this.cargoOrigin = cargoOrigin;
     }
 
-    protected String getCargoDestination() {
+    public String getCargoDestination() {
         return cargoDestination;
     }
 
@@ -118,7 +119,7 @@ public class Ship {
         this.cargoDestination = cargoDestination;
     }
 
-    protected int getId() {
+    public int getId() {
         return id;
     }
 
@@ -132,14 +133,14 @@ public class Ship {
     }
 
     public List<Container> getContainers() {
-        return containers;
+        return Collections.unmodifiableList(containers);
     }
 
     protected void setContainers(List<Container> containers) {
         this.containers = containers;
     }
 
-    public  void sortContainersByWeight() {
+    public void sortContainersByWeight() {
         containers.sort(Comparator.comparingInt(Container::getWeight));
     }
 }

@@ -5,10 +5,9 @@ public class ExplosiveContainer extends HeavyContainer {
     private AdditionalProtection additionalProtection;
 
     protected ExplosiveContainer() {
-
     }
 
-    protected AdditionalProtection getAdditionalProtection() {
+    public AdditionalProtection getAdditionalProtection() {
         return additionalProtection;
     }
 
@@ -17,11 +16,11 @@ public class ExplosiveContainer extends HeavyContainer {
     }
 
     public enum AdditionalProtection {
-        NONE("None"),
-        REINFORCED_WALLS("Reinforced Walls"),
-        EXPLOSION_SUPPRESSORS("Explosion Suppressors"),
-        FIRE_RESISTANT_COATING("Fire-Resistant Coating"),
-        TEMPERATURE_CONTROL("Temperature Control");
+        NONE("Brak"),
+        REINFORCED_WALLS("Wzmocnione ściany"),
+        EXPLOSION_SUPPRESSORS("Tłumiki eksplozji"),
+        FIRE_RESISTANT_COATING("Odporna na ogień powłoka"),
+        TEMPERATURE_CONTROL("Kontrola temperatury");
 
         private final String displayName;
 
