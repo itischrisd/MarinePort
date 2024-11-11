@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class Warehouse {
 
@@ -53,5 +54,13 @@ public class Warehouse {
     public void removeContainerByPosition(int position) {
         List<Container> containerList = new ArrayList<>(containers.keySet());
         containers.remove(containerList.get(position));
+    }
+
+    public void sortContainers() {
+        Map<Container, LocalDate> containersCopy = new LinkedHashMap<>(this.containers);
+        this.containers.clear();
+        containersCopy.entrySet().stream()
+                .sorted(Map.Entry.<Container, LocalDate>comparingByValue().thenComparing(e -> e.getKey().getSender().getName()))
+                .forEach(e -> this.containers.put(e.getKey(), e.getValue()));
     }
 }

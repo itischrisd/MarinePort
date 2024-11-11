@@ -4,10 +4,19 @@ import java.time.LocalDate;
 
 public class Clock extends Thread {
 
-    private LocalDate date;
+    private static LocalDate date;
 
     public Clock(LocalDate initialDate) {
-        this.date = initialDate;
+        date = initialDate;
+    }
+
+    private static synchronized void incrementDate() {
+        date = date.plusDays(1);
+        System.out.println("Current Date: " + date);
+    }
+
+    public static synchronized LocalDate getDate() {
+        return date;
     }
 
     @Override
@@ -20,14 +29,5 @@ public class Clock extends Thread {
                 break;
             }
         }
-    }
-
-    private synchronized void incrementDate() {
-        date = date.plusDays(1);
-        System.out.println("Current Date: " + date);
-    }
-
-    public synchronized LocalDate getDate() {
-        return date;
     }
 }

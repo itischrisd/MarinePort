@@ -13,14 +13,9 @@ import java.util.Map;
 
 public class Utilizer extends Thread {
 
-    private final Clock clock;
     private final int MAX_EXPLOSIVE_TIME = 5;
     private final int MAX_LIQUID_TOXIC_TIME = 10;
     private final int MAX_LOOSE_TOXIC_TIME = 14;
-
-    public Utilizer(Clock clock) {
-        this.clock = clock;
-    }
 
     @Override
     public void run() {
@@ -46,10 +41,10 @@ public class Utilizer extends Thread {
     }
 
     private void utilizeExplosiveContainer(Container container, LocalDate storeTime) {
-        if (!storeTime.plusDays(MAX_EXPLOSIVE_TIME).isBefore(clock.getDate())) {
+        if (!storeTime.plusDays(MAX_EXPLOSIVE_TIME).isBefore(Clock.getDate())) {
             Harbor.getInstance().getWarehouse().removeContainerById(container.getId());
             try {
-                throw new IrresponsibleSenderWithDangerousGoods(storeTime, clock.getDate());
+                throw new IrresponsibleSenderWithDangerousGoods(storeTime, Clock.getDate());
             } catch (IrresponsibleSenderWithDangerousGoods e) {
                 container.getSender().addWarning(e);
             }
@@ -57,10 +52,10 @@ public class Utilizer extends Thread {
     }
 
     private void utilizeLiquidToxicContainer(Container container, LocalDate storeTime) {
-        if (!storeTime.plusDays(MAX_LIQUID_TOXIC_TIME).isBefore(clock.getDate())) {
+        if (!storeTime.plusDays(MAX_LIQUID_TOXIC_TIME).isBefore(Clock.getDate())) {
             Harbor.getInstance().getWarehouse().removeContainerById(container.getId());
             try {
-                throw new IrresponsibleSenderWithDangerousGoods(storeTime, clock.getDate());
+                throw new IrresponsibleSenderWithDangerousGoods(storeTime, Clock.getDate());
             } catch (IrresponsibleSenderWithDangerousGoods e) {
                 container.getSender().addWarning(e);
             }
@@ -68,10 +63,10 @@ public class Utilizer extends Thread {
     }
 
     private void utilizeLooseToxicContainer(Container container, LocalDate storeTime) {
-        if (!storeTime.plusDays(MAX_LOOSE_TOXIC_TIME).isBefore(clock.getDate())) {
+        if (!storeTime.plusDays(MAX_LOOSE_TOXIC_TIME).isBefore(Clock.getDate())) {
             Harbor.getInstance().getWarehouse().removeContainerById(container.getId());
             try {
-                throw new IrresponsibleSenderWithDangerousGoods(storeTime, clock.getDate());
+                throw new IrresponsibleSenderWithDangerousGoods(storeTime, Clock.getDate());
             } catch (IrresponsibleSenderWithDangerousGoods e) {
                 container.getSender().addWarning(e);
             }

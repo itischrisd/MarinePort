@@ -2,6 +2,7 @@ package model.ship;
 
 import model.container.Container;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShipBuilder {
@@ -69,7 +70,8 @@ public class ShipBuilder {
     }
 
     public ShipBuilder withContainers(List<Container> containers) {
-        ship.setContainers(containers);
+        List<Container> mutableContainers = new ArrayList<>(containers);
+        ship.setContainers(mutableContainers);
         return this;
     }
 

@@ -3,6 +3,7 @@ package model.warehouse;
 import model.container.Container;
 
 import java.time.LocalDate;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WarehouseBuilder {
@@ -20,7 +21,8 @@ public class WarehouseBuilder {
     }
 
     public WarehouseBuilder withContainers(Map<Container, LocalDate> containers) {
-        warehouse.setContainers(containers);
+        Map<Container, LocalDate> mutableContainers = new LinkedHashMap<>(containers);
+        warehouse.setContainers(mutableContainers);
         return this;
     }
 

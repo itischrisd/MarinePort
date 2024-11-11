@@ -12,7 +12,7 @@ public class Sender {
     private String address;
     private List<IrresponsibleSenderWithDangerousGoods> warnings;
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 

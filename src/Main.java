@@ -1,25 +1,26 @@
 import model.Harbor;
-import model.container.ContainerBuilder;
+import model.data.DataCreator;
+import model.data.DataWriter;
 import model.exception.TooManyContainersException;
-import model.train.TrainBuilder;
+import model.ship.Ship;
+import model.time.Clock;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) throws TooManyContainersException, InterruptedException {
 
-        TrainBuilder trainBuilder = new TrainBuilder();
-        Harbor.getInstance().setTrain(trainBuilder.train().withContainers(new ArrayList<>()).build());
+        DataCreator.createExampleData();
+        Clock clock = new Clock(LocalDate.now().minusDays(5));
 
-        ContainerBuilder containerBuilder = new ContainerBuilder();
-        for (int i = 0; i < 10; i++) {
-            Harbor.getInstance().getTrain().addContainer(containerBuilder.basicConatiner().build());
+        for (Ship ship : Harbor.getInstance().getShips()) {
+            ship.sortContainersByWeight();
         }
+        Harbor.getInstance().sortShipsByNameDescending();
+        Harbor.getInstance().getWarehouse().sortContainers();
 
-        System.out.println(Harbor.getInstance().getTrain());
 
-        Thread.sleep(3000);
-
-        System.out.println(Harbor.getInstance().getTrain());
+        DataWriter dataWriter = new DataWriter();
+        dataWriter.writeToFile("stan_portu.txt");
     }
 }

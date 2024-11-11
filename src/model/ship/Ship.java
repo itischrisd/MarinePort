@@ -4,6 +4,7 @@ package model.ship;
 import model.container.*;
 import model.exception.*;
 
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -21,10 +22,6 @@ public class Ship {
     private int maxTotalContainers;
     private int maxCargoWeight;
     private List<Container> containers;
-
-    public Ship() {
-
-    }
 
     public Container unloadContainer(int id) {
         return containers.remove(id);
@@ -86,7 +83,7 @@ public class Ship {
         this.maxCargoWeight = maxCargoWeight;
     }
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
@@ -131,11 +128,15 @@ public class Ship {
         this.id = ++lastId;
     }
 
-    protected List<Container> getContainers() {
+    public List<Container> getContainers() {
         return containers;
     }
 
     protected void setContainers(List<Container> containers) {
         this.containers = containers;
+    }
+
+    public  void sortContainersByWeight() {
+        containers.sort(Comparator.comparingInt(Container::getWeight));
     }
 }

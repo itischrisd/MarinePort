@@ -74,4 +74,8 @@ public class Harbor {
     public Sender getSender(int id) {
         return senders.get(id);
     }
+
+    public void sortShipsByNameDescending() {
+        ships.sort((s1, s2) -> s2.getName().compareTo(s1.getName()));
+    }
 }

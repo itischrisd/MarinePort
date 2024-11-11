@@ -1,6 +1,7 @@
 package model.time;
 
 import model.Harbor;
+import model.train.Train;
 import model.train.TrainBuilder;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Departurer extends Thread {
 
     private void depart() {
         TrainBuilder trainBuilder = new TrainBuilder();
-        Harbor.getInstance().setTrain(trainBuilder.train().withContainers(new ArrayList<>()).build());
+        Train train = trainBuilder.train().withContainers(new ArrayList<>()).build();
+        Harbor.getInstance().setTrain(train);
     }
 }

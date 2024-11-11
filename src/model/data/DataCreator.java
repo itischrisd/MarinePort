@@ -40,6 +40,7 @@ public class DataCreator {
                 .withSurname("Nowak")
                 .withPesel("80050812345")
                 .withAddress("ul. Szeroka 30, 31-156 Kraków")
+                .withWarnings(new ArrayList<>())
                 .build();
         Sender sender3 = senderBuilder
                 .sender()
