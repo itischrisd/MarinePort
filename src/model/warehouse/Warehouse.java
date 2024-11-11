@@ -1,16 +1,23 @@
 package model.warehouse;
 
 import model.container.Container;
+import model.container.ExplosiveContainer;
+import model.container.LiquidToxicContainer;
+import model.container.LooseToxicContainer;
 import model.exception.TooManyContainersException;
+import model.time.Clock;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.LinkedHashMap;
 
 public class Warehouse {
 
+    private final int MAX_EXPLOSIVE_TIME = 5;
+    private final int MAX_LIQUID_TOXIC_TIME = 10;
+    private final int MAX_LOOSE_TOXIC_TIME = 14;
     private Map<Container, LocalDate> containers;
     private int MAX_CONTAINERS;
 
@@ -61,5 +68,16 @@ public class Warehouse {
         containersCopy.entrySet().stream()
                 .sorted(Map.Entry.<Container, LocalDate>comparingByValue().thenComparing(e -> e.getKey().getSender().getName()))
                 .forEach(e -> this.containers.put(e.getKey(), e.getValue()));
+    }
+
+    public boolean isOverdue(Map.Entry<Container, LocalDate> container) {
+        if (container.getKey() instanceof ExplosiveContainer) {
+            return container.getValue().plusDays(MAX_EXPLOSIVE_TIME).isBefore(Clock.getDate());
+        } else if (container.getKey() instanceof LiquidToxicContainer) {
+            return container.getValue().plusDays(MAX_LIQUID_TOXIC_TIME).isBefore(Clock.getDate());
+        } else if (container.getKey() instanceof LooseToxicContainer) {
+            return container.getValue().plusDays(MAX_LOOSE_TOXIC_TIME).isBefore(Clock.getDate());
+        }
+        return false;
     }
 }

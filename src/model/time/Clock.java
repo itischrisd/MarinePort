@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Clock extends Thread {
 
+    private static final int SECONDS_PER_DAY = 5000;
     private static LocalDate date;
 
     public Clock(LocalDate initialDate) {
@@ -23,7 +24,7 @@ public class Clock extends Thread {
     public void run() {
         while (!interrupted()) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(SECONDS_PER_DAY);
                 incrementDate();
             } catch (InterruptedException e) {
                 break;
