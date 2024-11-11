@@ -12,7 +12,6 @@ public class Train {
     private List<Container> containers;
 
     protected Train() {
-
     }
 
     public List<Container> getContainers() {

@@ -23,6 +23,9 @@ public class Ship {
     private int maxCargoWeight;
     private List<Container> containers;
 
+    protected Ship() {
+    }
+
     public Container unloadContainer(int id) {
         return containers.remove(id);
     }

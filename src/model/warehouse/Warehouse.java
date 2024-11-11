@@ -15,7 +15,6 @@ public class Warehouse {
     private int MAX_CONTAINERS;
 
     protected Warehouse() {
-
     }
 
     public Map<Container, LocalDate> getContainers() {

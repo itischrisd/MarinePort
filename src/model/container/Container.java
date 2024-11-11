@@ -10,7 +10,6 @@ public class Container {
     private Sender sender;
 
     protected Container() {
-
     }
 
     public int getId() {
