@@ -6,9 +6,12 @@ public class ExceptionBuilder {
 
     private IrresponsibleSenderWithDangerousGoods exception;
 
-    public ExceptionBuilder irresponsibleSenderWithDangerousGoods() {
-        exception = new IrresponsibleSenderWithDangerousGoods();
-        return this;
+    private ExceptionBuilder() {
+        this.exception = new IrresponsibleSenderWithDangerousGoods();
+    }
+
+    public static ExceptionBuilder irresponsibleSenderWithDangerousGoods() {
+        return new ExceptionBuilder();
     }
 
     public ExceptionBuilder withId(int id) {
@@ -27,8 +30,11 @@ public class ExceptionBuilder {
     }
 
     public IrresponsibleSenderWithDangerousGoods build() {
-        IrresponsibleSenderWithDangerousGoods exception = this.exception;
+        if (this.exception == null) {
+            throw new IllegalStateException("This builder has already built an exception.");
+        }
+        IrresponsibleSenderWithDangerousGoods builtException = this.exception;
         this.exception = null;
-        return exception;
+        return builtException;
     }
 }

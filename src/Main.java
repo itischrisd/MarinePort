@@ -13,7 +13,7 @@ public class Main {
         SampleDataInitializer.createExampleData();
         Clock clock = new Clock(LocalDate.now());
         clock.start();
-        Harbor.getInstance().setTrain(new TrainBuilder().train().withContainers(new ArrayList<>()).build());
+        Harbor.getInstance().setTrain(TrainBuilder.train().withContainers(new ArrayList<>()).build());
         DataWriter.writeToFile("test.bak");
     }
 }

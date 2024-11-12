@@ -2,25 +2,32 @@ package model.train;
 
 import model.container.Container;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrainBuilder {
 
     private Train train;
 
-    public TrainBuilder train() {
-        train = new Train();
-        return this;
+    private TrainBuilder() {
+        this.train = new Train();
+    }
+
+    public static TrainBuilder train() {
+        return new TrainBuilder();
     }
 
     public TrainBuilder withContainers(List<Container> containers) {
-        train.setContainers(containers);
+        train.setContainers(new ArrayList<>(containers));
         return this;
     }
 
     public Train build() {
-        Train train = this.train;
+        if (this.train == null) {
+            throw new IllegalStateException("This builder has already built a train.");
+        }
+        Train builtTrain = this.train;
         this.train = null;
-        return train;
+        return builtTrain;
     }
 }

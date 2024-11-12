@@ -8,9 +8,12 @@ public class SenderBuilder {
 
     private Sender sender;
 
-    public SenderBuilder sender() {
-        sender = new Sender();
-        return this;
+    private SenderBuilder() {
+        this.sender = new Sender();
+    }
+
+    public static SenderBuilder sender() {
+        return new SenderBuilder();
     }
 
     public SenderBuilder withName(String name) {
@@ -39,6 +42,11 @@ public class SenderBuilder {
     }
 
     public Sender build() {
-        return sender;
+        if (this.sender == null) {
+            throw new IllegalStateException("This builder has already built a sender.");
+        }
+        Sender builtSender = this.sender;
+        this.sender = null;
+        return builtSender;
     }
 }

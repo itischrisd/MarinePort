@@ -9,9 +9,12 @@ public class ShipBuilder {
 
     private Ship ship;
 
-    public ShipBuilder ship() {
-        ship = new Ship();
-        return this;
+    private ShipBuilder() {
+        this.ship = new Ship();
+    }
+
+    public static ShipBuilder ship() {
+        return new ShipBuilder();
     }
 
     public ShipBuilder withId(int id) {
@@ -70,14 +73,16 @@ public class ShipBuilder {
     }
 
     public ShipBuilder withContainers(List<Container> containers) {
-        List<Container> mutableContainers = new ArrayList<>(containers);
-        ship.setContainers(mutableContainers);
+        ship.setContainers(new ArrayList<>(containers));
         return this;
     }
 
     public Ship build() {
-        Ship ship = this.ship;
+        if (this.ship == null) {
+            throw new IllegalStateException("This builder has already built a ship.");
+        }
+        Ship builtShip = this.ship;
         this.ship = null;
-        return ship;
+        return builtShip;
     }
 }

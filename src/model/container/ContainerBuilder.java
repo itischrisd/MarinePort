@@ -6,103 +6,124 @@ import model.container.LooseToxicContainer.LooseToxicContainerFeatures;
 
 import java.util.List;
 
-public class ContainerBuilder {
+public class ContainerBuilder<T extends Container> {
 
-    private Container container;
+    private T container;
 
-    public ContainerBuilder basicConatiner() {
-        container = new Container();
-        return this;
+    private ContainerBuilder(T container) {
+        this.container = container;
     }
 
-    public ContainerBuilder heavyContainer() {
-        container = new HeavyContainer();
-        return this;
+    public static ContainerBuilder<Container> basicContainer() {
+        return new ContainerBuilder<>(new Container());
     }
 
-    public ContainerBuilder liquidContainer() {
-        container = new LiquidContainer();
-        return this;
+    public static ContainerBuilder<HeavyContainer> heavyContainer() {
+        return new ContainerBuilder<>(new HeavyContainer());
     }
 
-    public ContainerBuilder explosiveContainer() {
-        container = new ExplosiveContainer();
-        return this;
+    public static ContainerBuilder<LiquidContainer> liquidContainer() {
+        return new ContainerBuilder<>(new LiquidContainer());
     }
 
-    public ContainerBuilder refrigeratedContainer() {
-        container = new RefrigeratedContainer();
-        return this;
+    public static ContainerBuilder<ExplosiveContainer> explosiveContainer() {
+        return new ContainerBuilder<>(new ExplosiveContainer());
     }
 
-    public ContainerBuilder looseToxicContainer() {
-        container = new LooseToxicContainer();
-        return this;
+    public static ContainerBuilder<RefrigeratedContainer> refrigeratedContainer() {
+        return new ContainerBuilder<>(new RefrigeratedContainer());
     }
 
-    public ContainerBuilder liquidToxicContainer() {
-        container = new LiquidToxicContainer();
-        return this;
+    public static ContainerBuilder<LooseToxicContainer> looseToxicContainer() {
+        return new ContainerBuilder<>(new LooseToxicContainer());
     }
 
-    public ContainerBuilder withId(int id) {
+    public static ContainerBuilder<LiquidToxicContainer> liquidToxicContainer() {
+        return new ContainerBuilder<>(new LiquidToxicContainer());
+    }
+
+    public ContainerBuilder<T> withId(int id) {
         container.setId(id);
         return this;
     }
 
-    public ContainerBuilder withNewId() {
+    public ContainerBuilder<T> withNewId() {
         container.setId();
         return this;
     }
 
-    public ContainerBuilder withWeight(int weight) {
+    public ContainerBuilder<T> withWeight(int weight) {
         container.setWeight(weight);
         return this;
     }
 
-    public ContainerBuilder withSender(Sender sender) {
+    public ContainerBuilder<T> withSender(Sender sender) {
         container.setSender(sender);
         return this;
     }
 
-    public ContainerBuilder withTareWeight(int tareWeight) {
-        ((HeavyContainer) container).setTareWeight(tareWeight);
-        return this;
+    public ContainerBuilder<T> withTareWeight(int tareWeight) {
+        if (container instanceof HeavyContainer) {
+            ((HeavyContainer) container).setTareWeight(tareWeight);
+            return this;
+        }
+        throw new UnsupportedOperationException("Tare weight is only applicable to HeavyContainer.");
     }
 
-    public ContainerBuilder withLiquidVolume(double liquidVolume) {
-        ((LiquidContainer) container).setLiquidVolume(liquidVolume);
-        return this;
+    public ContainerBuilder<T> withLiquidVolume(double liquidVolume) {
+        if (container instanceof LiquidContainer) {
+            ((LiquidContainer) container).setLiquidVolume(liquidVolume);
+            return this;
+        }
+        throw new UnsupportedOperationException("Liquid volume is only applicable to LiquidContainer.");
     }
 
-    public ContainerBuilder withAdditionalProtection(AdditionalProtection additionalProtection) {
-        ((ExplosiveContainer) container).setAdditionalProtection(additionalProtection);
-        return this;
+    public ContainerBuilder<T> withAdditionalProtection(AdditionalProtection additionalProtection) {
+        if (container instanceof ExplosiveContainer) {
+            ((ExplosiveContainer) container).setAdditionalProtection(additionalProtection);
+            return this;
+        }
+        throw new UnsupportedOperationException("Additional protection is only applicable to ExplosiveContainer.");
     }
 
-    public ContainerBuilder withConnectedToPower(boolean connectedToPower) {
-        ((RefrigeratedContainer) container).setConnectedToPower(connectedToPower);
-        return this;
+    public ContainerBuilder<T> withConnectedToPower(boolean connectedToPower) {
+        if (container instanceof RefrigeratedContainer) {
+            ((RefrigeratedContainer) container).setConnectedToPower(connectedToPower);
+            return this;
+        }
+        throw new UnsupportedOperationException("Power connection is only applicable to RefrigeratedContainer.");
     }
 
-    public ContainerBuilder withToxicityLevel(int toxicityLevel) {
-        ((ToxicContainer) container).setToxicityLevel(toxicityLevel);
-        return this;
+    public ContainerBuilder<T> withToxicityLevel(int toxicityLevel) {
+        if (container instanceof ToxicContainer) {
+            ((ToxicContainer) container).setToxicityLevel(toxicityLevel);
+            return this;
+        }
+        throw new UnsupportedOperationException("Toxicity level is only applicable to ToxicContainer.");
     }
 
-    public ContainerBuilder withLooseToxicContainerFeature(LooseToxicContainerFeatures looseToxicContainerFeature) {
-        ((LooseToxicContainer) container).addLooseToxicContainerFeature(looseToxicContainerFeature);
-        return this;
+    public ContainerBuilder<T> withLooseToxicContainerFeature(LooseToxicContainerFeatures feature) {
+        if (container instanceof LooseToxicContainer) {
+            ((LooseToxicContainer) container).addLooseToxicContainerFeature(feature);
+            return this;
+        }
+        throw new UnsupportedOperationException("Loose toxic container features are only applicable to LooseToxicContainer.");
     }
 
-    public ContainerBuilder withLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> looseToxicContainerFeatures) {
-        ((LooseToxicContainer) container).setLooseToxicContainerFeatures(looseToxicContainerFeatures);
-        return this;
+    public ContainerBuilder<T> withLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> features) {
+        if (container instanceof LooseToxicContainer) {
+            ((LooseToxicContainer) container).setLooseToxicContainerFeatures(features);
+            return this;
+        }
+        throw new UnsupportedOperationException("Loose toxic container features are only applicable to LooseToxicContainer.");
     }
 
-    public Container build() {
-        Container container = this.container;
+    public T build() {
+        if (this.container == null) {
+            throw new IllegalStateException("This builder has already built a container.");
+        }
+        T builtContainer = this.container;
         this.container = null;
-        return container;
+        return builtContainer;
     }
 }

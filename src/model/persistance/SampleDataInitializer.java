@@ -25,8 +25,7 @@ public class SampleDataInitializer {
     }
 
     private static void populateSenders() {
-        SenderBuilder senderBuilder = new SenderBuilder();
-        Sender sender1 = senderBuilder
+        Sender sender1 = SenderBuilder
                 .sender()
                 .withName("Anna")
                 .withSurname("Kowalska")
@@ -34,7 +33,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Długa 15, 00-238 Warsaw")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender2 = senderBuilder
+        Sender sender2 = SenderBuilder
                 .sender()
                 .withName("Jan")
                 .withSurname("Nowak")
@@ -42,7 +41,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Szeroka 30, 31-156 Kraków")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender3 = senderBuilder
+        Sender sender3 = SenderBuilder
                 .sender()
                 .withName("Ewa")
                 .withSurname("Zielińska")
@@ -50,7 +49,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Krótka 4, 80-864 Gdańsk")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender4 = senderBuilder
+        Sender sender4 = SenderBuilder
                 .sender()
                 .withName("Piotr")
                 .withSurname("Wiśniewski")
@@ -58,7 +57,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Kwiatowa 12, 61-623 Poznań")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender5 = senderBuilder
+        Sender sender5 = SenderBuilder
                 .sender()
                 .withName("Katarzyna")
                 .withSurname("Lewandowska")
@@ -66,7 +65,7 @@ public class SampleDataInitializer {
                 .withAddress("al. Niepodległości 100, 02-554 Warsaw")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender6 = senderBuilder
+        Sender sender6 = SenderBuilder
                 .sender()
                 .withName("Michał")
                 .withSurname("Dąbrowski")
@@ -74,7 +73,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Piękna 22, 50-506 Wrocław")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender7 = senderBuilder
+        Sender sender7 = SenderBuilder
                 .sender()
                 .withName("Agnieszka")
                 .withSurname("Kamińska")
@@ -82,7 +81,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Ogrodowa 56, 44-100 Gliwice")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender8 = senderBuilder
+        Sender sender8 = SenderBuilder
                 .sender()
                 .withName("Łukasz")
                 .withSurname("Wojciechowski")
@@ -90,7 +89,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Morska 11, 81-222 Gdynia")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender9 = senderBuilder
+        Sender sender9 = SenderBuilder
                 .sender()
                 .withName("Magdalena")
                 .withSurname("Jankowska")
@@ -98,7 +97,7 @@ public class SampleDataInitializer {
                 .withAddress("ul. Parkowa 33, 70-410 Szczecin")
                 .withWarnings(new ArrayList<>())
                 .build();
-        Sender sender10 = senderBuilder
+        Sender sender10 = SenderBuilder
                 .sender()
                 .withName("Tomasz")
                 .withSurname("Mazur")
@@ -111,35 +110,34 @@ public class SampleDataInitializer {
     }
 
     private static void populateWarehouse() {
-        ContainerBuilder containerBuilder = new ContainerBuilder();
-        Container container1 = containerBuilder
-                .basicConatiner()
+        Container container1 = ContainerBuilder
+                .basicContainer()
                 .withId(1)
                 .withWeight(100)
                 .withSender(Harbor.getInstance().getSenders().get(0))
                 .build();
-        Container container2 = containerBuilder
+        Container container2 = ContainerBuilder
                 .heavyContainer()
                 .withId(2)
                 .withWeight(200)
                 .withTareWeight(20)
                 .withSender(Harbor.getInstance().getSenders().get(1))
                 .build();
-        Container container3 = containerBuilder
+        Container container3 = ContainerBuilder
                 .liquidContainer()
                 .withId(3)
                 .withWeight(300)
                 .withLiquidVolume(30)
                 .withSender(Harbor.getInstance().getSenders().get(2))
                 .build();
-        Container container4 = containerBuilder
+        Container container4 = ContainerBuilder
                 .heavyContainer()
                 .withId(4)
                 .withWeight(150)
                 .withTareWeight(40)
                 .withSender(Harbor.getInstance().getSenders().get(3))
                 .build();
-        Container container5 = containerBuilder
+        Container container5 = ContainerBuilder
                 .refrigeratedContainer()
                 .withId(5)
                 .withWeight(200)
@@ -152,8 +150,7 @@ public class SampleDataInitializer {
                 container3, LocalDate.now(),
                 container4, LocalDate.now(),
                 container5, LocalDate.now());
-        WarehouseBuilder warehouseBuilder = new WarehouseBuilder();
-        Harbor.getInstance().setWarehouse(warehouseBuilder
+        Harbor.getInstance().setWarehouse(WarehouseBuilder
                 .warehouse()
                 .withMaxContainers(15)
                 .withContainers(containers)
@@ -161,8 +158,7 @@ public class SampleDataInitializer {
     }
 
     private static void populateShips() {
-        ContainerBuilder containerBuilder = new ContainerBuilder();
-        Container container1 = containerBuilder
+        Container container1 = ContainerBuilder
                 .looseToxicContainer()
                 .withId(6)
                 .withWeight(300)
@@ -171,48 +167,48 @@ public class SampleDataInitializer {
                 .withLooseToxicContainerFeature(LooseToxicContainerFeatures.LEAK_DETECTION_SYSTEM)
                 .withSender(Harbor.getInstance().getSenders().get(5))
                 .build();
-        Container container2 = containerBuilder
+        Container container2 = ContainerBuilder
                 .liquidToxicContainer()
                 .withId(7)
                 .withWeight(100)
                 .withToxicityLevel(70)
                 .withSender(Harbor.getInstance().getSenders().get(6))
                 .build();
-        Container container3 = containerBuilder
-                .basicConatiner()
+        Container container3 = ContainerBuilder
+                .basicContainer()
                 .withId(8)
                 .withWeight(200)
                 .withSender(Harbor.getInstance().getSenders().get(7))
                 .build();
-        Container container4 = containerBuilder
+        Container container4 = ContainerBuilder
                 .heavyContainer()
                 .withId(9)
                 .withWeight(300)
                 .withTareWeight(90)
                 .withSender(Harbor.getInstance().getSenders().get(8))
                 .build();
-        Container container5 = containerBuilder
+        Container container5 = ContainerBuilder
                 .liquidContainer()
                 .withId(10)
                 .withWeight(100)
                 .withLiquidVolume(100)
                 .withSender(Harbor.getInstance().getSenders().get(9))
                 .build();
-        Container container6 = containerBuilder
+        Container container6 = ContainerBuilder
                 .explosiveContainer()
                 .withId(11)
                 .withWeight(200)
                 .withAdditionalProtection(AdditionalProtection.EXPLOSION_SUPPRESSORS)
                 .withSender(Harbor.getInstance().getSenders().get(0))
                 .build();
-        Container container7 = containerBuilder
+        Container container7 = ContainerBuilder
                 .refrigeratedContainer()
                 .withId(12)
                 .withWeight(300)
                 .withConnectedToPower(true)
                 .withSender(Harbor.getInstance().getSenders().get(1))
                 .build();
-        Container container8 = containerBuilder
+        Container container8 = ContainerBuilder
                 .looseToxicContainer()
                 .withId(13)
                 .withWeight(100)
@@ -221,48 +217,48 @@ public class SampleDataInitializer {
                 .withLooseToxicContainerFeature(LooseToxicContainerFeatures.LEAK_DETECTION_SYSTEM)
                 .withSender(Harbor.getInstance().getSenders().get(2))
                 .build();
-        Container container9 = containerBuilder
+        Container container9 = ContainerBuilder
                 .liquidToxicContainer()
                 .withId(14)
                 .withWeight(200)
                 .withToxicityLevel(140)
                 .withSender(Harbor.getInstance().getSenders().get(3))
                 .build();
-        Container container10 = containerBuilder
-                .basicConatiner()
+        Container container10 = ContainerBuilder
+                .basicContainer()
                 .withId(15)
                 .withWeight(300)
                 .withSender(Harbor.getInstance().getSenders().get(4))
                 .build();
-        Container container11 = containerBuilder
+        Container container11 = ContainerBuilder
                 .heavyContainer()
                 .withId(16)
                 .withWeight(100)
                 .withTareWeight(160)
                 .withSender(Harbor.getInstance().getSenders().get(5))
                 .build();
-        Container container12 = containerBuilder
+        Container container12 = ContainerBuilder
                 .liquidContainer()
                 .withId(17)
                 .withWeight(200)
                 .withLiquidVolume(170)
                 .withSender(Harbor.getInstance().getSenders().get(6))
                 .build();
-        Container container13 = containerBuilder
+        Container container13 = ContainerBuilder
                 .explosiveContainer()
                 .withId(18)
                 .withWeight(300)
                 .withAdditionalProtection(AdditionalProtection.EXPLOSION_SUPPRESSORS)
                 .withSender(Harbor.getInstance().getSenders().get(7))
                 .build();
-        Container container14 = containerBuilder
+        Container container14 = ContainerBuilder
                 .refrigeratedContainer()
                 .withId(19)
                 .withWeight(100)
                 .withConnectedToPower(true)
                 .withSender(Harbor.getInstance().getSenders().get(8))
                 .build();
-        Container container15 = containerBuilder
+        Container container15 = ContainerBuilder
                 .looseToxicContainer()
                 .withId(20)
                 .withWeight(200)
@@ -276,8 +272,7 @@ public class SampleDataInitializer {
         List<Container> containers3 = List.of(container7, container8, container9);
         List<Container> containers4 = List.of(container10, container11, container12);
         List<Container> containers5 = List.of(container13, container14, container15);
-        ShipBuilder shipBuilder = new ShipBuilder();
-        Ship ship1 = shipBuilder
+        Ship ship1 = ShipBuilder
                 .ship()
                 .withId(1)
                 .withName("Voyager's Whisper")
@@ -291,7 +286,7 @@ public class SampleDataInitializer {
                 .withMaxCargoWeight(1000)
                 .withContainers(containers1)
                 .build();
-        Ship ship2 = shipBuilder
+        Ship ship2 = ShipBuilder
                 .ship()
                 .withId(2)
                 .withName("Celestial Navigator")
@@ -305,7 +300,7 @@ public class SampleDataInitializer {
                 .withMaxCargoWeight(2000)
                 .withContainers(containers2)
                 .build();
-        Ship ship3 = shipBuilder
+        Ship ship3 = ShipBuilder
                 .ship()
                 .withId(3)
                 .withName("Oceanic Odyssey")
@@ -317,7 +312,7 @@ public class SampleDataInitializer {
                 .withMaxCargoWeight(3000)
                 .withContainers(containers3)
                 .build();
-        Ship ship4 = shipBuilder
+        Ship ship4 = ShipBuilder
                 .ship()
                 .withId(4)
                 .withName("Eternal Horizon")
@@ -329,7 +324,7 @@ public class SampleDataInitializer {
                 .withMaxCargoWeight(4000)
                 .withContainers(containers4)
                 .build();
-        Ship ship5 = shipBuilder
+        Ship ship5 = ShipBuilder
                 .ship()
                 .withId(5)
                 .withName("Mystic Mariner")

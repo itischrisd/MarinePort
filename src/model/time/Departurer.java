@@ -19,8 +19,7 @@ public class Departurer extends Thread {
     }
 
     private void depart() {
-        TrainBuilder trainBuilder = new TrainBuilder();
-        Train train = trainBuilder.train().withContainers(new ArrayList<>()).build();
+        Train train = TrainBuilder.train().withContainers(new ArrayList<>()).build();
         Harbor.getInstance().setTrain(train);
     }
 }

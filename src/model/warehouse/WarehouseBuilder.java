@@ -10,9 +10,12 @@ public class WarehouseBuilder {
 
     private Warehouse warehouse;
 
-    public WarehouseBuilder warehouse() {
-        warehouse = new Warehouse();
-        return this;
+    private WarehouseBuilder() {
+        this.warehouse = new Warehouse();
+    }
+
+    public static WarehouseBuilder warehouse() {
+        return new WarehouseBuilder();
     }
 
     public WarehouseBuilder withMaxContainers(int maxContainers) {
@@ -21,14 +24,16 @@ public class WarehouseBuilder {
     }
 
     public WarehouseBuilder withContainers(Map<Container, LocalDate> containers) {
-        Map<Container, LocalDate> mutableContainers = new LinkedHashMap<>(containers);
-        warehouse.setContainers(mutableContainers);
+        warehouse.setContainers(new LinkedHashMap<>(containers));
         return this;
     }
 
     public Warehouse build() {
-        Warehouse warehouse = this.warehouse;
+        if (this.warehouse == null) {
+            throw new IllegalStateException("This builder has already built a warehouse.");
+        }
+        Warehouse builtWarehouse = this.warehouse;
         this.warehouse = null;
-        return warehouse;
+        return builtWarehouse;
     }
 }
