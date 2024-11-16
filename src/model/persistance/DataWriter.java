@@ -9,7 +9,8 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 
-import static model.persistance.Headers.*;
+import static lang.Data.*;
+import static lang.ErrorMessage.*;
 
 public class DataWriter {
 
@@ -26,7 +27,8 @@ public class DataWriter {
             writeTrain();
             writeShips();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(WRITING_FILE);
+            System.out.println(ERROR_DETAILS + e.getMessage());
         }
     }
 

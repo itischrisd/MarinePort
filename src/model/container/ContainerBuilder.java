@@ -6,6 +6,8 @@ import model.container.LooseToxicContainer.LooseToxicContainerFeatures;
 
 import java.util.List;
 
+import static lang.ErrorMessage.*;
+
 public class ContainerBuilder<T extends Container> {
 
     private T container;
@@ -67,7 +69,7 @@ public class ContainerBuilder<T extends Container> {
             ((HeavyContainer) container).setTareWeight(tareWeight);
             return this;
         }
-        throw new UnsupportedOperationException("Tare weight is only applicable to HeavyContainer.");
+        throw new UnsupportedOperationException(TARE_WEIGHT_HEAVY_CONTAINER_EXCLUSIVE);
     }
 
     public ContainerBuilder<T> withLiquidVolume(double liquidVolume) {
@@ -75,7 +77,7 @@ public class ContainerBuilder<T extends Container> {
             ((Liquid) container).setLiquidVolume(liquidVolume);
             return this;
         }
-        throw new UnsupportedOperationException("Liquid volume is only applicable to LiquidContainer.");
+        throw new UnsupportedOperationException(LIQUID_VOLUME_LIQUID_CONTAINER_EXCLUSIVE);
     }
 
     public ContainerBuilder<T> withAdditionalProtection(AdditionalProtection additionalProtection) {
@@ -83,7 +85,7 @@ public class ContainerBuilder<T extends Container> {
             ((ExplosiveContainer) container).setAdditionalProtection(additionalProtection);
             return this;
         }
-        throw new UnsupportedOperationException("Additional protection is only applicable to ExplosiveContainer.");
+        throw new UnsupportedOperationException(ADDITIONAL_PROTECTION_EXPLOSIVE_CONTAINER_EXCLUSIVE);
     }
 
     public ContainerBuilder<T> withConnectedToPower(boolean connectedToPower) {
@@ -91,7 +93,7 @@ public class ContainerBuilder<T extends Container> {
             ((RefrigeratedContainer) container).setConnectedToPower(connectedToPower);
             return this;
         }
-        throw new UnsupportedOperationException("Power connection is only applicable to RefrigeratedContainer.");
+        throw new UnsupportedOperationException(CONNECTED_TO_POWER_REFRIGERATED_CONTAINER_EXCLUSIVE);
     }
 
     public ContainerBuilder<T> withToxicityLevel(int toxicityLevel) {
@@ -99,7 +101,7 @@ public class ContainerBuilder<T extends Container> {
             ((ToxicContainer) container).setToxicityLevel(toxicityLevel);
             return this;
         }
-        throw new UnsupportedOperationException("Toxicity level is only applicable to ToxicContainer.");
+        throw new UnsupportedOperationException(TOXICITY_LEVEL_TOXIC_CONTAINER_EXCLUSIVE);
     }
 
     public ContainerBuilder<T> withLooseToxicContainerFeature(LooseToxicContainerFeatures feature) {
@@ -107,7 +109,7 @@ public class ContainerBuilder<T extends Container> {
             ((LooseToxicContainer) container).addLooseToxicContainerFeature(feature);
             return this;
         }
-        throw new UnsupportedOperationException("Loose toxic container features are only applicable to LooseToxicContainer.");
+        throw new UnsupportedOperationException(LOOSE_TOXIC_CONTAINER_FEATURES_LOOSE_TOXIC_CONTAINER_EXCLUSIVE);
     }
 
     public ContainerBuilder<T> withLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> features) {
@@ -115,15 +117,15 @@ public class ContainerBuilder<T extends Container> {
             ((LooseToxicContainer) container).setLooseToxicContainerFeatures(features);
             return this;
         }
-        throw new UnsupportedOperationException("Loose toxic container features are only applicable to LooseToxicContainer.");
+        throw new UnsupportedOperationException(LOOSE_TOXIC_CONTAINER_FEATURES_LOOSE_TOXIC_CONTAINER_EXCLUSIVE);
     }
 
     public T build() {
         if (this.container == null) {
-            throw new IllegalStateException("This builder has already built a container.");
+            throw new IllegalStateException(CONTAINER_ALREADY_BUILT);
         }
         if (isInvalidContainer()) {
-            throw new IllegalStateException("Container is invalid - not all required fields are set.");
+            throw new IllegalStateException(INVALID_CONTAINER);
         }
         T builtContainer = this.container;
         this.container = null;

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lang.Data.*;
+import static lang.ErrorMessage.*;
+
 public class LooseToxicContainer extends ToxicContainer {
 
     private List<LooseToxicContainerFeatures> looseToxicContainerFeatures;
@@ -25,10 +28,10 @@ public class LooseToxicContainer extends ToxicContainer {
     }
 
     public enum LooseToxicContainerFeatures {
-        NONE("Brak"),
-        VENTILATION_SYSTEM("System wentylacji"),
-        LEAK_DETECTION_SYSTEM("System wykrywania wycieków"),
-        DUST_CONTROL_SYSTEM("System kontroli pyłów"),;
+        NONE(ENUM_NONE),
+        VENTILATION_SYSTEM(ENUM_VENTILATION_SYSTEM),
+        LEAK_DETECTION_SYSTEM(ENUM_LEAK_DETECTION_SYSTEM),
+        DUST_CONTROL_SYSTEM(ENUM_DUST_CONTROL_SYSTEM),;
 
         private final String displayName;
 
@@ -42,7 +45,7 @@ public class LooseToxicContainer extends ToxicContainer {
                     return feature;
                 }
             }
-            throw new IllegalArgumentException("No enum constant with display name " + displayName);
+            throw new IllegalArgumentException(LOOSE_TOXIC_CONTAINER_FEATURES_INVALID_NAME + displayName);
         }
 
         @Override

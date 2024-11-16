@@ -4,6 +4,8 @@ import model.container.Container;
 
 import java.util.List;
 
+import static lang.ErrorMessage.*;
+
 public class TrainBuilder {
 
     private Train train;
@@ -23,10 +25,10 @@ public class TrainBuilder {
 
     public Train build() {
         if (this.train == null) {
-            throw new IllegalStateException("This builder has already built a train.");
+            throw new IllegalStateException(TRAIN_ALREADY_BUILT);
         }
         if (isInvalidTrain()) {
-            throw new IllegalStateException("Invalid train - not all required fields are set.");
+            throw new IllegalStateException(INVALID_TRAIN);
         }
         Train builtTrain = this.train;
         this.train = null;

@@ -2,8 +2,9 @@ package model.ship;
 
 import model.container.Container;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static lang.ErrorMessage.*;
 
 public class ShipBuilder {
 
@@ -73,16 +74,16 @@ public class ShipBuilder {
     }
 
     public ShipBuilder withContainers(List<Container> containers) {
-        ship.setContainers(new ArrayList<>(containers));
+        ship.setContainers(containers);
         return this;
     }
 
     public Ship build() {
         if (this.ship == null) {
-            throw new IllegalStateException("This builder has already built a ship.");
+            throw new IllegalStateException(SHIP_ALREADY_BUILT);
         }
         if (isInvalidShip()) {
-            throw new IllegalStateException("Invalid ship - not all required fields are set.");
+            throw new IllegalStateException(INVALID_SHIP);
         }
         Ship builtShip = this.ship;
         this.ship = null;

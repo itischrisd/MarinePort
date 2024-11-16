@@ -4,6 +4,8 @@ import model.exception.IrresponsibleSenderWithDangerousGoods;
 
 import java.util.List;
 
+import static lang.ErrorMessage.*;
+
 public class SenderBuilder {
 
     private Sender sender;
@@ -43,10 +45,10 @@ public class SenderBuilder {
 
     public Sender build() {
         if (this.sender == null) {
-            throw new IllegalStateException("This builder has already built a sender.");
+            throw new IllegalStateException(SENDER_ALREADY_BUILT);
         }
         if (isInvalidSender()) {
-            throw new IllegalStateException("Sender is invalid - not all required fields are set.");
+            throw new IllegalStateException(INVALID_SENDER);
         }
         Sender builtSender = this.sender;
         this.sender = null;

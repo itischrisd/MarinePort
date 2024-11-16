@@ -15,7 +15,6 @@ public class Clock extends Thread {
 
     private static synchronized void incrementDate() {
         date = date.plusDays(1);
-        System.out.println("Current Date: " + date);
     }
 
     public static synchronized LocalDate getDate() {

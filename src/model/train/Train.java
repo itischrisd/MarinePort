@@ -37,9 +37,4 @@ public class Train {
             departurer.start();
         }
     }
-
-    @Override
-    public String toString() {
-        return super.toString() + " " + containers.size();
-    }
 }

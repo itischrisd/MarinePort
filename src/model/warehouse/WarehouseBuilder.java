@@ -5,6 +5,9 @@ import model.container.Container;
 import java.time.LocalDate;
 import java.util.Map;
 
+import static lang.ErrorMessage.INVALID_WAREHOUSE;
+import static lang.ErrorMessage.WAREHOUSE_ALREADY_BUILT;
+
 public class WarehouseBuilder {
 
     private Warehouse warehouse;
@@ -29,10 +32,10 @@ public class WarehouseBuilder {
 
     public Warehouse build() {
         if (this.warehouse == null) {
-            throw new IllegalStateException("This builder has already built a warehouse.");
+            throw new IllegalStateException(WAREHOUSE_ALREADY_BUILT);
         }
         if (isInvalidWarehouse()) {
-            throw new IllegalStateException("Invalid warehouse - not all required fields are set.");
+            throw new IllegalStateException(INVALID_WAREHOUSE);
         }
         Warehouse builtWarehouse = this.warehouse;
         this.warehouse = null;

@@ -1,5 +1,6 @@
 package model.persistance;
 
+import lang.Data;
 import model.Harbor;
 import model.container.Container;
 import model.container.ContainerBuilder;
@@ -20,7 +21,8 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 
-import static model.persistance.Headers.*;
+import static lang.Data.*;
+import static lang.ErrorMessage.*;
 
 public class DataReader {
 
@@ -35,7 +37,8 @@ public class DataReader {
             readTrain();
             readShips();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(READING_FILE);
+            System.out.println(ERROR_DETAILS + e.getMessage());
         }
     }
 
@@ -54,7 +57,7 @@ public class DataReader {
 
     private static void readSenders() {
         String header = lines.removeFirst();
-        if (!header.equals(Headers.TITLE_SENDERS)) {
+        if (!header.equals(Data.TITLE_SENDERS)) {
             throw new IllegalArgumentException();
         }
 
@@ -111,7 +114,7 @@ public class DataReader {
 
     private static void readWarehouse() {
         String header = lines.removeFirst();
-        if (!header.equals(Headers.TITLE_WAREHOUSE)) {
+        if (!header.equals(Data.TITLE_WAREHOUSE)) {
             throw new IllegalArgumentException();
         }
 
@@ -178,7 +181,7 @@ public class DataReader {
 
     private static void readTrain() {
         String header = lines.removeFirst();
-        if (!header.equals(Headers.TITLE_TRAIN)) {
+        if (!header.equals(Data.TITLE_TRAIN)) {
             throw new IllegalArgumentException();
         }
 
@@ -194,7 +197,7 @@ public class DataReader {
 
     private static void readShips() {
         String header = lines.removeFirst();
-        if (!header.equals(Headers.TITLE_SHIPS)) {
+        if (!header.equals(Data.TITLE_SHIPS)) {
             throw new IllegalArgumentException();
         }
 

@@ -1,5 +1,8 @@
 package model.container;
 
+import static lang.Data.*;
+import static lang.ErrorMessage.ADDITIONAL_PROTECTION_INVALID_NAME;
+
 public class ExplosiveContainer extends HeavyContainer {
 
     private AdditionalProtection additionalProtection;
@@ -16,11 +19,11 @@ public class ExplosiveContainer extends HeavyContainer {
     }
 
     public enum AdditionalProtection {
-        NONE("Brak"),
-        REINFORCED_WALLS("Wzmocnione ściany"),
-        EXPLOSION_SUPPRESSORS("Tłumiki eksplozji"),
-        FIRE_RESISTANT_COATING("Odporna na ogień powłoka"),
-        TEMPERATURE_CONTROL("Kontrola temperatury");
+        NONE(ENUM_NONE),
+        REINFORCED_WALLS(ENUM_REINFORCED_WALLS),
+        EXPLOSION_SUPPRESSORS(ENUM_EXPLOSION_SUPPRESSORS),
+        FIRE_RESISTANT_COATING(ENUM_FIRE_RESISTANT_COATING),
+        TEMPERATURE_CONTROL(ENUM_TEMPERATURE_CONTROL);
 
         private final String displayName;
 
@@ -34,7 +37,7 @@ public class ExplosiveContainer extends HeavyContainer {
                     return protection;
                 }
             }
-            throw new IllegalArgumentException("No enum constant with display name " + displayName);
+            throw new IllegalArgumentException(ADDITIONAL_PROTECTION_INVALID_NAME + displayName);
         }
 
         @Override

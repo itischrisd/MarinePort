@@ -2,6 +2,8 @@ package model.exception;
 
 import java.time.LocalDate;
 
+import static lang.ErrorMessage.*;
+
 public class ExceptionBuilder {
 
     private IrresponsibleSenderWithDangerousGoods exception;
@@ -31,10 +33,17 @@ public class ExceptionBuilder {
 
     public IrresponsibleSenderWithDangerousGoods build() {
         if (this.exception == null) {
-            throw new IllegalStateException("This builder has already built an exception.");
+            throw new IllegalStateException(EXCEPTION_ALREADY_BUILT);
+        }
+        if (isInvalidException()) {
+            throw new IllegalStateException(INVALID_EXCEPTION);
         }
         IrresponsibleSenderWithDangerousGoods builtException = this.exception;
         this.exception = null;
         return builtException;
+    }
+
+    private boolean isInvalidException() {
+        return exception.getId() <= 0 || exception.getArrivalDate() == null || exception.getUtilizationDate() == null;
     }
 }
