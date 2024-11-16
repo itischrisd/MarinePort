@@ -5,6 +5,8 @@ import model.container.Container;
 import model.container.ContainerBuilder;
 import model.container.ExplosiveContainer;
 import model.container.LooseToxicContainer;
+import model.exception.ExceptionBuilder;
+import model.exception.IrresponsibleSenderWithDangerousGoods;
 import model.sender.Sender;
 import model.sender.SenderBuilder;
 import model.ship.Ship;
@@ -56,7 +58,7 @@ public class DataReader {
             throw new IllegalArgumentException();
         }
 
-        List<Sender> senders =  new ArrayList<>();
+        List<Sender> senders = new ArrayList<>();
 
         while (!lines.getFirst().equals(TITLE_WAREHOUSE)) {
             String[] senderData = lines.removeFirst().split(CLASS_NAME_DELIMITER);
@@ -77,7 +79,31 @@ public class DataReader {
                 }
             }
 
-            senders.add(senderBuilder.withWarnings(new ArrayList<>()).build());
+            List<IrresponsibleSenderWithDangerousGoods> warnings = new ArrayList<>();
+
+            while (!lines.getFirst().startsWith(SENDER) && !lines.getFirst().equals(TITLE_WAREHOUSE)) {
+                String[] warningData = lines.removeFirst().split(CLASS_NAME_DELIMITER);
+                if (!warningData[0].equals(WARNING)) {
+                    throw new IllegalArgumentException();
+                }
+
+                ExceptionBuilder exceptionBuilder = ExceptionBuilder.irresponsibleSenderWithDangerousGoods();
+                warningData = warningData[1].split(FIELD_DELIMITER);
+
+                for (String field : warningData) {
+                    String[] fieldData = field.split(FIELD_NAME_DELIMITER);
+                    switch (fieldData[0]) {
+                        case FIELD_ID -> exceptionBuilder.withId(Integer.parseInt(fieldData[1]));
+                        case FIELD_ARRIVAL_DATE -> exceptionBuilder.withArrivalDate(LocalDate.parse(fieldData[1]));
+                        case FIELD_UTILIZATION_DATE ->
+                                exceptionBuilder.withUtilizationDate(LocalDate.parse(fieldData[1]));
+                    }
+                }
+
+                warnings.add(exceptionBuilder.build());
+            }
+
+            senders.add(senderBuilder.withWarnings(warnings).build());
         }
 
         Harbor.getInstance().setSenders(senders);
@@ -190,10 +216,14 @@ public class DataReader {
                     case FIELD_ORIGIN_PORT -> shipBuilder.withOriginPort(fieldData[1]);
                     case FIELD_CARGO_ORIGIN -> shipBuilder.withCargoOrigin(fieldData[1]);
                     case FIELD_CARGO_DESTINATION -> shipBuilder.withCargoDestination(fieldData[1]);
-                    case FIELD_MAX_TOXIC_OR_EXPLOSIVE_CONTAINERS -> shipBuilder.withMaxToxicOrExplosiveContainers(Integer.parseInt(fieldData[1]));
-                    case FIELD_MAX_CONTAINERS_REQUIRING_ELECTRICITY -> shipBuilder.withMaxContainersRequiringElectricity(Integer.parseInt(fieldData[1]));
-                    case FIELD_MAX_HEAVY_CONTAINERS -> shipBuilder.withMaxHeavyContainers(Integer.parseInt(fieldData[1]));
-                    case FIELD_MAX_TOTAL_CONTAINERS -> shipBuilder.withMaxTotalContainers(Integer.parseInt(fieldData[1]));
+                    case FIELD_MAX_TOXIC_OR_EXPLOSIVE_CONTAINERS ->
+                            shipBuilder.withMaxToxicOrExplosiveContainers(Integer.parseInt(fieldData[1]));
+                    case FIELD_MAX_CONTAINERS_REQUIRING_ELECTRICITY ->
+                            shipBuilder.withMaxContainersRequiringElectricity(Integer.parseInt(fieldData[1]));
+                    case FIELD_MAX_HEAVY_CONTAINERS ->
+                            shipBuilder.withMaxHeavyContainers(Integer.parseInt(fieldData[1]));
+                    case FIELD_MAX_TOTAL_CONTAINERS ->
+                            shipBuilder.withMaxTotalContainers(Integer.parseInt(fieldData[1]));
                     case FIELD_MAX_CARGO_WEIGHT -> shipBuilder.withMaxCargoWeight(Integer.parseInt(fieldData[1]));
                 }
             }

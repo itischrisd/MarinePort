@@ -35,6 +35,30 @@ public class DataWriter {
         printWriter.println(FIELD_LOCAL_DATE + FIELD_NAME_DELIMITER + Clock.getDate());
     }
 
+    private static void writeSenders() {
+        printWriter.println(TITLE_SENDERS);
+
+        for (var sender : Harbor.getInstance().getSenders()) {
+            printWriter.print(SENDER + CLASS_NAME_DELIMITER);
+            printWriter.print(FIELD_SENDER_NAME + FIELD_NAME_DELIMITER + sender.getName() + FIELD_DELIMITER);
+            printWriter.print(FIELD_SENDER_SURNAME + FIELD_NAME_DELIMITER + sender.getSurname() + FIELD_DELIMITER);
+            printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + sender.getPesel() + FIELD_DELIMITER);
+            printWriter.print(FIELD_ADDRESS + FIELD_NAME_DELIMITER + sender.getAddress() + FIELD_DELIMITER);
+            printWriter.print(FIELD_BIRTH_DATE + FIELD_NAME_DELIMITER + sender.getBirthDate() + FIELD_DELIMITER);
+            printWriter.print(FIELD_WARNING_COUNT + FIELD_NAME_DELIMITER + sender.getWarningsCount() + FIELD_DELIMITER);
+            sender.getWarnings().forEach(DataWriter::writeWarning);
+            printWriter.println();
+        }
+    }
+
+    private static void writeWarning(IrresponsibleSenderWithDangerousGoods warning) {
+        printWriter.println();
+        printWriter.print(WARNING + CLASS_NAME_DELIMITER);
+        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + warning.getId() + FIELD_DELIMITER);
+        printWriter.print(FIELD_ARRIVAL_DATE + FIELD_NAME_DELIMITER + warning.getArrivalDate() + FIELD_DELIMITER);
+        printWriter.print(FIELD_UTILIZATION_DATE + FIELD_NAME_DELIMITER + warning.getUtilizationDate() + FIELD_DELIMITER);
+    }
+
     private static void writeWarehouse() {
         printWriter.println(TITLE_WAREHOUSE);
         printWriter.println(FIELD_MAX_CONTAINERS + FIELD_NAME_DELIMITER + Harbor.getInstance().getWarehouse().getMaxContainers());
@@ -148,28 +172,5 @@ public class DataWriter {
             printWriter.println();
             ship.getContainers().forEach(DataWriter::writeContainer);
         }
-    }
-
-    private static void writeSenders() {
-        printWriter.println(TITLE_SENDERS);
-
-        for (var sender : Harbor.getInstance().getSenders()) {
-            printWriter.print(SENDER + CLASS_NAME_DELIMITER);
-            printWriter.print(FIELD_SENDER_NAME + FIELD_NAME_DELIMITER + sender.getName() + FIELD_DELIMITER);
-            printWriter.print(FIELD_SENDER_SURNAME + FIELD_NAME_DELIMITER + sender.getSurname() + FIELD_DELIMITER);
-            printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + sender.getPesel() + FIELD_DELIMITER);
-            printWriter.print(FIELD_ADDRESS + FIELD_NAME_DELIMITER + sender.getAddress() + FIELD_DELIMITER);
-            printWriter.print(FIELD_BIRTH_DATE + FIELD_NAME_DELIMITER + sender.getBirthDate() + FIELD_DELIMITER);
-            printWriter.print(FIELD_WARNING_COUNT + FIELD_NAME_DELIMITER + sender.getWarningsCount() + FIELD_DELIMITER);
-            sender.getWarnings().forEach(DataWriter::writeWarning);
-            printWriter.println();
-        }
-    }
-
-    private static void writeWarning(IrresponsibleSenderWithDangerousGoods warning) {
-        printWriter.print(WARNING + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ARRIVAL_DATE + FIELD_NAME_DELIMITER + warning.getArrivalDate() + FIELD_DELIMITER);
-        printWriter.print(FIELD_UTILIZATION_DATE + FIELD_NAME_DELIMITER + warning.getUtilizationDate() + FIELD_DELIMITER);
-        printWriter.println();
     }
 }
