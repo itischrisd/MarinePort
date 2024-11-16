@@ -122,8 +122,33 @@ public class ContainerBuilder<T extends Container> {
         if (this.container == null) {
             throw new IllegalStateException("This builder has already built a container.");
         }
+        if (isInvalidContainer()) {
+            throw new IllegalStateException("Container is invalid - not all required fields are set.");
+        }
         T builtContainer = this.container;
         this.container = null;
         return builtContainer;
+    }
+
+    private boolean isInvalidContainer() {
+        boolean isInvalid = container.getId() <= 0 || container.getWeight() <= 0 || container.getSender() == null;
+
+        if (container instanceof HeavyContainer && ((HeavyContainer) container).getTareWeight() <= 0) {
+            isInvalid = true;
+        }
+        if (container instanceof Liquid && ((Liquid) container).getLiquidVolume() <= 0) {
+            isInvalid = true;
+        }
+        if (container instanceof ToxicContainer && ((ToxicContainer) container).getToxicityLevel() <= 0) {
+            isInvalid = true;
+        }
+        if (container instanceof LooseToxicContainer && ((LooseToxicContainer) container).getLooseToxicContainerFeatures() == null) {
+            isInvalid = true;
+        }
+        if (container instanceof ExplosiveContainer && ((ExplosiveContainer) container).getAdditionalProtection() == null) {
+            isInvalid = true;
+        }
+
+        return isInvalid;
     }
 }

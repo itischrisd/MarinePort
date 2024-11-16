@@ -45,8 +45,19 @@ public class SenderBuilder {
         if (this.sender == null) {
             throw new IllegalStateException("This builder has already built a sender.");
         }
+        if (isInvalidSender()) {
+            throw new IllegalStateException("Sender is invalid - not all required fields are set.");
+        }
         Sender builtSender = this.sender;
         this.sender = null;
         return builtSender;
+    }
+
+    private boolean isInvalidSender() {
+        return sender.getName() == null ||
+                sender.getSurname() == null ||
+                sender.getPesel() == null ||
+                sender.getAddress() == null ||
+                sender.getWarnings() == null;
     }
 }

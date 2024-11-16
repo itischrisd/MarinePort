@@ -25,8 +25,15 @@ public class TrainBuilder {
         if (this.train == null) {
             throw new IllegalStateException("This builder has already built a train.");
         }
+        if (isInvalidTrain()) {
+            throw new IllegalStateException("Invalid train - not all required fields are set.");
+        }
         Train builtTrain = this.train;
         this.train = null;
         return builtTrain;
+    }
+
+    private boolean isInvalidTrain() {
+        return train.getContainers() == null;
     }
 }

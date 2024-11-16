@@ -31,8 +31,15 @@ public class WarehouseBuilder {
         if (this.warehouse == null) {
             throw new IllegalStateException("This builder has already built a warehouse.");
         }
+        if (isInvalidWarehouse()) {
+            throw new IllegalStateException("Invalid warehouse - not all required fields are set.");
+        }
         Warehouse builtWarehouse = this.warehouse;
         this.warehouse = null;
         return builtWarehouse;
+    }
+
+    private boolean isInvalidWarehouse() {
+        return warehouse.getMaxContainers() <= 0 || warehouse.getContainers() == null;
     }
 }

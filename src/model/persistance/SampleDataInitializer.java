@@ -14,6 +14,7 @@ import model.warehouse.WarehouseBuilder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -160,6 +161,7 @@ public class SampleDataInitializer {
                 .refrigeratedContainer()
                 .withId(5)
                 .withWeight(200)
+                .withTareWeight(50)
                 .withConnectedToPower(false)
                 .withSender(Harbor.getInstance().getSenders().get(4))
                 .build();
@@ -181,6 +183,7 @@ public class SampleDataInitializer {
                 .looseToxicContainer()
                 .withId(6)
                 .withWeight(300)
+                .withTareWeight(50)
                 .withToxicityLevel(60)
                 .withLooseToxicContainerFeature(LooseToxicContainerFeatures.VENTILATION_SYSTEM)
                 .withLooseToxicContainerFeature(LooseToxicContainerFeatures.LEAK_DETECTION_SYSTEM)
@@ -190,7 +193,9 @@ public class SampleDataInitializer {
                 .liquidToxicContainer()
                 .withId(7)
                 .withWeight(100)
+                .withTareWeight(60)
                 .withToxicityLevel(70)
+                .withLiquidVolume(70)
                 .withSender(Harbor.getInstance().getSenders().get(6))
                 .build();
         Container container3 = ContainerBuilder
@@ -217,6 +222,7 @@ public class SampleDataInitializer {
                 .explosiveContainer()
                 .withId(11)
                 .withWeight(200)
+                .withTareWeight(110)
                 .withAdditionalProtection(AdditionalProtection.EXPLOSION_SUPPRESSORS)
                 .withSender(Harbor.getInstance().getSenders().get(0))
                 .build();
@@ -224,6 +230,7 @@ public class SampleDataInitializer {
                 .refrigeratedContainer()
                 .withId(12)
                 .withWeight(300)
+                .withTareWeight(120)
                 .withConnectedToPower(true)
                 .withSender(Harbor.getInstance().getSenders().get(1))
                 .build();
@@ -231,6 +238,7 @@ public class SampleDataInitializer {
                 .looseToxicContainer()
                 .withId(13)
                 .withWeight(100)
+                .withTareWeight(80)
                 .withToxicityLevel(130)
                 .withLooseToxicContainerFeature(LooseToxicContainerFeatures.VENTILATION_SYSTEM)
                 .withLooseToxicContainerFeature(LooseToxicContainerFeatures.LEAK_DETECTION_SYSTEM)
@@ -240,7 +248,9 @@ public class SampleDataInitializer {
                 .liquidToxicContainer()
                 .withId(14)
                 .withWeight(200)
+                .withTareWeight(140)
                 .withToxicityLevel(140)
+                .withLiquidVolume(140)
                 .withSender(Harbor.getInstance().getSenders().get(3))
                 .build();
         Container container10 = ContainerBuilder
@@ -267,6 +277,7 @@ public class SampleDataInitializer {
                 .explosiveContainer()
                 .withId(18)
                 .withWeight(300)
+                .withTareWeight(180)
                 .withAdditionalProtection(AdditionalProtection.EXPLOSION_SUPPRESSORS)
                 .withSender(Harbor.getInstance().getSenders().get(7))
                 .build();
@@ -274,6 +285,7 @@ public class SampleDataInitializer {
                 .refrigeratedContainer()
                 .withId(19)
                 .withWeight(100)
+                .withTareWeight(90)
                 .withConnectedToPower(true)
                 .withSender(Harbor.getInstance().getSenders().get(8))
                 .build();
@@ -281,9 +293,9 @@ public class SampleDataInitializer {
                 .looseToxicContainer()
                 .withId(20)
                 .withWeight(200)
+                .withTareWeight(100)
                 .withToxicityLevel(200)
-                .withLooseToxicContainerFeature(LooseToxicContainerFeatures.VENTILATION_SYSTEM)
-                .withLooseToxicContainerFeature(LooseToxicContainerFeatures.LEAK_DETECTION_SYSTEM)
+                .withLooseToxicContainerFeatures(Arrays.asList(LooseToxicContainerFeatures.VENTILATION_SYSTEM, LooseToxicContainerFeatures.LEAK_DETECTION_SYSTEM))
                 .withSender(Harbor.getInstance().getSenders().get(9))
                 .build();
         List<Container> containers1 = List.of(container1, container2, container3);

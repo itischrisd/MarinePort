@@ -127,6 +127,7 @@ public class DataWriter {
     private static void writeRefrigeratedContainer(RefrigeratedContainer container) {
         printWriter.print(CONTAINER_REFRIGERATED + CLASS_NAME_DELIMITER);
         writeCommonFields(container);
+        printWriter.print(FIELD_TARE_WEIGHT + FIELD_NAME_DELIMITER + container.getTareWeight() + FIELD_DELIMITER);
         printWriter.print(FIELD_CONNECTED_TO_POWER + FIELD_NAME_DELIMITER + container.isConnectedToPower() + FIELD_DELIMITER);
         printWriter.println();
     }
@@ -160,6 +161,7 @@ public class DataWriter {
 
         for (var ship : Harbor.getInstance().getShips()) {
             printWriter.print(SHIP + CLASS_NAME_DELIMITER);
+            printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + ship.getId() + FIELD_DELIMITER);
             printWriter.print(FIELD_SHIP_NAME + FIELD_NAME_DELIMITER + ship.getName() + FIELD_DELIMITER);
             printWriter.print(FIELD_ORIGIN_PORT + FIELD_NAME_DELIMITER + ship.getOriginPort() + FIELD_DELIMITER);
             printWriter.print(FIELD_CARGO_ORIGIN + FIELD_NAME_DELIMITER + ship.getCargoOrigin() + FIELD_DELIMITER);

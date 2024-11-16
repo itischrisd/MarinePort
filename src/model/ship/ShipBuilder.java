@@ -81,8 +81,22 @@ public class ShipBuilder {
         if (this.ship == null) {
             throw new IllegalStateException("This builder has already built a ship.");
         }
+        if (isInvalidShip()) {
+            throw new IllegalStateException("Invalid ship - not all required fields are set.");
+        }
         Ship builtShip = this.ship;
         this.ship = null;
         return builtShip;
+    }
+
+    private boolean isInvalidShip() {
+        return ship.getId() <= 0 ||
+                ship.getName() == null ||
+                ship.getOriginPort() == null ||
+                ship.getCargoOrigin() == null ||
+                ship.getCargoDestination() == null ||
+                ship.getMaxTotalContainers() <= 0 ||
+                ship.getMaxCargoWeight() <= 0 ||
+                ship.getContainers() == null;
     }
 }

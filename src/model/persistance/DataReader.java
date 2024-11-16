@@ -34,8 +34,8 @@ public class DataReader {
             readWarehouse();
             readTrain();
             readShips();
-        } catch (Exception ignored) {
-            System.out.println("Error reading file.");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -212,6 +212,7 @@ public class DataReader {
             for (String field : shipData) {
                 String[] fieldData = field.split(FIELD_NAME_DELIMITER);
                 switch (fieldData[0]) {
+                    case FIELD_ID -> shipBuilder.withId(Integer.parseInt(fieldData[1]));
                     case FIELD_SHIP_NAME -> shipBuilder.withName(fieldData[1]);
                     case FIELD_ORIGIN_PORT -> shipBuilder.withOriginPort(fieldData[1]);
                     case FIELD_CARGO_ORIGIN -> shipBuilder.withCargoOrigin(fieldData[1]);
