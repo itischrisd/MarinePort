@@ -2,7 +2,6 @@ package model.train;
 
 import model.container.Container;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TrainBuilder {
@@ -18,7 +17,7 @@ public class TrainBuilder {
     }
 
     public TrainBuilder withContainers(List<Container> containers) {
-        train.setContainers(new ArrayList<>(containers));
+        train.setContainers(containers);
         return this;
     }
 

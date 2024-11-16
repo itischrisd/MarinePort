@@ -4,6 +4,7 @@ import model.container.Container;
 import model.exception.TooManyContainersException;
 import model.time.Departurer;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Train {
     }
 
     protected void setContainers(List<Container> containers) {
-        this.containers = containers;
+        this.containers = new ArrayList<>(containers);
     }
 
     public void addContainer(Container container) throws TooManyContainersException {

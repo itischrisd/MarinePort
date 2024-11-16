@@ -5,6 +5,7 @@ import model.container.Container;
 import model.container.ContainerBuilder;
 import model.container.ExplosiveContainer.AdditionalProtection;
 import model.container.LooseToxicContainer.LooseToxicContainerFeatures;
+import model.exception.ExceptionBuilder;
 import model.sender.Sender;
 import model.sender.SenderBuilder;
 import model.ship.Ship;
@@ -95,7 +96,13 @@ public class SampleDataInitializer {
                 .withSurname("Jankowska")
                 .withPesel("74051298760")
                 .withAddress("ul. Parkowa 33, 70-410 Szczecin")
-                .withWarnings(new ArrayList<>())
+                .withWarnings(List.of(
+                        ExceptionBuilder
+                                .irresponsibleSenderWithDangerousGoods()
+                                .withId(1)
+                                .withArrivalDate(LocalDate.now())
+                                .withUtilizationDate(LocalDate.now().plusDays(1))
+                                .build()))
                 .build();
         Sender sender10 = SenderBuilder
                 .sender()
@@ -103,7 +110,19 @@ public class SampleDataInitializer {
                 .withSurname("Mazur")
                 .withPesel("83090587612")
                 .withAddress("ul. Leśna 77, 15-157 Białystok")
-                .withWarnings(new ArrayList<>())
+                .withWarnings(List.of(
+                        ExceptionBuilder
+                                .irresponsibleSenderWithDangerousGoods()
+                                .withId(2)
+                                .withArrivalDate(LocalDate.now())
+                                .withUtilizationDate(LocalDate.now().plusDays(1))
+                                .build(),
+                        ExceptionBuilder
+                                .irresponsibleSenderWithDangerousGoods()
+                                .withId(3)
+                                .withArrivalDate(LocalDate.now())
+                                .withUtilizationDate(LocalDate.now().plusDays(1))
+                                .build()))
                 .build();
         List<Sender> senders = List.of(sender1, sender2, sender3, sender4, sender5, sender6, sender7, sender8, sender9, sender10);
         Harbor.getInstance().setSenders(senders);

@@ -4,6 +4,7 @@ package model.ship;
 import model.container.*;
 import model.exception.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -137,7 +138,7 @@ public class Ship {
     }
 
     protected void setContainers(List<Container> containers) {
-        this.containers = containers;
+        this.containers = new ArrayList<>(containers);
     }
 
     public void sortContainersByWeight() {

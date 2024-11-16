@@ -3,6 +3,7 @@ package model.sender;
 import model.exception.IrresponsibleSenderWithDangerousGoods;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Sender {
     private List<IrresponsibleSenderWithDangerousGoods> warnings;
 
     protected Sender() {
+        warnings = new ArrayList<>();
     }
 
     public String getName() {
@@ -77,7 +79,7 @@ public class Sender {
     }
 
     protected void setWarnings(List<IrresponsibleSenderWithDangerousGoods> warnings) {
-        this.warnings = warnings;
+        this.warnings = new ArrayList<>(warnings);
     }
 
     public void addWarning(IrresponsibleSenderWithDangerousGoods warning) {

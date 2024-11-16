@@ -17,7 +17,7 @@ public class LooseToxicContainer extends ToxicContainer {
     }
 
     protected void setLooseToxicContainerFeatures(List<LooseToxicContainerFeatures> looseToxicContainerFeatures) {
-        this.looseToxicContainerFeatures = looseToxicContainerFeatures;
+        this.looseToxicContainerFeatures = new ArrayList<>(looseToxicContainerFeatures);
     }
 
     protected void addLooseToxicContainerFeature(LooseToxicContainerFeatures looseToxicContainerFeature) {

@@ -71,11 +71,8 @@ public class ContainerBuilder<T extends Container> {
     }
 
     public ContainerBuilder<T> withLiquidVolume(double liquidVolume) {
-        if (container instanceof LiquidContainer) {
-            ((LiquidContainer) container).setLiquidVolume(liquidVolume);
-            return this;
-        } else if (container instanceof LiquidToxicContainer) {
-            ((LiquidToxicContainer) container).setLiquidVolume(liquidVolume);
+        if (container instanceof Liquid) {
+            ((Liquid) container).setLiquidVolume(liquidVolume);
             return this;
         }
         throw new UnsupportedOperationException("Liquid volume is only applicable to LiquidContainer.");
