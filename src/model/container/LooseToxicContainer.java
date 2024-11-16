@@ -36,6 +36,15 @@ public class LooseToxicContainer extends ToxicContainer {
             this.displayName = displayName;
         }
 
+        public static LooseToxicContainerFeatures fromDisplayName(String displayName) {
+            for (LooseToxicContainerFeatures feature : values()) {
+                if (feature.displayName.equals(displayName)) {
+                    return feature;
+                }
+            }
+            throw new IllegalArgumentException("No enum constant with display name " + displayName);
+        }
+
         @Override
         public String toString() {
             return displayName;

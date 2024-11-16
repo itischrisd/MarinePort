@@ -20,22 +20,18 @@ public class DataWriter {
 
         try (PrintWriter newPrintWriter = new PrintWriter(file)) {
             printWriter = newPrintWriter;
-            writeTitle();
-            writeCurrentDate();
+            writeHeader();
+            writeSenders();
             writeWarehouse();
             writeTrain();
             writeShips();
-            writeSenders();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private static void writeTitle() {
+    private static void writeHeader() {
         printWriter.println(TITLE_DOCUMENT);
-    }
-
-    private static void writeCurrentDate() {
         printWriter.println(FIELD_LOCAL_DATE + FIELD_NAME_DELIMITER + Clock.getDate());
     }
 
@@ -44,8 +40,8 @@ public class DataWriter {
         printWriter.println(FIELD_MAX_CONTAINERS + FIELD_NAME_DELIMITER + Harbor.getInstance().getWarehouse().getMaxContainers());
 
         for (var warehouseContainer : Harbor.getInstance().getWarehouse().getContainers().entrySet()) {
-            printWriter.println(FIELD_STORING_DATE + FIELD_NAME_DELIMITER + warehouseContainer.getValue());
             writeContainer(warehouseContainer.getKey());
+            printWriter.println(FIELD_STORING_DATE + FIELD_NAME_DELIMITER + warehouseContainer.getValue());
         }
     }
 
@@ -64,9 +60,7 @@ public class DataWriter {
 
     private static void writeLooseToxicContainer(LooseToxicContainer container) {
         printWriter.print(CONTAINER_LOOSE_TOXIC + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
-        printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
+        writeCommonFields(container);
         printWriter.print(FIELD_TARE_WEIGHT + FIELD_NAME_DELIMITER + container.getTareWeight() + FIELD_DELIMITER);
         printWriter.print(FIELD_TOXICITY_LEVEL + FIELD_NAME_DELIMITER + container.getToxicityLevel() + FIELD_DELIMITER);
         printWriter.print(FIELD_LOOSE_TOXIC_CONTAINER_FEATURES + FIELD_NAME_DELIMITER);
@@ -76,9 +70,7 @@ public class DataWriter {
 
     private static void writeLiquidToxicContainer(LiquidToxicContainer container) {
         printWriter.print(CONTAINER_LIQUID_TOXIC + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
-        printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
+        writeCommonFields(container);
         printWriter.print(FIELD_TARE_WEIGHT + FIELD_NAME_DELIMITER + container.getTareWeight() + FIELD_DELIMITER);
         printWriter.print(FIELD_TOXICITY_LEVEL + FIELD_NAME_DELIMITER + container.getToxicityLevel() + FIELD_DELIMITER);
         printWriter.print(FIELD_LIQUID_VOLUME + FIELD_NAME_DELIMITER + container.getLiquidVolume() + FIELD_DELIMITER);
@@ -87,9 +79,7 @@ public class DataWriter {
 
     private static void writeToxicContainer(ToxicContainer container) {
         printWriter.print(CONTAINER_COMMON + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
-        printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
+        writeCommonFields(container);
         printWriter.print(FIELD_TARE_WEIGHT + FIELD_NAME_DELIMITER + container.getTareWeight() + FIELD_DELIMITER);
         printWriter.print(FIELD_TOXICITY_LEVEL + FIELD_NAME_DELIMITER + container.getToxicityLevel() + FIELD_DELIMITER);
         printWriter.println();
@@ -97,18 +87,14 @@ public class DataWriter {
 
     private static void writeLiquidContainer(LiquidContainer container) {
         printWriter.print(CONTAINER_LIQUID + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
-        printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
+        writeCommonFields(container);
         printWriter.print(FIELD_LIQUID_VOLUME + FIELD_NAME_DELIMITER + container.getLiquidVolume() + FIELD_DELIMITER);
         printWriter.println();
     }
 
     private static void writeExplosiveContainer(ExplosiveContainer container) {
         printWriter.print(CONTAINER_EXPLOSIVE + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
-        printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
+        writeCommonFields(container);
         printWriter.print(FIELD_TARE_WEIGHT + FIELD_NAME_DELIMITER + container.getTareWeight() + FIELD_DELIMITER);
         printWriter.print(FIELD_ADDITIONAL_PROTECTION + FIELD_NAME_DELIMITER + container.getAdditionalProtection() + FIELD_DELIMITER);
         printWriter.println();
@@ -116,28 +102,28 @@ public class DataWriter {
 
     private static void writeRefrigeratedContainer(RefrigeratedContainer container) {
         printWriter.print(CONTAINER_REFRIGERATED + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
-        printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
+        writeCommonFields(container);
         printWriter.print(FIELD_CONNECTED_TO_POWER + FIELD_NAME_DELIMITER + container.isConnectedToPower() + FIELD_DELIMITER);
         printWriter.println();
     }
 
     private static void writeHeavyContainer(HeavyContainer container) {
         printWriter.print(CONTAINER_HEAVY + CLASS_NAME_DELIMITER);
-        printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
-        printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
+        writeCommonFields(container);
         printWriter.print(FIELD_TARE_WEIGHT + FIELD_NAME_DELIMITER + container.getTareWeight() + FIELD_DELIMITER);
         printWriter.println();
     }
 
     private static void writeCommonContainer(Container container) {
         printWriter.print(CONTAINER_COMMON + CLASS_NAME_DELIMITER);
+        writeCommonFields(container);
+        printWriter.println();
+    }
+
+    private static void writeCommonFields(Container container) {
         printWriter.print(FIELD_ID + FIELD_NAME_DELIMITER + container.getId() + FIELD_DELIMITER);
         printWriter.print(FIELD_WEIGHT + FIELD_NAME_DELIMITER + container.getWeight() + FIELD_DELIMITER);
         printWriter.print(FIELD_SENDER_PESEL + FIELD_NAME_DELIMITER + container.getSender().getPesel() + FIELD_DELIMITER);
-        printWriter.println();
     }
 
     private static void writeTrain() {

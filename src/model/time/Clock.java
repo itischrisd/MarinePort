@@ -7,8 +7,10 @@ public class Clock extends Thread {
     private static final int SECONDS_PER_DAY = 5000;
     private static LocalDate date;
 
-    public Clock(LocalDate initialDate) {
-        date = initialDate;
+    public Clock() {
+        if (date == null) {
+            date = LocalDate.now();
+        }
     }
 
     private static synchronized void incrementDate() {
@@ -18,6 +20,10 @@ public class Clock extends Thread {
 
     public static synchronized LocalDate getDate() {
         return date;
+    }
+
+    public static synchronized void setDate(LocalDate newDate) {
+        date = newDate;
     }
 
     @Override

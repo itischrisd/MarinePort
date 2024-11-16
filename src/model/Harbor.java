@@ -27,6 +27,10 @@ public class Harbor {
         return instance;
     }
 
+    public static void deleteInstance() {
+        instance = null;
+    }
+
     public Warehouse getWarehouse() {
         return warehouse;
     }

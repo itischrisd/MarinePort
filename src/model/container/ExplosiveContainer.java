@@ -28,6 +28,15 @@ public class ExplosiveContainer extends HeavyContainer {
             this.displayName = displayName;
         }
 
+        public static AdditionalProtection fromDisplayName(String displayName) {
+            for (AdditionalProtection protection : values()) {
+                if (protection.displayName.equals(displayName)) {
+                    return protection;
+                }
+            }
+            throw new IllegalArgumentException("No enum constant with display name " + displayName);
+        }
+
         @Override
         public String toString() {
             return displayName;

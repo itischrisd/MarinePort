@@ -45,13 +45,12 @@ public class Warehouse {
         }
     }
 
+    public Container getContainer(int id) {
+        return containers.keySet().stream().filter(container -> container.getId() == id).findFirst().orElse(null);
+    }
+
     public void removeContainerById(int id) {
-        for (Container container : containers.keySet()) {
-            if (container.getId() == id) {
-                containers.remove(container);
-                break;
-            }
-        }
+        containers.keySet().stream().filter(container -> container.getId() == id).findFirst().ifPresent(container -> containers.remove(container));
     }
 
     public void removeContainerByPosition(int position) {
@@ -68,13 +67,14 @@ public class Warehouse {
     }
 
     public boolean isOverdue(Map.Entry<Container, LocalDate> container) {
-        if (container.getKey() instanceof ExplosiveContainer) {
-            return container.getValue().plusDays(MAX_EXPLOSIVE_TIME).isBefore(Clock.getDate());
-        } else if (container.getKey() instanceof LiquidToxicContainer) {
-            return container.getValue().plusDays(MAX_LIQUID_TOXIC_TIME).isBefore(Clock.getDate());
-        } else if (container.getKey() instanceof LooseToxicContainer) {
-            return container.getValue().plusDays(MAX_LOOSE_TOXIC_TIME).isBefore(Clock.getDate());
-        }
-        return false;
+        return switch (container.getKey()) {
+            case ExplosiveContainer ignored ->
+                    container.getValue().plusDays(MAX_EXPLOSIVE_TIME).isBefore(Clock.getDate());
+            case LiquidToxicContainer ignored ->
+                    container.getValue().plusDays(MAX_LIQUID_TOXIC_TIME).isBefore(Clock.getDate());
+            case LooseToxicContainer ignored ->
+                    container.getValue().plusDays(MAX_LOOSE_TOXIC_TIME).isBefore(Clock.getDate());
+            default -> false;
+        };
     }
 }

@@ -1,4 +1,5 @@
 import model.Harbor;
+import model.persistance.DataReader;
 import model.persistance.DataWriter;
 import model.persistance.SampleDataInitializer;
 import model.time.Clock;
@@ -11,9 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
         SampleDataInitializer.createExampleData();
-        Clock clock = new Clock(LocalDate.now());
-        clock.start();
+        Clock.setDate(LocalDate.now());
+        Clock.setDate(LocalDate.now().plusDays(1));
         Harbor.getInstance().setTrain(TrainBuilder.train().withContainers(new ArrayList<>()).build());
         DataWriter.writeToFile("test.bak");
+        Harbor.deleteInstance();
+        DataReader.readFromFile("test.bak");
+        DataWriter.writeToFile("test2.bak");
     }
 }
