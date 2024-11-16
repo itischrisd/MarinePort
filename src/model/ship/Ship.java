@@ -26,6 +26,7 @@ public class Ship {
     private List<Container> containers;
 
     protected Ship() {
+        this.containers = new ArrayList<>();
     }
 
     public Container unloadContainer(int id) {

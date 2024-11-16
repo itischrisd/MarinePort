@@ -19,6 +19,7 @@ public class Warehouse {
     private int MAX_CONTAINERS;
 
     protected Warehouse() {
+        this.containers = new LinkedHashMap<>();
     }
 
     public Map<Container, LocalDate> getContainers() {

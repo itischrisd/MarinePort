@@ -14,6 +14,7 @@ public class Train {
     private List<Container> containers;
 
     protected Train() {
+        this.containers = new ArrayList<>();
     }
 
     public List<Container> getContainers() {
