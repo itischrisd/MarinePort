@@ -2,6 +2,9 @@ package lang;
 
 public class Data {
 
+    public static final String DEFUALT_FILE_NAME = "port.bak";
+    public static final String DEFAULT_DATA_MESSAGE = "Tworzenie przykładowych danych...";
+
     public static final String TITLE_DOCUMENT = "--- STAN PORTU ZAŁADUNKOWEGO ---";
     public static final String TITLE_WAREHOUSE = "- MAGAZYN -";
     public static final String TITLE_TRAIN = "- POCIĄG -";

@@ -29,8 +29,8 @@ public class Ship {
         this.containers = new ArrayList<>();
     }
 
-    public Container unloadContainer(int id) {
-        return containers.remove(id);
+    public void removeContainer(int id) {
+        containers.remove(id);
     }
 
     public void loadContainer(Container container) throws ContainerLoadingException {
@@ -144,5 +144,9 @@ public class Ship {
 
     public void sortContainersByWeight() {
         containers.sort(Comparator.comparingInt(Container::getWeight));
+    }
+
+    public Container getContainerByIndex(int position) {
+        return containers.get(position);
     }
 }

@@ -6,10 +6,15 @@ import model.ship.ShipBuilder;
 
 import java.util.List;
 
+import static lang.ErrorMessage.SHIP_NOT_FOUND;
+
 public class ShipService {
 
+    public static List<Ship> getShips() {
+        return Harbor.getInstance().getShips();
+    }
+
     public static void createShip(
-            int id,
             String name,
             String originPort,
             String cargoOrigin,
@@ -20,7 +25,7 @@ public class ShipService {
             int maxContainersRequiringElectricity,
             int maxToxicOrExplosiveContainers) {
         Ship newShip = ShipBuilder.ship()
-                .withId(id)
+                .withNewId()
                 .withName(name)
                 .withOriginPort(originPort)
                 .withCargoOrigin(cargoOrigin)
@@ -35,15 +40,11 @@ public class ShipService {
     }
 
     public static void departShip(int id) {
-        Ship departingShip = Harbor.getInstance().getShip(id);
+        Ship departingShip = Harbor.getInstance().getShipByIndex(id);
         if (departingShip != null) {
             Harbor.getInstance().removeShip(id);
         } else {
-            throw new IllegalArgumentException("Ship with id " + id + " does not exist.");
+            throw new IllegalArgumentException(SHIP_NOT_FOUND);
         }
-    }
-
-    public static List<Ship> getShips() {
-        return Harbor.getInstance().getShips();
     }
 }

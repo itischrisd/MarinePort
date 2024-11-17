@@ -16,6 +16,18 @@ public class ErrorMessage {
     public static final String INVALID_SENDER = "Niepoprawny stan tworzonego nadawcy!";
     public static final String INVALID_EXCEPTION = "Niepoprawny stan tworzonego ostrzeżenia!";
 
+    public static final String SHIP_NOT_FOUND = "Nie znaleziono statku o podanym numerze!";
+    public static final String CONTAINER_NOT_FOUND = "Nie znaleziono kontenera o podanym numerze!";
+
+    public static final String TOO_HEAVY_CONTAINER = "Kontener jest zbyt ciężki!";
+    public static final String TOO_MANY_CONTAINERS_ON_TRAIN = "Za dużo kontenerów na pociągu!";
+    public static final String TOO_MANY_CONTAINERS_ON_SHIP = "Za dużo kontenerów na statku!";
+    public static final String TOO_MANY_CONTAINERS_IN_WAREHOUSE = "Za dużo kontenerów w magazynie!";
+    public static final String TOO_MANY_ELECTRIC_CONTAINERS = "Za dużo kontenerów wymagających zasilania!";
+    public static final String TOO_MANY_HEAVY_CONTAINERS = "Za dużo kontenerów ciężkich!";
+    public static final String TOO_MANY_TOXIC_OR_EXPLOSIVE_CONTAINERS = "Za dużo kontenerów na materiały toksyczne lub wybuchowe!";
+    public static final String CONTAINER_LOADING_EXCEPTION = "Błąd podczas załadunku kontenera!";
+
     public static final String TARE_WEIGHT_HEAVY_CONTAINER_EXCLUSIVE = "Waga własna może być ustawiona tylko dla kontenerów ciężkich!";
     public static final String LIQUID_VOLUME_LIQUID_CONTAINER_EXCLUSIVE = "Objętość cieczy może być ustawiona tylko dla kontenerów na materiały ciekłe!";
     public static final String ADDITIONAL_PROTECTION_EXPLOSIVE_CONTAINER_EXCLUSIVE = "Dodatkowa ochrona może być ustawiona tylko dla kontenerów na materiały wybuchowe!";

@@ -63,8 +63,8 @@ public class Harbor {
         this.senders = senders;
     }
 
-    public Ship getShip(int id) {
-        return ships.get(id);
+    public Ship getShipByIndex(int index) {
+        return ships.get(index);
     }
 
     public void addShip(Ship ship) {
@@ -75,7 +75,7 @@ public class Harbor {
         ships.remove(id);
     }
 
-    public Sender getSender(int id) {
+    public Sender getSenderByIndex(int id) {
         return senders.get(id);
     }
 

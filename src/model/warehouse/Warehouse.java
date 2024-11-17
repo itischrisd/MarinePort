@@ -46,17 +46,17 @@ public class Warehouse {
         }
     }
 
-    public Container getContainer(int id) {
-        return containers.keySet().stream().filter(container -> container.getId() == id).findFirst().orElse(null);
+    public Container getContainerByIndex(int index) {
+        return new ArrayList<>(containers.keySet()).get(index);
     }
 
     public void removeContainerById(int id) {
         containers.keySet().stream().filter(container -> container.getId() == id).findFirst().ifPresent(container -> containers.remove(container));
     }
 
-    public void removeContainerByPosition(int position) {
-        List<Container> containerList = new ArrayList<>(containers.keySet());
-        containers.remove(containerList.get(position));
+    public void removeContainerByIndex(int index) {
+        Container container = new ArrayList<>(containers.keySet()).get(index);
+        containers.remove(container);
     }
 
     public void sortContainers() {
