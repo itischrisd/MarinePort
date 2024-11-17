@@ -3,6 +3,7 @@ package model.persistance;
 import model.Harbor;
 import model.container.*;
 import model.exception.IrresponsibleSenderWithDangerousGoods;
+import model.ship.Ship;
 import model.time.Clock;
 
 import java.io.File;
@@ -18,6 +19,10 @@ public class DataWriter {
 
     public static void writeToFile(String filename) {
         File file = Paths.get(filename).toFile();
+
+        Harbor.getInstance().getShips().forEach(Ship::sortContainersByWeight);
+        Harbor.getInstance().sortShipsByNameDescending();
+        Harbor.getInstance().getWarehouse().sortContainers();
 
         try (PrintWriter newPrintWriter = new PrintWriter(file)) {
             printWriter = newPrintWriter;
@@ -130,7 +135,7 @@ public class DataWriter {
         printWriter.print(CONTAINER_REFRIGERATED + CLASS_NAME_DELIMITER);
         writeCommonFields(container);
         printWriter.print(FIELD_TARE_WEIGHT + FIELD_NAME_DELIMITER + container.getTareWeight() + FIELD_DELIMITER);
-        printWriter.print(FIELD_CONNECTED_TO_POWER + FIELD_NAME_DELIMITER + container.isConnectedToPower() + FIELD_DELIMITER);
+        printWriter.print(FIELD_CONNECTED_TO_POWER + FIELD_NAME_DELIMITER + fromBoolean(container.isConnectedToPower()) + FIELD_DELIMITER);
         printWriter.println();
     }
 

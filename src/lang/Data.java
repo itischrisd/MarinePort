@@ -61,4 +61,15 @@ public class Data {
     public static final String FIELD_NAME_DELIMITER = ": ";
     public static final String FIELD_VALUE_DELIMITER = ", ";
     public static final String FIELD_DELIMITER = "; ";
+
+    public static final String VALUE_TRUE = "Tak";
+    public static final String VALUE_FALSE = "Nie";
+
+    public static boolean toBoolean(String value) {
+        return value.equals(VALUE_TRUE);
+    }
+
+    public static String fromBoolean(boolean value) {
+        return value ? VALUE_TRUE : VALUE_FALSE;
+    }
 }

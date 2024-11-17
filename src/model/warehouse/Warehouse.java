@@ -63,7 +63,7 @@ public class Warehouse {
         Map<Container, LocalDate> containersCopy = new LinkedHashMap<>(this.containers);
         this.containers.clear();
         containersCopy.entrySet().stream()
-                .sorted(Map.Entry.<Container, LocalDate>comparingByValue().thenComparing(e -> e.getKey().getSender().getName()))
+                .sorted(Map.Entry.<Container, LocalDate>comparingByValue().thenComparing(e -> e.getKey().getSender().getSurname()))
                 .forEach(e -> this.containers.put(e.getKey(), e.getValue()));
     }
 

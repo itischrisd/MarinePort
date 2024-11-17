@@ -148,14 +148,14 @@ public class SampleDataInitializer {
                 .withId(3)
                 .withWeight(300)
                 .withLiquidVolume(30)
-                .withSender(Harbor.getInstance().getSenders().get(2))
+                .withSender(Harbor.getInstance().getSenders().get(3))
                 .build();
         Container container4 = ContainerBuilder
                 .heavyContainer()
                 .withId(4)
                 .withWeight(150)
                 .withTareWeight(40)
-                .withSender(Harbor.getInstance().getSenders().get(3))
+                .withSender(Harbor.getInstance().getSenders().get(2))
                 .build();
         Container container5 = ContainerBuilder
                 .refrigeratedContainer()
@@ -166,11 +166,11 @@ public class SampleDataInitializer {
                 .withSender(Harbor.getInstance().getSenders().get(4))
                 .build();
         Map<Container, LocalDate> containers = Map.of(
-                container1, LocalDate.now(),
-                container2, LocalDate.now(),
-                container3, LocalDate.now(),
-                container4, LocalDate.now(),
-                container5, LocalDate.now());
+                container1, LocalDate.now().minusDays(1),
+                container2, LocalDate.now().minusDays(2),
+                container3, LocalDate.now().minusDays(3),
+                container4, LocalDate.now().minusDays(3),
+                container5, LocalDate.now().minusDays(4));
         Harbor.getInstance().setWarehouse(WarehouseBuilder
                 .warehouse()
                 .withMaxContainers(15)

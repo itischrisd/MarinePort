@@ -169,7 +169,7 @@ public class DataReader {
                 case FIELD_ADDITIONAL_PROTECTION ->
                         containerBuilder.withAdditionalProtection(ExplosiveContainer.AdditionalProtection.fromDisplayName(fieldData[1]));
                 case FIELD_CONNECTED_TO_POWER ->
-                        containerBuilder.withConnectedToPower(Boolean.parseBoolean(fieldData[1]));
+                        containerBuilder.withConnectedToPower(toBoolean(fieldData[1]));
                 case FIELD_TOXICITY_LEVEL -> containerBuilder.withToxicityLevel(Integer.parseInt(fieldData[1]));
                 case FIELD_LOOSE_TOXIC_CONTAINER_FEATURES ->
                         containerBuilder.withLooseToxicContainerFeatures(Arrays.stream(fieldData[1].split(FIELD_VALUE_DELIMITER)).map(LooseToxicContainer.LooseToxicContainerFeatures::fromDisplayName).toList());
