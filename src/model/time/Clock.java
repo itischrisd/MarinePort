@@ -6,11 +6,19 @@ public class Clock extends Thread {
 
     private static final int SECONDS_PER_DAY = 5000;
     private static LocalDate date;
+    private static Clock instance;
 
-    public Clock() {
+    private Clock() {
         if (date == null) {
             date = LocalDate.now();
         }
+    }
+
+    public static Clock getInstance() {
+        if (instance == null) {
+            instance = new Clock();
+        }
+        return instance;
     }
 
     private static synchronized void incrementDate() {

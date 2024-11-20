@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 import java.nio.file.Paths;
 
 import static lang.Data.*;
-import static lang.ErrorMessage.*;
+import static lang.ErrorMessage.WRITING_FILE;
 
 public class DataWriter {
 
@@ -32,8 +32,7 @@ public class DataWriter {
             writeTrain();
             writeShips();
         } catch (Exception e) {
-            System.out.println(WRITING_FILE);
-            System.out.println(ERROR_DETAILS + e.getMessage());
+            throw new RuntimeException(WRITING_FILE);
         }
     }
 

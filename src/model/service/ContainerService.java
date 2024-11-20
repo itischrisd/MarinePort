@@ -1,7 +1,10 @@
 package model.service;
 
 import model.Harbor;
-import model.container.*;
+import model.container.Container;
+import model.container.ContainerBuilder;
+import model.container.ExplosiveContainer;
+import model.container.LooseToxicContainer;
 import model.exception.*;
 import model.ship.Ship;
 
@@ -13,74 +16,99 @@ import static lang.ErrorMessage.*;
 
 public class ContainerService {
 
-    public static Container createContainer(
+    public static void createContainer(
             int weight,
             int senderIndex
     ) {
-        return ContainerBuilder.basicContainer()
+        Container container = ContainerBuilder.basicContainer()
                 .withNewId()
                 .withWeight(weight)
                 .withSender(Harbor.getInstance().getSenderByIndex(senderIndex))
                 .build();
+        try {
+            Harbor.getInstance().getWarehouse().addContainer(container);
+        } catch (TooManyContainersException e) {
+            throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
+        }
     }
 
-    public static HeavyContainer createContainer(
+    public static void createContainer(
             int weight,
             int senderIndex,
             int tareWeight
     ) {
-        return ContainerBuilder.heavyContainer()
+        Container container = ContainerBuilder.heavyContainer()
                 .withNewId()
                 .withWeight(weight)
                 .withSender(Harbor.getInstance().getSenderByIndex(senderIndex))
                 .withTareWeight(tareWeight)
                 .build();
+        try {
+            Harbor.getInstance().getWarehouse().addContainer(container);
+        } catch (TooManyContainersException e) {
+            throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
+        }
     }
 
-    public static LiquidContainer createContainer(
+    public static void createContainer(
             int weight,
             int senderIndex,
             double liquidVolume
     ) {
-        return ContainerBuilder.liquidContainer()
+        Container container = ContainerBuilder.liquidContainer()
                 .withNewId()
                 .withWeight(weight)
                 .withSender(Harbor.getInstance().getSenderByIndex(senderIndex))
                 .withLiquidVolume(liquidVolume)
                 .build();
+        try {
+            Harbor.getInstance().getWarehouse().addContainer(container);
+        } catch (TooManyContainersException e) {
+            throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
+        }
     }
 
-    public static ExplosiveContainer createContainer(
+    public static void createContainer(
             int weight,
             int senderIndex,
             int tareWeight,
             int additionalProtectionIndex
     ) {
-        return ContainerBuilder.explosiveContainer()
+        Container container = ContainerBuilder.explosiveContainer()
                 .withNewId()
                 .withWeight(weight)
                 .withSender(Harbor.getInstance().getSenderByIndex(senderIndex))
                 .withTareWeight(tareWeight)
                 .withAdditionalProtection(ExplosiveContainer.AdditionalProtection.values()[additionalProtectionIndex - 1])
                 .build();
+        try {
+            Harbor.getInstance().getWarehouse().addContainer(container);
+        } catch (TooManyContainersException e) {
+            throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
+        }
     }
 
-    public static RefrigeratedContainer createContainer(
+    public static void createContainer(
             int weight,
             int senderIndex,
             int tareWeight,
             boolean connectedToPower
     ) {
-        return ContainerBuilder.refrigeratedContainer()
+        Container container = ContainerBuilder.refrigeratedContainer()
                 .withNewId()
                 .withWeight(weight)
                 .withSender(Harbor.getInstance().getSenderByIndex(senderIndex))
                 .withTareWeight(tareWeight)
                 .withConnectedToPower(connectedToPower)
                 .build();
+        try {
+            Harbor.getInstance().getWarehouse().addContainer(container);
+        } catch (TooManyContainersException e) {
+            throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
+        }
     }
 
-    public static LooseToxicContainer createContainer(
+    public static void createContainer(
             int weight,
             int senderIndex,
             int tareWeight,
@@ -95,17 +123,22 @@ public class ContainerService {
                 .withToxicityLevel(toxicityLevel);
 
         featuresIndexes.forEach(index -> containerBuilder.withLooseToxicContainerFeature(LooseToxicContainer.LooseToxicContainerFeatures.values()[index - 1]));
-        return containerBuilder.build();
+        Container container = containerBuilder.build();
+        try {
+            Harbor.getInstance().getWarehouse().addContainer(container);
+        } catch (TooManyContainersException e) {
+            throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
+        }
     }
 
-    public static LiquidToxicContainer createContainer(
+    public static void createContainer(
             int weight,
             int senderIndex,
             int tareWeight,
             int toxicityLevel,
             double liquidVolume
     ) {
-        return ContainerBuilder.liquidToxicContainer()
+        Container container = ContainerBuilder.liquidToxicContainer()
                 .withNewId()
                 .withWeight(weight)
                 .withSender(Harbor.getInstance().getSenderByIndex(senderIndex))
@@ -113,6 +146,11 @@ public class ContainerService {
                 .withToxicityLevel(toxicityLevel)
                 .withLiquidVolume(liquidVolume)
                 .build();
+        try {
+            Harbor.getInstance().getWarehouse().addContainer(container);
+        } catch (TooManyContainersException e) {
+            throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
+        }
     }
 
     public static Map<Container, LocalDate> getWarehouseContainers() {
@@ -123,8 +161,8 @@ public class ContainerService {
         return Harbor.getInstance().getTrain().getContainers();
     }
 
-    public static List<Container> getShipContainers(int shipId) {
-        Ship ship = Harbor.getInstance().getShipByIndex(shipId);
+    public static List<Container> getShipContainers(int shipIndex) {
+        Ship ship = Harbor.getInstance().getShipByIndex(shipIndex);
         if (ship != null) {
             return ship.getContainers();
         } else {

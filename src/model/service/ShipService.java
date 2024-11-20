@@ -39,10 +39,10 @@ public class ShipService {
         Harbor.getInstance().addShip(newShip);
     }
 
-    public static void departShip(int id) {
-        Ship departingShip = Harbor.getInstance().getShipByIndex(id);
+    public static void departShip(int shipIndex) {
+        Ship departingShip = Harbor.getInstance().getShipByIndex(shipIndex);
         if (departingShip != null) {
-            Harbor.getInstance().removeShip(id);
+            Harbor.getInstance().removeShipByIndex(shipIndex);
         } else {
             throw new IllegalArgumentException(SHIP_NOT_FOUND);
         }

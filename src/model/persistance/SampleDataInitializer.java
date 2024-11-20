@@ -10,6 +10,7 @@ import model.sender.Sender;
 import model.sender.SenderBuilder;
 import model.ship.Ship;
 import model.ship.ShipBuilder;
+import model.train.TrainBuilder;
 import model.warehouse.WarehouseBuilder;
 
 import java.time.LocalDate;
@@ -24,6 +25,7 @@ public class SampleDataInitializer {
         populateSenders();
         populateWarehouse();
         populateShips();
+        initializeTrain();
     }
 
     private static void populateSenders() {
@@ -372,5 +374,9 @@ public class SampleDataInitializer {
         Harbor.getInstance().addShip(ship3);
         Harbor.getInstance().addShip(ship4);
         Harbor.getInstance().addShip(ship5);
+    }
+
+    private static void initializeTrain() {
+        Harbor.getInstance().setTrain(TrainBuilder.train().withContainers(new ArrayList<>()).build());
     }
 }

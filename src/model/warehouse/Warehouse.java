@@ -4,11 +4,13 @@ import model.container.Container;
 import model.container.ExplosiveContainer;
 import model.container.LiquidToxicContainer;
 import model.container.LooseToxicContainer;
+import model.exception.IrresponsibleSenderWithDangerousGoods;
 import model.exception.TooManyContainersException;
 import model.time.Clock;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Warehouse {
 
@@ -19,7 +21,7 @@ public class Warehouse {
     private int MAX_CONTAINERS;
 
     protected Warehouse() {
-        this.containers = new LinkedHashMap<>();
+        this.containers = new ConcurrentHashMap<>();
     }
 
     public Map<Container, LocalDate> getContainers() {
@@ -27,7 +29,7 @@ public class Warehouse {
     }
 
     protected void setContainers(Map<Container, LocalDate> containers) {
-        this.containers = new LinkedHashMap<>(containers);
+        this.containers = new ConcurrentHashMap<>(containers);
     }
 
     public int getMaxContainers() {
@@ -40,7 +42,7 @@ public class Warehouse {
 
     public void addContainer(Container container) throws TooManyContainersException {
         if (containers.size() < MAX_CONTAINERS) {
-            containers.put(container, LocalDate.now());
+            containers.put(container, Clock.getDate());
         } else {
             throw new TooManyContainersException();
         }
@@ -60,14 +62,14 @@ public class Warehouse {
     }
 
     public void sortContainers() {
-        Map<Container, LocalDate> containersCopy = new LinkedHashMap<>(this.containers);
+        Map<Container, LocalDate> containersCopy = new ConcurrentHashMap<>(this.containers);
         this.containers.clear();
         containersCopy.entrySet().stream()
                 .sorted(Map.Entry.<Container, LocalDate>comparingByValue().thenComparing(e -> e.getKey().getSender().getSurname()))
                 .forEach(e -> this.containers.put(e.getKey(), e.getValue()));
     }
 
-    public boolean isOverdue(Map.Entry<Container, LocalDate> container) {
+    private boolean isOverdue(Map.Entry<Container, LocalDate> container) {
         return switch (container.getKey()) {
             case ExplosiveContainer ignored ->
                     container.getValue().plusDays(MAX_EXPLOSIVE_TIME).isBefore(Clock.getDate());
@@ -77,5 +79,19 @@ public class Warehouse {
                     container.getValue().plusDays(MAX_LOOSE_TOXIC_TIME).isBefore(Clock.getDate());
             default -> false;
         };
+    }
+
+    public void removeOverdueContainers() {
+        List<Container> containersToRemove = containers.entrySet().stream().filter(this::isOverdue).map(Map.Entry::getKey).toList();
+        containersToRemove.forEach(container -> {
+            try {
+                LocalDate storageDate = containers.get(container);
+                LocalDate currentDate = Clock.getDate();
+                throw new IrresponsibleSenderWithDangerousGoods(storageDate, currentDate);
+            } catch (IrresponsibleSenderWithDangerousGoods e) {
+                container.getSender().addWarning(e);
+            }
+            containers.remove(container);
+        });
     }
 }

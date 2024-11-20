@@ -52,7 +52,7 @@ public class Harbor {
     }
 
     public void setShips(List<Ship> ships) {
-        this.ships = ships;
+        this.ships = new ArrayList<>(ships);
     }
 
     public List<Sender> getSenders() {
@@ -60,7 +60,7 @@ public class Harbor {
     }
 
     public void setSenders(List<Sender> senders) {
-        this.senders = senders;
+        this.senders = new ArrayList<>(senders);
     }
 
     public Ship getShipByIndex(int index) {
@@ -71,12 +71,12 @@ public class Harbor {
         ships.add(ship);
     }
 
-    public void removeShip(int id) {
-        ships.remove(id);
+    public void removeShipByIndex(int shipIndex) {
+        ships.remove(shipIndex);
     }
 
-    public Sender getSenderByIndex(int id) {
-        return senders.get(id);
+    public Sender getSenderByIndex(int senderIndex) {
+        return senders.get(senderIndex);
     }
 
     public void sortShipsByNameDescending() {

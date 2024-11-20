@@ -37,8 +37,7 @@ public class DataReader {
             readTrain();
             readShips();
         } catch (Exception e) {
-            System.out.println(READING_FILE);
-            System.out.println(ERROR_DETAILS + e.getMessage());
+            throw new RuntimeException(READING_FILE);
         }
     }
 

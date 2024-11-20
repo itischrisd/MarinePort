@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 public class Departurer extends Thread {
 
+    private static final int TIME_TO_DEPART = 30000;
+
     @Override
     public void run() {
         try {
-            Thread.sleep(30000);
+            Thread.sleep(TIME_TO_DEPART);
             depart();
         } catch (InterruptedException e) {
             depart();

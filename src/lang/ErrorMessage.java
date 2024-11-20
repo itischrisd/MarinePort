@@ -40,5 +40,5 @@ public class ErrorMessage {
 
     public static final String READING_FILE = "Błąd odczytu pliku!";
     public static final String WRITING_FILE = "Błąd zapisu pliku!";
-    public static final String ERROR_DETAILS = "Szczeżegóły błędu: ";
+    public static final String ERROR_DETAILS = "Szczegóły błędu: ";
 }

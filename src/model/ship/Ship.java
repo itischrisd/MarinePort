@@ -146,7 +146,7 @@ public class Ship {
         containers.sort(Comparator.comparingInt(Container::getWeight));
     }
 
-    public Container getContainerByIndex(int position) {
-        return containers.get(position);
+    public Container getContainerByIndex(int containerIndex) {
+        return containers.get(containerIndex);
     }
 }
