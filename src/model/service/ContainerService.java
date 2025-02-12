@@ -161,8 +161,8 @@ public class ContainerService {
         return Harbor.getInstance().getTrain().getContainers();
     }
 
-    public static List<Container> getShipContainers(int shipIndex) {
-        Ship ship = Harbor.getInstance().getShipByIndex(shipIndex);
+    public static List<Container> getShipContainers(int shipId) {
+        Ship ship = Harbor.getInstance().getShipById(shipId);
         if (ship != null) {
             return ship.getContainers();
         } else {
@@ -170,9 +170,9 @@ public class ContainerService {
         }
     }
 
-    public static void loadOntoShip(int containerIndex, int shipIndex) {
-        Container container = Harbor.getInstance().getWarehouse().getContainerByIndex(containerIndex);
-        Ship ship = Harbor.getInstance().getShipByIndex(shipIndex);
+    public static void loadOntoShip(int containerId, int shipId) {
+        Container container = Harbor.getInstance().getWarehouse().getContainerById(containerId);
+        Ship ship = Harbor.getInstance().getShipById(shipId);
 
         if (container == null) {
             throw new IllegalArgumentException(CONTAINER_NOT_FOUND);
@@ -183,7 +183,7 @@ public class ContainerService {
 
         try {
             ship.loadContainer(container);
-            Harbor.getInstance().getWarehouse().removeContainerByIndex(containerIndex);
+            Harbor.getInstance().getWarehouse().removeContainerById(containerId);
         } catch (TooHeavyCargoException e) {
             throw new IllegalArgumentException(TOO_HEAVY_CONTAINER);
         } catch (TooManyContainersException e) {
@@ -199,8 +199,8 @@ public class ContainerService {
         }
     }
 
-    public static void loadOntoTrain(int containerIndex) {
-        Container container = Harbor.getInstance().getWarehouse().getContainerByIndex(containerIndex);
+    public static void loadOntoTrain(int containerId) {
+        Container container = Harbor.getInstance().getWarehouse().getContainerById(containerId);
         if (container == null) {
             throw new IllegalArgumentException(CONTAINER_NOT_FOUND);
         }
@@ -209,54 +209,54 @@ public class ContainerService {
         } catch (TooManyContainersException e) {
             throw new RuntimeException(TOO_MANY_CONTAINERS_ON_TRAIN);
         }
-        Harbor.getInstance().getWarehouse().removeContainerByIndex(containerIndex);
+        Harbor.getInstance().getWarehouse().removeContainerById(containerId);
     }
 
-    public static void unloadToWarehouse(int containerIndex, int shipIndex) {
-        Ship ship = getShipIfExists(shipIndex);
-        Container container = getContainerIfExists(containerIndex, ship);
+    public static void unloadToWarehouse(int containerId, int shipId) {
+        Ship ship = getShipIfExists(shipId);
+        Container container = getContainerIfExists(containerId, ship);
 
         try {
             Harbor.getInstance().getWarehouse().addContainer(container);
-            ship.removeContainer(containerIndex);
+            ship.removeContainer(containerId);
         } catch (TooManyContainersException e) {
             throw new RuntimeException(TOO_MANY_CONTAINERS_IN_WAREHOUSE);
         }
     }
 
-    public static void unloadToTrain(int containerIndex, int shipIndex) {
-        Ship ship = getShipIfExists(shipIndex);
-        Container container = getContainerIfExists(containerIndex, ship);
+    public static void unloadToTrain(int containerId, int shipId) {
+        Ship ship = getShipIfExists(shipId);
+        Container container = getContainerIfExists(containerId, ship);
 
         try {
             Harbor.getInstance().getTrain().addContainer(container);
-            ship.removeContainer(containerIndex);
+            ship.removeContainer(containerId);
         } catch (TooManyContainersException e) {
             throw new RuntimeException(TOO_MANY_CONTAINERS_ON_TRAIN);
         }
     }
 
-    private static Ship getShipIfExists(int shipIndex) {
-        Ship ship = Harbor.getInstance().getShipByIndex(shipIndex);
+    private static Ship getShipIfExists(int shipId) {
+        Ship ship = Harbor.getInstance().getShipById(shipId);
         if (ship == null) {
             throw new IllegalArgumentException(SHIP_NOT_FOUND);
         }
         return ship;
     }
 
-    private static Container getContainerIfExists(int containerIndex, Ship ship) {
-        Container container = ship.getContainerByIndex(containerIndex);
+    private static Container getContainerIfExists(int containerId, Ship ship) {
+        Container container = ship.getContainerById(containerId);
         if (container == null) {
             throw new IllegalArgumentException(CONTAINER_NOT_FOUND);
         }
         return container;
     }
 
-    public static void utilizeContainer(int containerIndex) {
-        Container container = Harbor.getInstance().getWarehouse().getContainerByIndex(containerIndex);
+    public static void utilizeContainer(int containerId) {
+        Container container = Harbor.getInstance().getWarehouse().getContainerById(containerId);
         if (container == null) {
             throw new IllegalArgumentException(CONTAINER_NOT_FOUND);
         }
-        Harbor.getInstance().getWarehouse().removeContainerByIndex(containerIndex);
+        Harbor.getInstance().getWarehouse().removeContainerById(containerId);
     }
 }

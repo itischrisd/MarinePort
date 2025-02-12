@@ -146,7 +146,10 @@ public class Ship {
         containers.sort(Comparator.comparingInt(Container::getWeight));
     }
 
-    public Container getContainerByIndex(int containerIndex) {
-        return containers.get(containerIndex);
+    public Container getContainerById(int id) {
+        return containers.stream()
+                .filter(container -> container.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 }

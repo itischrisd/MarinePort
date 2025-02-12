@@ -8,7 +8,7 @@ import model.time.Utilizer;
 import static lang.Data.*;
 import static lang.ErrorMessage.*;
 
-public class AppLauncher {
+public class App {
 
     public static void launch() {
         try {
@@ -19,5 +19,10 @@ public class AppLauncher {
         }
         Clock.getInstance().start();
         Utilizer.getInstance().start();
+    }
+
+    public static void exit() {
+        Clock.getInstance().interrupt();
+        Utilizer.getInstance().interrupt();
     }
 }

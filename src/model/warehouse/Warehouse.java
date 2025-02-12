@@ -48,17 +48,12 @@ public class Warehouse {
         }
     }
 
-    public Container getContainerByIndex(int index) {
-        return new ArrayList<>(containers.keySet()).get(index);
+    public Container getContainerById(int id) {
+        return containers.keySet().stream().filter(container -> container.getId() == id).findFirst().orElse(null);
     }
 
     public void removeContainerById(int id) {
         containers.keySet().stream().filter(container -> container.getId() == id).findFirst().ifPresent(container -> containers.remove(container));
-    }
-
-    public void removeContainerByIndex(int index) {
-        Container container = new ArrayList<>(containers.keySet()).get(index);
-        containers.remove(container);
     }
 
     public void sortContainers() {

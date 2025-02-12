@@ -63,16 +63,19 @@ public class Harbor {
         this.senders = new ArrayList<>(senders);
     }
 
-    public Ship getShipByIndex(int index) {
-        return ships.get(index);
+    public Ship getShipById(int id) {
+        return ships.stream()
+                .filter(ship -> ship.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     public void addShip(Ship ship) {
         ships.add(ship);
     }
 
-    public void removeShipByIndex(int shipIndex) {
-        ships.remove(shipIndex);
+    public void removeShipById(int id) {
+        ships.removeIf(ship -> ship.getId() == id);
     }
 
     public Sender getSenderByIndex(int senderIndex) {
