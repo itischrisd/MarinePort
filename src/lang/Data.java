@@ -1,5 +1,9 @@
 package lang;
 
+import model.container.*;
+
+import java.util.Map;
+
 public class Data {
 
     public static final String DEFUALT_FILE_NAME = "port.bak";
@@ -18,6 +22,15 @@ public class Data {
     public static final String CONTAINER_EXPLOSIVE = "Kontener na materiały wybuchowe";
     public static final String CONTAINER_LOOSE_TOXIC = "Kontener na materiały toksyczne sypkie";
     public static final String CONTAINER_LIQUID_TOXIC = "Kontener na materiały toksyczne płynne";
+    public static final Map<Class<? extends Container>, String> CONTAINER_CLASS_NAMES = Map.of(
+            Container.class, CONTAINER_COMMON,
+            HeavyContainer.class, CONTAINER_HEAVY,
+            RefrigeratedContainer.class, CONTAINER_REFRIGERATED,
+            LiquidContainer.class, CONTAINER_LIQUID,
+            ExplosiveContainer.class, CONTAINER_EXPLOSIVE,
+            LooseToxicContainer.class, CONTAINER_LOOSE_TOXIC,
+            LiquidToxicContainer.class, CONTAINER_LIQUID_TOXIC
+    );
     public static final String SHIP = "Statek";
     public static final String SENDER = "Nadawca";
     public static final String WARNING = "Ostrzeżenie";
