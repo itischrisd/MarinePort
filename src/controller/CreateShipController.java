@@ -6,7 +6,7 @@ import ui.input.Input;
 import ui.input.IntegerInput;
 import ui.input.StringInput;
 
-public class CreateShipController {
+public class CreateShipController implements Controller {
 
     private final Input<String> nameInput;
     private final Input<String> originPortInput;
@@ -51,6 +51,7 @@ public class CreateShipController {
         );
     }
 
+    @Override
     public void run() {
         String name = nameInput.collect();
         String originPort = originPortInput.collect();

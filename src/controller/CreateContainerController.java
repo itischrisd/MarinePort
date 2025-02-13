@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import static lang.Data.*;
 
-public class CreateContainerController {
+public class CreateContainerController implements Controller {
 
     private final LineComponent containerTypesHeader;
     private final ListComponent<String> containerTypes;
@@ -59,6 +59,7 @@ public class CreateContainerController {
         );
     }
 
+    @Override
     public void run() {
         containerTypesHeader.display();
         containerTypes.display();

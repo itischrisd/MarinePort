@@ -8,7 +8,7 @@ import ui.input.StringInput;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class LoadStateController {
+public class LoadStateController implements Controller {
 
     private final Input<String> fileNameInput;
 
@@ -20,7 +20,7 @@ public class LoadStateController {
         );
     }
 
-
+    @Override
     public void run() {
         String fileName = fileNameInput.collect();
         if (Files.notExists(Paths.get(fileName))) {

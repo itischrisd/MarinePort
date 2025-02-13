@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static model.service.ContainerService.utilizeContainer;
 
-public class UtilizationController {
+public class UtilizationController implements Controller {
 
     private final UtilizationView utilizationView;
 
@@ -19,6 +19,7 @@ public class UtilizationController {
         this.utilizationView = new UtilizationView(items);
     }
 
+    @Override
     public void run() {
         utilizationView.display();
         int containerId = utilizationView.collect();

@@ -5,7 +5,7 @@ import ui.core.IOProvider;
 import ui.input.Input;
 import ui.input.StringInput;
 
-public class SaveStateController {
+public class SaveStateController implements Controller {
 
     private final Input<String> fileNameInput;
 
@@ -13,6 +13,7 @@ public class SaveStateController {
         this.fileNameInput = new StringInput("Podaj nazwę pliku do zapisu (puste aby pozostać przy domyślnej)");
     }
 
+    @Override
     public void run() {
         String fileName = fileNameInput.collect();
         try {

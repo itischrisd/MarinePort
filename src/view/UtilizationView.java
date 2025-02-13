@@ -1,6 +1,7 @@
 package view;
 
 import model.container.Container;
+import ui.component.Component;
 import ui.component.LineComponent;
 import ui.core.View;
 import ui.input.IntegerInput;
@@ -12,7 +13,7 @@ import java.util.Map;
 public class UtilizationView extends View<Integer> {
 
     private static final String TITLE = "Lista kontenerów w magazynie";
-    private static final LineComponent TITLE_COMPONENT = new LineComponent(TITLE);
+    private static final Component TITLE_COMPONENT = new LineComponent(TITLE);
 
     public UtilizationView(Map<Container, LocalDate> items) {
         super(

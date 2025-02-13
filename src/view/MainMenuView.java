@@ -1,5 +1,6 @@
 package view;
 
+import ui.component.Component;
 import ui.component.LineComponent;
 import ui.component.ListComponent;
 import ui.core.View;
@@ -28,8 +29,8 @@ public class MainMenuView extends View<Integer> {
             ITEM_LOAD,
             ITEM_EXIT
     );
-    private static final LineComponent TITLE_COMPONENT = new LineComponent(MENU_TITLE);
-    private static final ListComponent<String> MENU_COMPONENT = new ListComponent<>(MENU_ITEMS, Objects::toString);
+    private static final Component TITLE_COMPONENT = new LineComponent(MENU_TITLE);
+    private static final Component MENU_COMPONENT = new ListComponent<>(MENU_ITEMS, Objects::toString);
     private static final Input<Integer> INPUT = new IntegerInput(
             PROMPT,
             INVALID_OPTION,

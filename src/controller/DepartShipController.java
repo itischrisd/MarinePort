@@ -9,7 +9,7 @@ import view.ShipsView;
 
 import java.util.List;
 
-public class DepartShipController {
+public class DepartShipController implements Controller {
 
     private final ShipsView shipsView;
     private final Input<Integer> shipIdInput;
@@ -24,6 +24,7 @@ public class DepartShipController {
         );
     }
 
+    @Override
     public void run() {
         shipsView.display();
         int shipId = shipIdInput.collect();
