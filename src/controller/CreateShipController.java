@@ -6,6 +6,8 @@ import ui.input.Input;
 import ui.input.IntegerInput;
 import ui.input.StringInput;
 
+import static lang.Interface.*;
+
 public class CreateShipController implements Controller {
 
     private final Input<String> nameInput;
@@ -20,33 +22,33 @@ public class CreateShipController implements Controller {
 
     public CreateShipController() {
         this.nameInput = new StringInput(
-                "Podaj nazwę statku",
-                "Nazwa statku nie może być pusta",
+                SHIP_NAME_PROMPT,
+                INVALID_SHIP_NAME,
                 name -> !name.isBlank()
         );
         this.originPortInput = new StringInput(
-                "Podaj port pochodzenia",
-                "Port pochodzenia nie może być pusty",
+                ORIGIN_PORT_PROMPT,
+                INVALID_ORIGIN_PORT,
                 originPort -> !originPort.isBlank()
         );
         this.cargoOriginInput = new StringInput(
-                "Podaj pochodzenie ładunku",
-                "Pochodzenie ładunku nie może być puste",
+                CARGO_ORIGIN_PROMPT,
+                INVALID_CARGO_ORIGIN,
                 cargoOrigin -> !cargoOrigin.isBlank()
         );
         this.cargoDestinationInput = new StringInput(
-                "Podaj cel ładunku",
-                "Cel ładunku nie może być pusty",
+                CARGO_DESTINATION_PROMPT,
+                INVALID_CARGO_DESTINATION,
                 cargoDestination -> !cargoDestination.isBlank()
         );
         this.maxTotalContainersInput = new IntegerInput(
-                "Podaj maksymalną liczbę kontenerów",
-                "Maksymalna liczba kontenerów musi być większa od 0",
+                MAX_CONTAINERS_PROMPT,
+                INVALID_MAX_CONTAINERS,
                 number -> number > 0
         );
         this.maxCargoWeightInput = new IntegerInput(
-                "Podaj maksymalną wagę ładunku",
-                "Maksymalna waga ładunku musi być większa od 0",
+                MAX_CARGO_WEIGHT_PROMPT,
+                INVALID_MAX_CARGO_WEIGHT,
                 number -> number > 0
         );
     }
@@ -62,24 +64,24 @@ public class CreateShipController implements Controller {
 
 
         this.maxHeavyContainersInput = new IntegerInput(
-                "Podaj maksymalną liczbę ciężkich kontenerów",
-                "Maksymalna liczba ciężkich kontenerów nie może być większa niż maksymalna liczba kontenerów i musi być większa od 0",
+                MAX_HEAVY_CONTAINERS_PROMPT,
+                INVALID_MAX_HEAVY_CONTAINERS,
                 number -> number <= maxTotalContainers && number >= 0
         );
 
         int maxHeavyContainers = maxHeavyContainersInput.collect();
 
         this.maxContainersRequiringElectricityInput = new IntegerInput(
-                "Podaj maksymalną liczbę kontenerów wymagających prądu",
-                "Maksymalna liczba kontenerów wymagających prądu nie może być większa niż maksymalna liczba ciężkich kontenerów i musi być większa od 0",
+                MAX_CONTAINERS_REQUIRING_ELECTRICITY_PROMPT,
+                INVALID_MAX_CONTAINERS_REQUIRING_ELECTRICITY,
                 number -> number <= maxHeavyContainers && number >= 0
         );
 
         int maxContainersRequiringElectricity = maxContainersRequiringElectricityInput.collect();
 
         this.maxToxicOrExplosiveContainersInput = new IntegerInput(
-                "Podaj maksymalną liczbę kontenerów toksycznych lub wybuchowych",
-                "Maksymalna liczba kontenerów toksycznych lub wybuchowych nie może być większa niż maksymalna liczba kontenerów ciężkich wyłączając kontenery wymagające prądu i musi być większa od 0",
+                MAX_TOXIC_OR_EXPLOSIVE_CONTAINERS_PROMPT,
+                INVALID_MAX_TOXIC_OR_EXPLOSIVE_CONTAINERS,
                 number -> number <= maxHeavyContainers - maxContainersRequiringElectricity && number >= 0
         );
 

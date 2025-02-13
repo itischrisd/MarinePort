@@ -9,6 +9,8 @@ import view.ShipsView;
 
 import java.util.List;
 
+import static lang.Interface.*;
+
 public class DepartShipController implements Controller {
 
     private final ShipsView shipsView;
@@ -18,8 +20,8 @@ public class DepartShipController implements Controller {
         List<Ship> ships = ShipService.getShips();
         this.shipsView = new ShipsView(ships);
         this.shipIdInput = new IntegerInput(
-                "Podaj ID statku do wypłynięcia",
-                "Niepoprawny numer statku",
+                DEPARTURE_PROMPT,
+                INVALID_SHIP_ID,
                 number -> ships.stream().anyMatch(ship -> ship.getId() == number)
         );
     }

@@ -5,14 +5,14 @@ import ui.component.TableComponent;
 
 import java.util.List;
 
-import static lang.Data.CONTAINER_CLASS_NAMES;
+import static lang.Data.*;
 
 public class ContainersView extends TableComponent<Container> {
 
     private static final List<ColumnDefinition<Container>> COLUMNS = List.of(
-            new ColumnDefinition<>("ID", Container::getId),
-            new ColumnDefinition<>("Typ", e -> CONTAINER_CLASS_NAMES.get(e.getClass())),
-            new ColumnDefinition<>("Waga", Container::getWeight)
+            new ColumnDefinition<>(FIELD_ID, Container::getId),
+            new ColumnDefinition<>(FIELD_TYPE, e -> CONTAINER_CLASS_NAMES.get(e.getClass())),
+            new ColumnDefinition<>(FIELD_WEIGHT, Container::getWeight)
     );
 
     public ContainersView(List<Container> items) {

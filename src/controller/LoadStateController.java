@@ -8,14 +8,16 @@ import ui.input.StringInput;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static lang.Interface.*;
+
 public class LoadStateController implements Controller {
 
     private final Input<String> fileNameInput;
 
     public LoadStateController() {
         this.fileNameInput = new StringInput(
-                "Podaj nazwę pliku do wczytania",
-                "Nazwa pliku nie może być pusta",
+                LOAD_FILE_NAME_PROMPT,
+                INVALID_FILE_NAME_CANNOT_BE_EMPTY,
                 name -> name != null && !name.isBlank()
         );
     }
@@ -24,7 +26,7 @@ public class LoadStateController implements Controller {
     public void run() {
         String fileName = fileNameInput.collect();
         if (Files.notExists(Paths.get(fileName))) {
-            IOProvider.getPrinter().println("Plik o podanej nazwie nie istnieje");
+            IOProvider.getPrinter().println(INVALID_FILE_DOES_NOT_EXIST);
             return;
         }
         try {

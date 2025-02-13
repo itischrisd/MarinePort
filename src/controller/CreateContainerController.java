@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static lang.Data.*;
+import static lang.Interface.*;
 
 public class CreateContainerController implements Controller {
 
@@ -38,23 +39,23 @@ public class CreateContainerController implements Controller {
         );
         List<Sender> senders = SenderService.getSenders();
 
-        this.containerTypesHeader = new LineComponent("Typy kontenerów:");
+        this.containerTypesHeader = new LineComponent(CONTAINER_TYPES_HEADER);
         this.containerTypes = new ListComponent<>(types, Object::toString);
-        this.sendersHeader = new LineComponent("Nadawcy:");
-        this.sendersList = new ListComponent<>(senders, sender -> sender.getName() + " " + sender.getSurname() + ", ostrzeżeń: " + sender.getWarningsCount());
+        this.sendersHeader = new LineComponent(SENDERS_HEADER);
+        this.sendersList = new ListComponent<>(senders, sender -> String.format(SENDER_LIST_FORMAT, sender.getName(), sender.getSurname(), sender.getWarningsCount()));
         this.containerTypeInput = new IntegerInput(
-                "Wybierz typ kontenera",
-                "Niepoprawny numer typu kontenera",
+                CONTAINER_TYPE_PROMPT,
+                INVALID_CONTAINER_TYPE,
                 number -> number >= 1 && number <= types.size()
         );
         containerWeightInput = new IntegerInput(
-                "Podaj wagę kontenera",
-                "Niepoprawna waga kontenera",
+                CONTAINER_WEIGHT_PROMPT,
+                INVALID_CONTAINER_WEIGHT,
                 weight -> weight > 0
         );
         senderIdInput = new IntegerInput(
-                "Wybierz nadawcę",
-                "Niepoprawny numer nadawcy",
+                SENDER_PROMPT,
+                INVALID_SENDER_INDEX,
                 number -> number >= 1 && number <= senders.size()
         );
     }
@@ -113,8 +114,8 @@ public class CreateContainerController implements Controller {
     private void continueCreatingRefrigeratedContainer() {
         int tareWeight = getTareWeight();
         Input<Boolean> isConnectedToPowerInput = new BooleanInput(
-                "Podaj czy kontener jest podłączony do prądu",
-                "Niepoprawna wartość"
+                CONNECTED_TO_POWER_PROMPT,
+                INVALID_VALUE
         );
         boolean isConnectedToPower = isConnectedToPowerInput.collect();
         try {
@@ -126,8 +127,8 @@ public class CreateContainerController implements Controller {
 
     private void continueCreatingLiquidContainer() {
         Input<Double> liquidVolumeInput = new DoubleInput(
-                "Podaj objętość cieczy",
-                "Niepoprawna objętość cieczy",
+                LIQUID_VOLUME_PROMPT,
+                INVALID_LIQUID_VOLUME,
                 volume -> volume > 0
         );
         double liquidVolume = liquidVolumeInput.collect();
@@ -140,7 +141,7 @@ public class CreateContainerController implements Controller {
 
     private void continueCreatingExplosiveContainer() {
         int tareWeight = getTareWeight();
-        LineComponent additionalProtectionHeader = new LineComponent("Dodatkowa ochrona:");
+        LineComponent additionalProtectionHeader = new LineComponent(ADDITIONAL_PROTECTION_HEADER);
         ListComponent<String> additionalProtection = new ListComponent<>(List.of(
                 ENUM_NONE,
                 ENUM_REINFORCED_WALLS,
@@ -149,8 +150,8 @@ public class CreateContainerController implements Controller {
                 ENUM_TEMPERATURE_CONTROL
         ), Object::toString);
         Input<Integer> additionalProtectionInput = new IntegerInput(
-                "Wybierz dodatkową ochronę",
-                "Niepoprawny numer dodatkowej ochrony",
+                ADDITIONAL_PROTECTION_TYPE_PROMPT,
+                INVALID_ADDITIONAL_PROTECTION,
                 number -> number >= 1 && number <= 5
         );
         additionalProtectionHeader.display();
@@ -166,12 +167,12 @@ public class CreateContainerController implements Controller {
     private void continueCreatingLooseToxicContainer() {
         int tareWeight = getTareWeight();
         Input<Integer> toxicityLevelInput = new IntegerInput(
-                "Podaj poziom toksyczności",
-                "Niepoprawny poziom toksyczności",
-                toxicityLevel -> toxicityLevel >= 1 && toxicityLevel <= 10
+                TOXICITY_LEVEL_PROMPT,
+                INVALID_TOXICITY_LEVEL,
+                toxicityLevel -> toxicityLevel >= 0
         );
         int toxicityLevel = toxicityLevelInput.collect();
-        LineComponent featuresHeader = new LineComponent("Cechy:");
+        LineComponent featuresHeader = new LineComponent(CONTAINER_FEATURES_HEADER);
         ListComponent<String> features = new ListComponent<>(List.of(
                 ENUM_NONE,
                 ENUM_VENTILATION_SYSTEM,
@@ -179,8 +180,8 @@ public class CreateContainerController implements Controller {
                 ENUM_DUST_CONTROL_SYSTEM
         ), Object::toString);
         Input<String> featuresInput = new StringInput(
-                "Podaj numery cech oddzielone spacjami",
-                "Niepoprawne numery cech",
+                CONTAINER_FEATURES_PROMPT,
+                INVALID_FEATURES,
                 number -> {
                     String[] numbers = number.split(" ");
                     for (String num : numbers) {
@@ -204,14 +205,14 @@ public class CreateContainerController implements Controller {
     private void continueCreatingLiquidToxicContainer() {
         int tareWeight = getTareWeight();
         Input<Integer> toxicityLevelInput = new IntegerInput(
-                "Podaj poziom toksyczności",
-                "Niepoprawny poziom toksyczności",
+                TOXICITY_LEVEL_PROMPT,
+                INVALID_TOXICITY_LEVEL,
                 toxicityLevel -> toxicityLevel >= 1 && toxicityLevel <= 10
         );
         int toxicityLevel = toxicityLevelInput.collect();
         Input<Double> liquidVolumeInput = new DoubleInput(
-                "Podaj objętość cieczy",
-                "Niepoprawna objętość cieczy",
+                LIQUID_VOLUME_PROMPT,
+                INVALID_LIQUID_VOLUME,
                 volume -> volume > 0
         );
         double liquidVolume = liquidVolumeInput.collect();
@@ -224,8 +225,8 @@ public class CreateContainerController implements Controller {
 
     private int getTareWeight() {
         Input<Integer> tarerWeightInput = new IntegerInput(
-                "Podaj wagę tara",
-                "Niepoprawna waga tara",
+                TARE_WEIGHT_PROMPT,
+                INVALID_TARE_WEIGHT,
                 weight -> weight >= 0 && weight <= containerWeight
         );
         return tarerWeightInput.collect();

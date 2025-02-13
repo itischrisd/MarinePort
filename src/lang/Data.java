@@ -55,6 +55,12 @@ public class Data {
     public static final String FIELD_MAX_HEAVY_CONTAINERS = "Maksymalna ilość kontenerów ciężkich";
     public static final String FIELD_MAX_TOTAL_CONTAINERS = "Maksymalna ilość kontenerów";
     public static final String FIELD_MAX_CARGO_WEIGHT = "Maksymalna waga ładunku";
+    public static final String FIELD_MAX_TOXIC_OR_EXPLOSIVE_CONTAINERS_TRUNC = "Max ekspl./toks.";
+    public static final String FIELD_MAX_CONTAINERS_REQUIRING_ELECTRICITY_TRUNC = "Max elektr.";
+    public static final String FIELD_MAX_HEAVY_CONTAINERS_TRUNC = "Max ciężkich";
+    public static final String FIELD_MAX_TOTAL_CONTAINERS_TRUNC = "Max zwykłych";
+    public static final String FIELD_MAX_CARGO_WEIGHT_TRUNC = "Max waga";
+    public static final String FIELD_CONTAINERS_COUNT = "Liczba kontenerów";
     public static final String FIELD_SENDER_NAME = "Imię";
     public static final String FIELD_SENDER_SURNAME = "Nazwisko";
     public static final String FIELD_ADDRESS = "Adres";
@@ -63,6 +69,7 @@ public class Data {
     public static final String FIELD_WARNING_COUNT = "Ilość ostrzeżeń";
     public static final String FIELD_ARRIVAL_DATE = "Data przybycia";
     public static final String FIELD_UTILIZATION_DATE = "Data wykorzystania";
+    public static final String FIELD_TYPE = "Typ";
 
     public static final String ENUM_NONE = "Brak";
     public static final String ENUM_REINFORCED_WALLS = "Wzmocnione ściany";

@@ -1,5 +1,6 @@
 package view;
 
+import lang.Interface;
 import ui.component.Component;
 import ui.component.LineComponent;
 import ui.component.ListComponent;
@@ -10,24 +11,24 @@ import ui.input.IntegerInput;
 import java.util.List;
 import java.util.Objects;
 
-import static lang.Menu.*;
+import static lang.Interface.*;
 
 public class MainMenuView extends View<Integer> {
 
-    private static final String MENU_TITLE = TITLE;
+    private static final String MENU_TITLE = Interface.MENU_TITLE;
     private static final List<String> MENU_ITEMS = List.of(
-            ITEM_CREATE_SHIP,
-            ITEM_CREATE_CONTAINER,
-            ITEM_DISPLAY_SHIPS,
-            ITEM_DISPLAY_CONTAINERS_IN_SHIP,
-            ITEM_DISPLAY_WAREHOUSE,
-            ITEM_DISPLAY_TRAIN,
-            ITEM_DISPLAY_SENDERS,
-            ITEM_UTILIZE_CONTAINER,
-            ITEM_SEND_SHIP,
-            ITEM_SAVE,
-            ITEM_LOAD,
-            ITEM_EXIT
+            MENU_ITEM_CREATE_SHIP,
+            MENU_ITEM_CREATE_CONTAINER,
+            MENU_ITEM_DISPLAY_SHIPS,
+            MENU_ITEM_DISPLAY_CONTAINERS_IN_SHIP,
+            MENU_ITEM_DISPLAY_WAREHOUSE,
+            MENU_ITEM_DISPLAY_TRAIN,
+            MENU_ITEM_DISPLAY_SENDERS,
+            MENU_ITEM_UTILIZE_CONTAINER,
+            MENU_ITEM_SEND_SHIP,
+            MENU_ITEM_SAVE,
+            MENU_ITEM_LOAD,
+            MENU_ITEM_EXIT
     );
     private static final Component TITLE_COMPONENT = new LineComponent(MENU_TITLE);
     private static final Component MENU_COMPONENT = new ListComponent<>(MENU_ITEMS, Objects::toString);
