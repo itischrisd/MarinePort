@@ -34,7 +34,7 @@ public class DepartShipController implements Controller {
         try {
             ShipService.departShip(shipId);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 }

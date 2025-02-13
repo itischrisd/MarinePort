@@ -24,7 +24,7 @@ public class LoadContainerToTrainController implements Controller {
         try {
             ContainerService.loadOntoTrain(containerId);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 }

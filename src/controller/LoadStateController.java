@@ -32,7 +32,7 @@ public class LoadStateController implements Controller {
         try {
             PersistanceService.load(fileName);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 }

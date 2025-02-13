@@ -99,7 +99,7 @@ public class CreateContainerController implements Controller {
         try {
             ContainerService.createContainer(containerWeight, senderIndex);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 
@@ -108,7 +108,7 @@ public class CreateContainerController implements Controller {
         try {
             ContainerService.createContainer(containerWeight, senderIndex, tareWeight);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 
@@ -122,7 +122,7 @@ public class CreateContainerController implements Controller {
         try {
             ContainerService.createContainer(containerWeight, senderIndex, tareWeight, isConnectedToPower);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 
@@ -136,7 +136,7 @@ public class CreateContainerController implements Controller {
         try {
             ContainerService.createContainer(containerWeight, senderIndex, liquidVolume);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 
@@ -161,7 +161,7 @@ public class CreateContainerController implements Controller {
         try {
             ContainerService.createContainer(containerWeight, senderIndex, tareWeight, additionalProtectionIndex);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 
@@ -199,7 +199,7 @@ public class CreateContainerController implements Controller {
         try {
             ContainerService.createContainer(containerWeight, senderIndex, tareWeight, toxicityLevel, featuresIndexes);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 
@@ -220,7 +220,7 @@ public class CreateContainerController implements Controller {
         try {
             ContainerService.createContainer(containerWeight, senderIndex, tareWeight, toxicityLevel, liquidVolume);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 

@@ -25,7 +25,7 @@ public class SaveStateController implements Controller {
                 PersistanceService.save(fileName);
             }
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 }

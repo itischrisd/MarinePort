@@ -33,7 +33,7 @@ public class LoadContainerToShipController implements Controller {
         try {
             ContainerService.loadOntoShip(containerId, shipId);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 }

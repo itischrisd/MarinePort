@@ -8,7 +8,7 @@ import model.service.SenderService;
 import model.service.ShipService;
 import model.ship.Ship;
 import ui.component.Component;
-import ui.component.LineComponent;
+import ui.core.IOProvider;
 import ui.core.View;
 import view.*;
 
@@ -41,8 +41,7 @@ public class MainMenuController implements Controller {
         try {
             App.launch();
         } catch (Exception e) {
-            Component errorComponent = new LineComponent(e.getMessage());
-            errorComponent.display();
+            IOProvider.printError(e);
         }
     }
 

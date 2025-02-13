@@ -58,4 +58,13 @@ public class IOProvider {
         }
         instance = new IOProvider(out, in);
     }
+
+    /**
+     * Prints an error message to the output stream or simple name of the exception if message is null.
+     *
+     * @param e The exception to print
+     */
+    public static void printError(Exception e) {
+        getPrinter().println(e.getMessage() == null ? e.getClass().getSimpleName() : e.getMessage());
+    }
 }

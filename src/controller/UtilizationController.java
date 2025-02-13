@@ -2,7 +2,7 @@ package controller;
 
 import model.container.Container;
 import model.service.ContainerService;
-import ui.component.LineComponent;
+import ui.core.IOProvider;
 import view.UtilizationView;
 
 import java.time.LocalDate;
@@ -26,8 +26,7 @@ public class UtilizationController implements Controller {
         try {
             utilizeContainer(containerId);
         } catch (Exception e) {
-            LineComponent errorComponent = new LineComponent(e.getMessage());
-            errorComponent.display();
+            IOProvider.printError(e);
         }
     }
 }

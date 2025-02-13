@@ -32,7 +32,7 @@ public class UnloadContainerToWarehouseController implements Controller {
         try {
             ContainerService.unloadToWarehouse(containerId, shipId);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 }

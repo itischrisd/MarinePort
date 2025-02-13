@@ -32,7 +32,7 @@ public class UnloadContainerToTrainController implements Controller {
         try {
             ContainerService.unloadToTrain(containerId, shipId);
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
 
     }

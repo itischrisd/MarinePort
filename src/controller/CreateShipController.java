@@ -100,7 +100,7 @@ public class CreateShipController implements Controller {
                     maxToxicOrExplosiveContainers
             );
         } catch (Exception e) {
-            IOProvider.getPrinter().println(e.getMessage());
+            IOProvider.printError(e);
         }
     }
 }
