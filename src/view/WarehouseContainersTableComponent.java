@@ -1,6 +1,7 @@
 package view;
 
 import model.container.Container;
+import model.warehouse.Warehouse;
 import ui.component.TableComponent;
 
 import java.time.LocalDate;
@@ -15,7 +16,8 @@ public class WarehouseContainersTableComponent extends TableComponent<Map.Entry<
             new ColumnDefinition<>(FIELD_ID, e -> e.getKey().getId()),
             new ColumnDefinition<>(FIELD_TYPE, e -> CONTAINER_CLASS_NAMES_MAP.get(e.getKey().getClass())),
             new ColumnDefinition<>(FIELD_WEIGHT, e -> e.getKey().getWeight()),
-            new ColumnDefinition<>(FIELD_ARRIVAL_DATE, Map.Entry::getValue)
+            new ColumnDefinition<>(FIELD_ARRIVAL_DATE, Map.Entry::getValue),
+            new ColumnDefinition<>(FIELD_TIME_TO_EXPIRE, Warehouse::calculateDaysBeforeUtilization)
     );
 
     public WarehouseContainersTableComponent(Map<Container, LocalDate> items) {

@@ -9,19 +9,30 @@ import model.exception.TooManyContainersException;
 import model.time.Clock;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Warehouse {
 
-    private final int MAX_EXPLOSIVE_TIME = 5;
-    private final int MAX_LIQUID_TOXIC_TIME = 10;
-    private final int MAX_LOOSE_TOXIC_TIME = 14;
+    private static final int MAX_EXPLOSIVE_TIME = 5;
+    private static final int MAX_LIQUID_TOXIC_TIME = 10;
+    private static final int MAX_LOOSE_TOXIC_TIME = 14;
     private Map<Container, LocalDate> containers;
     private int MAX_CONTAINERS;
 
     protected Warehouse() {
         this.containers = new ConcurrentHashMap<>();
+    }
+
+    public static int calculateDaysBeforeUtilization(Map.Entry<Container, LocalDate> entry) {
+        return switch (entry.getKey()) {
+            case ExplosiveContainer ignored -> MAX_EXPLOSIVE_TIME - Clock.getDate().compareTo(entry.getValue());
+            case LiquidToxicContainer ignored -> MAX_LIQUID_TOXIC_TIME - Clock.getDate().compareTo(entry.getValue());
+            case LooseToxicContainer ignored -> MAX_LOOSE_TOXIC_TIME - Clock.getDate().compareTo(entry.getValue());
+            default -> 0;
+        };
     }
 
     public Map<Container, LocalDate> getContainers() {
