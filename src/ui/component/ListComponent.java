@@ -5,7 +5,11 @@ import java.util.function.Function;
 
 import static ui.core.IOProvider.getPrinter;
 
-
+/**
+ * A component that displays a numbered list of items.
+ *
+ * @param <T> The type of items to display
+ */
 public class ListComponent<T> implements Component {
 
     private final List<T> items;
@@ -15,6 +19,7 @@ public class ListComponent<T> implements Component {
      * Creates a new list component.
      *
      * @param items The items to display
+     * @param formatter The function that maps items to their string representation
      */
     public ListComponent(List<T> items, Function<T, Object> formatter) {
         this.items = items;

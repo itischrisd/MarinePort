@@ -5,18 +5,28 @@ import java.util.function.Function;
 
 import static ui.core.IOProvider.getPrinter;
 
+/**
+ * A component that displays list of items in a formatted table.
+ *
+ * @param <T> The type of items to display
+ */
 public class TableComponent<T> implements Component {
 
     private final List<ColumnDefinition<T>> columns;
     private final List<T> data;
     private final List<Integer> columnWidths;
 
+    /**
+     * Creates a new table component.
+     *
+     * @param columns The columns of the table
+     * @param data The data to display
+     */
     public TableComponent(List<ColumnDefinition<T>> columns, List<T> data) {
         this.columns = columns;
         this.data = data;
         this.columnWidths = calculateColumnWidths();
     }
-
 
     @Override
     public void display() {
@@ -61,6 +71,13 @@ public class TableComponent<T> implements Component {
         return String.format("%-" + width + "s", value);
     }
 
+    /**
+     * A definition of a column in a table.
+     *
+     * @param header The header of the column
+     * @param valueGetter The function that gets the value of the column for a given item
+     * @param <T> The type of items in the table
+     */
     public record ColumnDefinition<T>(String header, Function<T, Object> valueGetter) {
     }
 }

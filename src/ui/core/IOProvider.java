@@ -26,7 +26,7 @@ public class IOProvider {
     /**
      * Gets the output stream.
      *
-     * @return The output stream
+     * @return Output stream designated for user display
      */
     public static PrintStream getPrinter() {
         if (instance == null) {
@@ -38,7 +38,7 @@ public class IOProvider {
     /**
      * Gets the global Scanner object.
      *
-     * @return The Scanner object
+     * @return Scanner object designated for collecting user input
      */
     public static Scanner getScanner() {
         if (instance == null) {
