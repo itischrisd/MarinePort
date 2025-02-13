@@ -2,10 +2,11 @@ package controller;
 
 import model.service.ShipService;
 import model.ship.Ship;
+import ui.component.Component;
 import ui.core.IOProvider;
 import ui.input.Input;
 import ui.input.IntegerInput;
-import view.ShipsView;
+import view.ShipsTableComponent;
 
 import java.util.List;
 
@@ -13,12 +14,12 @@ import static lang.Interface.*;
 
 public class DepartShipController implements Controller {
 
-    private final ShipsView shipsView;
+    private final Component shipsTableComponent;
     private final Input<Integer> shipIdInput;
 
     public DepartShipController() {
         List<Ship> ships = ShipService.getShips();
-        this.shipsView = new ShipsView(ships);
+        this.shipsTableComponent = new ShipsTableComponent(ships);
         this.shipIdInput = new IntegerInput(
                 DEPARTURE_PROMPT,
                 INVALID_SHIP_ID,
@@ -28,7 +29,7 @@ public class DepartShipController implements Controller {
 
     @Override
     public void run() {
-        shipsView.display();
+        shipsTableComponent.display();
         int shipId = shipIdInput.collect();
         try {
             ShipService.departShip(shipId);

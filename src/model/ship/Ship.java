@@ -29,8 +29,8 @@ public class Ship {
         this.containers = new ArrayList<>();
     }
 
-    public void removeContainer(int id) {
-        containers.remove(id);
+    public void removeContainer(int containerId) {
+        containers.removeIf(container -> container.getId() == containerId);
     }
 
     public void loadContainer(Container container) throws ContainerLoadingException {

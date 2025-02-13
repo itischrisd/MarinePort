@@ -3,6 +3,7 @@ package controller;
 import model.sender.Sender;
 import model.service.ContainerService;
 import model.service.SenderService;
+import ui.component.Component;
 import ui.component.LineComponent;
 import ui.component.ListComponent;
 import ui.core.IOProvider;
@@ -16,10 +17,10 @@ import static lang.Interface.*;
 
 public class CreateContainerController implements Controller {
 
-    private final LineComponent containerTypesHeader;
-    private final ListComponent<String> containerTypes;
-    private final LineComponent sendersHeader;
-    private final ListComponent<Sender> sendersList;
+    private final Component containerTypesHeader;
+    private final Component containerTypes;
+    private final Component sendersHeader;
+    private final Component sendersList;
     private final Input<Integer> containerTypeInput;
     private final Input<Integer> containerWeightInput;
     private final Input<Integer> senderIdInput;
@@ -141,8 +142,8 @@ public class CreateContainerController implements Controller {
 
     private void continueCreatingExplosiveContainer() {
         int tareWeight = getTareWeight();
-        LineComponent additionalProtectionHeader = new LineComponent(ADDITIONAL_PROTECTION_HEADER);
-        ListComponent<String> additionalProtection = new ListComponent<>(List.of(
+        Component additionalProtectionHeader = new LineComponent(ADDITIONAL_PROTECTION_HEADER);
+        Component additionalProtection = new ListComponent<>(List.of(
                 ENUM_NONE,
                 ENUM_REINFORCED_WALLS,
                 ENUM_EXPLOSION_SUPPRESSORS,
@@ -172,8 +173,8 @@ public class CreateContainerController implements Controller {
                 toxicityLevel -> toxicityLevel >= 0
         );
         int toxicityLevel = toxicityLevelInput.collect();
-        LineComponent featuresHeader = new LineComponent(CONTAINER_FEATURES_HEADER);
-        ListComponent<String> features = new ListComponent<>(List.of(
+        Component featuresHeader = new LineComponent(CONTAINER_FEATURES_HEADER);
+        Component features = new ListComponent<>(List.of(
                 ENUM_NONE,
                 ENUM_VENTILATION_SYSTEM,
                 ENUM_LEAK_DETECTION_SYSTEM,

@@ -70,18 +70,30 @@ public class MainMenuController implements Controller {
                 displaySenders();
                 break;
             case 8:
-                utilizeContainerFromWarehouse();
+                loadContainerToShip();
                 break;
             case 9:
-                departShip();
+                loadContainerToTrain();
                 break;
             case 10:
-                saveState();
+                unloadContainerToWarehouse();
                 break;
             case 11:
-                loadState();
+                unloadContainerToTrain();
                 break;
             case 12:
+                departShip();
+                break;
+            case 13:
+                utilizeContainerFromWarehouse();
+                break;
+            case 14:
+                saveState();
+                break;
+            case 15:
+                loadState();
+                break;
+            case 16:
                 exitApp();
                 break;
             default:
@@ -101,40 +113,61 @@ public class MainMenuController implements Controller {
 
     private void displayShips() {
         List<Ship> ships = ShipService.getShips();
-        Component shipsView = new ShipsView(ships);
+        Component shipsView = new ShipsTableComponent(ships);
         shipsView.display();
     }
 
     private void displayContainersOnShip() {
-
+        Controller displayContainersOnShipController = new DisplayContainersOnShipController();
+        displayContainersOnShipController.run();
     }
 
     private void displayWarehouse() {
         Map<Container, LocalDate> containers = ContainerService.getWarehouseContainers();
-        Component warehouseContainersView = new WarehouseContainersView(containers);
+        Component warehouseContainersView = new WarehouseContainersTableComponent(containers);
         warehouseContainersView.display();
     }
 
     private void displayTrain() {
         List<Container> containers = ContainerService.getTrainContainers();
-        Component containersView = new ContainersView(containers);
+        Component containersView = new ContainersTableComponent(containers);
         containersView.display();
     }
 
     private void displaySenders() {
         List<Sender> senders = SenderService.getSenders();
-        Component sendersView = new SendersView(senders);
+        Component sendersView = new SendersTableComponent(senders);
         sendersView.display();
     }
 
-    private void utilizeContainerFromWarehouse() {
-        Controller utilizationController = new UtilizationController();
-        utilizationController.run();
+    private void loadContainerToShip() {
+        Controller loadContainerToShipController = new LoadContainerToShipController();
+        loadContainerToShipController.run();
+    }
+
+    private void loadContainerToTrain() {
+        Controller loadContainerToTrainController = new LoadContainerToTrainController();
+        loadContainerToTrainController.run();
+    }
+
+    private void unloadContainerToWarehouse() {
+        Controller unloadContainerToWarehouseController = new UnloadContainerToWarehouseController();
+        unloadContainerToWarehouseController.run();
+    }
+
+    private void unloadContainerToTrain() {
+        Controller unloadContainerToTrainController = new UnloadContainerToTrainController();
+        unloadContainerToTrainController.run();
     }
 
     private void departShip() {
         Controller departShipController = new DepartShipController();
         departShipController.run();
+    }
+
+    private void utilizeContainerFromWarehouse() {
+        Controller utilizationController = new UtilizationController();
+        utilizationController.run();
     }
 
     private void saveState() {

@@ -10,8 +10,12 @@ public class Interface {
     public static final String MENU_ITEM_DISPLAY_WAREHOUSE = "Wyświetl stan magazynu.";
     public static final String MENU_ITEM_DISPLAY_TRAIN = "Wyświetl stan pociągu.";
     public static final String MENU_ITEM_DISPLAY_SENDERS = "Wyświetl listę nadawców.";
+    public static final String MENU_ITEM_LOAD_CONTAINER_TO_SHIP = "Załaduj kontener z magazynu na statek.";
+    public static final String MENU_ITEM_LOAD_CONTAINER_TO_TRAIN = "Załaduj kontener z magazynu na pociąg.";
+    public static final String MENU_ITEM_UNLOAD_CONTAINER_TO_WAREHOUSE = "Wyładuj kontener ze statku do magazynu.";
+    public static final String MENU_ITEM_UNLOAD_CONTAINER_TO_TRAIN = "Wyładuj kontener ze statku na pociąg.";
+    public static final String MENU_ITEM_DEPART_SHIP = "Wyślij statek w rejs.";
     public static final String MENU_ITEM_UTILIZE_CONTAINER = "Zutylizuj kontener z magazynu.";
-    public static final String MENU_ITEM_SEND_SHIP = "Wyślij statek w rejs.";
     public static final String MENU_ITEM_SAVE = "Zapisz stan portu.";
     public static final String MENU_ITEM_LOAD = "Wczytaj stan portu.";
     public static final String MENU_ITEM_EXIT = "Zakończ program.";
@@ -39,14 +43,15 @@ public class Interface {
     public static final String TOXICITY_LEVEL_PROMPT = "Podaj poziom toksyczności:";
     public static final String CONTAINER_FEATURES_PROMPT = "Podaj numery cech oddzielone spacjami:";
     public static final String TARE_WEIGHT_PROMPT = "Podaj wagę tara:";
-
+    public static final String SHIP_ID_PROMPT = "Podaj ID statku:";
+    public static final String CONTAINER_ID_PROMPT = "Podaj ID kontenera:";
 
     public static final String INVALID_OPTION = "Niepoprawna opcja!";
     public static final String INVALID_VALUE = "Niepoprawna wartość!";
-    public static final String INVALID_CONTAINER_ID = "Niepoprawny numer kontenera!";
+    public static final String INVALID_CONTAINER_ID = "Niepoprawny numer ID kontenera!";
     public static final String INVALID_FILE_NAME_CANNOT_BE_EMPTY = "Nazwa pliku nie może być pusta!";
     public static final String INVALID_FILE_DOES_NOT_EXIST = "Plik o podanej nazwie nie istnieje!";
-    public static final String INVALID_SHIP_ID = "Niepoprawny numer statku!";
+    public static final String INVALID_SHIP_ID = "Niepoprawny numer ID statku!";
     public static final String INVALID_SHIP_NAME = "Nazwa statku nie może być pusta!";
     public static final String INVALID_ORIGIN_PORT = "Port pochodzenia nie może być pusty!";
     public static final String INVALID_CARGO_ORIGIN = "Pochodzenie ładunku nie może być puste!";
@@ -70,6 +75,10 @@ public class Interface {
     public static final String SENDERS_HEADER = "Nadawcy";
     public static final String ADDITIONAL_PROTECTION_HEADER = "Dodatkowa ochrona";
     public static final String CONTAINER_FEATURES_HEADER = "Cechy kontenera";
+    public static final String SHIPS_LIST_HEADER = "Lista statków";
+    public static final String CONTAINERS_LIST_HEADER = "Lista kontenerów";
 
     public static final String SENDER_LIST_FORMAT = "%s %s, ostrzeżeń: %d";
+    public static final String SHIP_LIST_FORMAT = "ID: %d, nazwa: %s, liczba kontenerów: %d";
+    public static final String CONTAINER_LIST_FORMAT = "ID: %d, typ: %s, waga: %d, PESEL nadawcy: %s";
 }

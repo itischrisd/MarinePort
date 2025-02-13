@@ -22,7 +22,7 @@ public class Data {
     public static final String CONTAINER_EXPLOSIVE = "Kontener na materiały wybuchowe";
     public static final String CONTAINER_LOOSE_TOXIC = "Kontener na materiały toksyczne sypkie";
     public static final String CONTAINER_LIQUID_TOXIC = "Kontener na materiały toksyczne płynne";
-    public static final Map<Class<? extends Container>, String> CONTAINER_CLASS_NAMES = Map.of(
+    public static final Map<Class<? extends Container>, String> CONTAINER_CLASS_NAMES_MAP = Map.of(
             Container.class, CONTAINER_COMMON,
             HeavyContainer.class, CONTAINER_HEAVY,
             RefrigeratedContainer.class, CONTAINER_REFRIGERATED,
@@ -70,6 +70,7 @@ public class Data {
     public static final String FIELD_ARRIVAL_DATE = "Data przybycia";
     public static final String FIELD_UTILIZATION_DATE = "Data wykorzystania";
     public static final String FIELD_TYPE = "Typ";
+    public static final String FIELD_TIME_TO_EXPIRE = "Czas do utylizacji";
 
     public static final String ENUM_NONE = "Brak";
     public static final String ENUM_REINFORCED_WALLS = "Wzmocnione ściany";

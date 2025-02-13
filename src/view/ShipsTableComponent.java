@@ -7,7 +7,7 @@ import java.util.List;
 
 import static lang.Data.*;
 
-public class ShipsView extends TableComponent<Ship> {
+public class ShipsTableComponent extends TableComponent<Ship> {
 
     private static final List<ColumnDefinition<Ship>> COLUMNS = List.of(
             new ColumnDefinition<>(FIELD_ID, Ship::getId),
@@ -23,7 +23,7 @@ public class ShipsView extends TableComponent<Ship> {
             new ColumnDefinition<>(FIELD_CONTAINERS_COUNT, ship -> ship.getContainers().size())
     );
 
-    public ShipsView(List<Ship> data) {
+    public ShipsTableComponent(List<Ship> data) {
         super(COLUMNS, data);
     }
 }

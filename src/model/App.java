@@ -15,6 +15,8 @@ public class App {
             DataReader.readFromFile(DEFUALT_FILE_NAME);
         } catch (Exception e) {
             SampleDataInitializer.createExampleData();
+            Clock.getInstance().start();
+            Utilizer.getInstance().start();
             throw new RuntimeException(READING_FILE + "\n" + DEFAULT_DATA_MESSAGE);
         }
         Clock.getInstance().start();

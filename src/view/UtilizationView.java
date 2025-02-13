@@ -21,7 +21,7 @@ public class UtilizationView extends View<Integer> {
         super(
                 List.of(
                         TITLE_COMPONENT,
-                        new WarehouseContainersView(items)
+                        new WarehouseContainersTableComponent(items)
                 ),
                 new IntegerInput(
                         UTILIZATION_PROMPT,

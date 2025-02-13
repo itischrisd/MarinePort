@@ -24,8 +24,12 @@ public class MainMenuView extends View<Integer> {
             MENU_ITEM_DISPLAY_WAREHOUSE,
             MENU_ITEM_DISPLAY_TRAIN,
             MENU_ITEM_DISPLAY_SENDERS,
+            MENU_ITEM_LOAD_CONTAINER_TO_SHIP,
+            MENU_ITEM_LOAD_CONTAINER_TO_TRAIN,
+            MENU_ITEM_UNLOAD_CONTAINER_TO_WAREHOUSE,
+            MENU_ITEM_UNLOAD_CONTAINER_TO_TRAIN,
+            MENU_ITEM_DEPART_SHIP,
             MENU_ITEM_UTILIZE_CONTAINER,
-            MENU_ITEM_SEND_SHIP,
             MENU_ITEM_SAVE,
             MENU_ITEM_LOAD,
             MENU_ITEM_EXIT
