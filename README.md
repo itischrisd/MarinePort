@@ -2,7 +2,7 @@
   <div>
     <img width="80" src="https://raw.githubusercontent.com/itischrisd/itis-PJATK/main/logo.svg" alt="PJAIT logo" />
   </div>
-MarinePort
+  MarinePort
 </h1>
 
 Repository that contains implementation of the 1st project for the GUI (Object Oriented-Programming and Graphical User
