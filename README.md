@@ -5,8 +5,9 @@
   MarinePort
 </h1>
 
-Repository that contains implementation of the 1st project for the GUI (Object Oriented-Programming and Graphical User
-Interface) practical classes, taught by Sławomir Dańczak during studies on [PJAIT](https://www.pja.edu.pl/en/).
+Repository that contains implementation of the 1st project for the [GUI](https://github.com/itisarchive/itis-GUI) (
+Object Oriented-Programming and Graphical User Interface) practical classes, taught by Sławomir Dańczak during studies
+on [PJAIT](https://www.pja.edu.pl/en/).
 
 
 ---
