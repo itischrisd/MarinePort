@@ -52,8 +52,8 @@ external frameworks or libraries, highlighting fundamental Java features and des
 
 ## Architecture & Design
 
-MarinePort is structured with clarity and modularity in mind, following a design akin to the **Model-View-Controller (
-MVC)** pattern to separate concerns:
+MarinePort is structured with clarity and modularity in mind, following a design akin to the
+**Model-View-Controller (MVC)** pattern to separate concerns:
 
 - The **Model** encapsulates core data and business logic — classes representing entities like `Ship`, `Container`,
   `Port` (terminal), `Warehouse`, `Train`, etc., along with their interactions (e.g. methods to load/unload containers).
